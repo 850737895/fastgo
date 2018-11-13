@@ -6,11 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="fastgo-dao" />
         <module name="fastgo-entity" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="fastgo" target="1.8" />
+      <module name="fastgo-dao" target="1.8" />
       <module name="fastgo-entity" target="1.8" />
     </bytecodeTargetLevel>
   </component>
