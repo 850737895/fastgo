@@ -109,6 +109,8 @@
 	<modules>
 		<module>fastgo-entity</module>
 		<module>fastgo-dao</module>
+		<module>fastgo-common</module>
+		<module>fastgo-sellergoods</module>
 	</modules>
 
 
