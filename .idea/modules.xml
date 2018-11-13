@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/fastgo.iml" filepath="$PROJECT_DIR$/fastgo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fastgo-entity/fastgo-entity.iml" filepath="$PROJECT_DIR$/fastgo-entity/fastgo-entity.iml" />
     </modules>
   </component>
 </project>
