@@ -5,6 +5,11 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/fastgo-sellergoods/pom.xml" />
+        <option value="$PROJECT_DIR$/fastgo-client-api/pom.xml" />
+        <option value="$PROJECT_DIR$/fastgo-sellergoods-service/pom.xml" />
+        <option value="$PROJECT_DIR$/fastgo-manager-web/pom.xml" />
+        <option value="$PROJECT_DIR$/fastgo-register/pom.xml" />
+        <option value="$PROJECT_DIR$/fastgo-apigateway/pom.xml" />
       </list>
     </option>
   </component>
