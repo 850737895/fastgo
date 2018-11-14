@@ -2,6 +2,7 @@ package com.hnnd.fastgo.clientapi.sellergoods;
 
 import com.hnnd.fastgo.entity.TbBrand;
 import com.hnnd.fastgo.enumration.SellerGoodsEnum;
+import com.hnnd.fastgo.vo.PageResultVo;
 import com.hnnd.fastgo.vo.SystemVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -19,5 +20,11 @@ public class SellerGoodsImpl implements SellerGoodsApi {
     public SystemVo<List<TbBrand>> selectAll() {
         log.warn("商家商品查询列表服务异常");
         return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_ERROR);
+    }
+
+    @Override
+    public PageResultVo<TbBrand> selectAllByPage(Integer pageNum, Integer pageSize) {
+        log.warn("商家商品查询分页列表服务异常");
+        return null;
     }
 }

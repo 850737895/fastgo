@@ -30,6 +30,7 @@
 		<mybatis.paginator>1.2.17</mybatis.paginator>
 		<jsqlparser.version>0.9.4</jsqlparser.version>
 		<guava.version>18.0</guava.version>
+		<fastjson.version>1.2.47</fastjson.version>
 	</properties>
 
 	<dependencyManagement>
@@ -88,6 +89,10 @@
 				<artifactId>jsqlparser</artifactId>
 			</dependency>
 
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 

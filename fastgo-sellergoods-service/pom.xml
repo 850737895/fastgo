@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.hnnd</groupId>
-	<artifactId>fastgo-sellergoods</artifactId>
+	<artifactId>fastgo-sellergoods-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>fastgo-sellergoods</name>
+	<name>fastgo-sellergoods-service</name>
 	<description>商家商品管理</description>
 
 	<parent>
