@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FastgoDaoApplication {
+public class FastgoSellergoodsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FastgoDaoApplication.class, args);
+		SpringApplication.run(FastgoSellergoodsApplication.class, args);
 	}
 }

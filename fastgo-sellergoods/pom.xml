@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.hnnd</groupId>
-	<artifactId>fastgo-entity</artifactId>
+	<artifactId>fastgo-sellergoods</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>fastgo-entity</name>
-	<description>极速购实体类工程</description>
+	<name>fastgo-sellergoods</name>
+	<description>商家商品管理</description>
 
 	<parent>
 		<groupId>com.hnnd</groupId>
@@ -24,16 +24,34 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>${lombok.version}</version>
-		</dependency>
-
+		<!--web相关jar包-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
+		<!--fastgo-dao模块-->
+		<dependency>
+			<groupId>com.hnnd</groupId>
+			<artifactId>fastgo-dao</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
 
 </project>
