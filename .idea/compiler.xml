@@ -6,18 +6,28 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="fastgo-apigateway" />
+        <module name="fastgo-client-api" />
         <module name="fastgo-common" />
         <module name="fastgo-dao" />
         <module name="fastgo-entity" />
+        <module name="fastgo-manager-web" />
+        <module name="fastgo-register" />
         <module name="fastgo-sellergoods" />
+        <module name="fastgo-sellergoods-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="fastgo" target="1.8" />
+      <module name="fastgo-apigateway" target="1.8" />
+      <module name="fastgo-client-api" target="1.8" />
       <module name="fastgo-common" target="1.8" />
       <module name="fastgo-dao" target="1.8" />
       <module name="fastgo-entity" target="1.8" />
+      <module name="fastgo-manager-web" target="1.8" />
+      <module name="fastgo-register" target="1.8" />
       <module name="fastgo-sellergoods" target="1.8" />
+      <module name="fastgo-sellergoods-service" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

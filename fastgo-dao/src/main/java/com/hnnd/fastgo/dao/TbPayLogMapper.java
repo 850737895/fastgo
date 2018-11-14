@@ -1,7 +1,6 @@
 package com.hnnd.fastgo.dao;
 
 import com.hnnd.fastgo.entity.TbPayLog;
-import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 

@@ -3,13 +3,14 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/fastgo.iml" filepath="$PROJECT_DIR$/fastgo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fastgo-apigateway/fastgo-apigateway.iml" filepath="$PROJECT_DIR$/fastgo-apigateway/fastgo-apigateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fastgo-client-api/fastgo-client-api.iml" filepath="$PROJECT_DIR$/fastgo-client-api/fastgo-client-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/fastgo-common/fastgo-common.iml" filepath="$PROJECT_DIR$/fastgo-common/fastgo-common.iml" />
-      <module fileurl="file://E:\IDE_NJ_workspace\fastgo\fastgo-common\fastgo-common.iml" filepath="E:\IDE_NJ_workspace\fastgo\fastgo-common\fastgo-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/fastgo-dao/fastgo-dao.iml" filepath="$PROJECT_DIR$/fastgo-dao/fastgo-dao.iml" />
-      <module fileurl="file://E:\IDE_NJ_workspace\fastgo\fastgo-dao\fastgo-dao.iml" filepath="E:\IDE_NJ_workspace\fastgo\fastgo-dao\fastgo-dao.iml" />
       <module fileurl="file://$PROJECT_DIR$/fastgo-entity/fastgo-entity.iml" filepath="$PROJECT_DIR$/fastgo-entity/fastgo-entity.iml" />
-      <module fileurl="file://E:\IDE_NJ_workspace\fastgo\fastgo-entity\fastgo-entity.iml" filepath="E:\IDE_NJ_workspace\fastgo\fastgo-entity\fastgo-entity.iml" />
-      <module fileurl="file://$PROJECT_DIR$/fastgo-sellergoods/fastgo-sellergoods.iml" filepath="$PROJECT_DIR$/fastgo-sellergoods/fastgo-sellergoods.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fastgo-manager-web/fastgo-manager-web.iml" filepath="$PROJECT_DIR$/fastgo-manager-web/fastgo-manager-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fastgo-register/fastgo-register.iml" filepath="$PROJECT_DIR$/fastgo-register/fastgo-register.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fastgo-sellergoods-service/fastgo-sellergoods-service.iml" filepath="$PROJECT_DIR$/fastgo-sellergoods-service/fastgo-sellergoods-service.iml" />
     </modules>
   </component>
 </project>
