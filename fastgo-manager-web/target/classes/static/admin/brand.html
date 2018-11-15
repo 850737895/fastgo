@@ -21,10 +21,11 @@
 
 	<script type="text/javascript">
 		var app = angular.module('fastgo',['pagination']);
+		var url = "http://localhost:9100";
 		app.controller('brandController',function ($scope,$http) {
 			
 		    $scope.findList=function(){
-			    $http.get("http://localhost:9100/brand/list").success(function (result) {
+			    $http.get(url+"/brand/list").success(function (result) {
 					$scope.brandList=result.data;
                 });
 			}
@@ -41,12 +42,12 @@
 
 			//加载分页列表
 			$scope.loadPageList=function () {
-				$scope.findListByPage($scope.paginationConf.currentPage,$scope.paginationConf.itemsPerPage);
+				$scope.search($scope.paginationConf.currentPage,$scope.paginationConf.itemsPerPage);
             }
 
             //分页查询品牌列表
 			$scope.findListByPage=function (pageNum,pageSize) {
-				$http.get("http://localhost:9100/brand/pageList?pageNum="+pageNum+"&pageSize="+pageSize).success(
+				$http.get(url+"/brand/pageList?pageNum="+pageNum+"&pageSize="+pageSize).success(
 				    function (response) {
 				        //当前页的数据
 						$scope.brandList = response.data.result;
@@ -55,6 +56,67 @@
                 });
             }
 
+            $scope.save = function() {
+			    var methodName = 'save';
+			    if($scope.brand.id!=null) {
+			        methodName = 'modify';
+				}
+			    $http.post(url+"/brand/"+methodName,$scope.brand).success(function(response){
+					if(response.code!=0) {
+					    alert(response.msg);
+					}else {
+                        $scope.loadPageList();
+					}
+				})
+			}
+
+			//查询
+			$scope.findOneById=function (id) {
+				$http.get(url+"/brand/findOne/"+id).success(function (response) {
+					//查找失败
+				    if(response.code!=0) {
+					    alert(response.msg);
+					}else {
+						$scope.brand=response.data;
+					}
+                })
+            }
+
+            //删除
+            $scope.del=function(){
+			    if(confirm("你确定要删除吗?")) {
+                    $http.get(url+"/brand/del?ids=" + $scope.selectIds).success(function (response) {
+                        if (response.code != 0) {
+                            alert(response.msg);
+                        } else {
+                            $scope.loadPageList();
+                            $scope.selectIds = [];
+                        }
+                    })
+                }
+			}
+			//用户存放选择的id
+			$scope.selectIds = [];
+			$scope.getCheckIds=function($event,id) {
+			    if($event.target.checked) {//被勾选
+                    $scope.selectIds.push(id);
+				}else {
+			        var index = $scope.selectIds.indexOf(id);
+			        $scope.selectIds.splice(index,1);
+				}
+			}
+
+			//条件查询
+			$scope.searchEntity={};
+			$scope.search=function (pageNum,pageSize) {
+				$http.post(url+"/brand/search?pageNum="+pageNum+"&pageSize="+pageSize,$scope.searchEntity)
+					.success(function (response) {
+                        //当前页的数据
+                        $scope.brandList = response.data.result;
+                        //修改总条数
+                        $scope.paginationConf.totalItems=response.data.total;
+                    });
+            }
         });
 	</script>
 
@@ -75,16 +137,17 @@
 		<div class="pull-left">
 			<div class="form-group form-inline">
 				<div class="btn-group">
-					<button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
-					<button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
+					<button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ng-click="brand={}"  ><i class="fa fa-file-o"></i> 新建</button>
+					<button type="button" class="btn btn-default" title="删除"  ng-click="del()"><i class="fa fa-trash-o"></i> 删除</button>
 					<button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
 				</div>
 			</div>
 		</div>
 		<div class="box-tools pull-right">
-			<div class="has-feedback">
-
-			</div>
+				<div class="has-feedback">
+					品牌名称:<input ng-model="searchEntity.name"> 品牌首字母:<input ng-model="searchEntity.firstChar">
+					<button  class="btn btn-default" ng-click="loadPageList()">查询</button>
+				</div>
 		</div>
 		<!--工具栏/-->
 
@@ -103,19 +166,18 @@
 			</thead>
 			<tbody>
 			<tr ng-repeat="brand in brandList">
-				<td><input  type="checkbox" ></td>
+				<td><input  type="checkbox" ng-click="getCheckIds($event,brand.id)"></td>
 				<td>{{brand.id}}</td>
 				<td>{{brand.name}}</td>
 				<td>{{brand.firstChar}}</td>
 				<td class="text-center">
-					<button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal"  >修改</button>
+					<button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal"  ng-click="findOneById(brand.id)">修改</button>
 				</td>
 			</tr>
 			</tbody>
 		</table>
 		<!--数据列表(分页控件)/-->
 		<tm-pagination conf="paginationConf"></tm-pagination>
-
 	</div>
 	<!-- 数据表格 /-->
 
@@ -137,16 +199,16 @@
 				<table class="table table-bordered table-striped"  width="800px">
 					<tr>
 						<td>品牌名称</td>
-						<td><input  class="form-control" placeholder="品牌名称" >  </td>
+						<td><input  class="form-control" placeholder="品牌名称"  ng-model="brand.name">  </td>
 					</tr>
 					<tr>
 						<td>首字母</td>
-						<td><input  class="form-control" placeholder="首字母">  </td>
+						<td><input  class="form-control" placeholder="首字母" ng-model="brand.firstChar">  </td>
 					</tr>
 				</table>
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-success" data-dismiss="modal" aria-hidden="true">保存</button>
+				<button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="save()">保存</button>
 				<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
 			</div>
 		</div>

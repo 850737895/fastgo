@@ -57,6 +57,13 @@ public class SystemVo<T> implements Serializable {
         return systemVo;
     }
 
+    public static SystemVo success(SellerGoodsEnum systemEnum) {
+        SystemVo systemVo = new SystemVo();
+        systemVo.setCode(systemEnum.getCode());
+        systemVo.setMsg(systemEnum.getMsg());
+        return systemVo;
+    }
+
     /**
      * 根据code来判断是否成功
      * @return

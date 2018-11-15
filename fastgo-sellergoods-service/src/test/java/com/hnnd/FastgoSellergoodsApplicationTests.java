@@ -1,5 +1,6 @@
 package com.hnnd;
 
+import com.hnnd.fastgo.entity.TbBrand;
 import com.hnnd.fastgo.service.ISellerGoodsService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,6 +22,15 @@ public class FastgoSellergoodsApplicationTests {
 	@Test
 	public void testBrandService() {
 		System.out.println(brandServiceImpl.selectAll());
+	}
+
+	@Test
+	public void testSearch() {
+		TbBrand tbBrand = new TbBrand();
+		tbBrand.setName("海");
+		tbBrand.setFirstChar("H");
+		System.out.println(brandServiceImpl.search(tbBrand,1,10));
+
 	}
 
 

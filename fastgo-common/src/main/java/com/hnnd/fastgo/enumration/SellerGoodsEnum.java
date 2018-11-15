@@ -11,7 +11,17 @@ public enum SellerGoodsEnum {
 
     SELLER_GOODS_ERROR(-1,"调用商家商品服务失败"),
 
-    SELLER_GOODS_PAGELIST_ERROR(-2,"调用商家商品分页列表服务异常");
+    SELLER_GOODS_PAGELIST_ERROR(-2,"调用商家商品分页列表服务异常"),
+
+    SELLER_GOODS_SAVE_ERROR(-3,"保存商品品牌异常"),
+
+    SELLER_GOODS_FINDONE_ERROR(-4,"没有查询到该品牌信息"),
+
+    SELLER_GOODS_MODIFY_ERROR(-5,"修改品牌信息异常"),
+
+    SELLER_GOODS_DEL_ERROR(-6,"删除品牌信息异常"),
+
+    SELLER_GOODS_DEL_NULL_PARAM(-6,"请选择需要删除的品牌信息");
 
     private Integer code;
 

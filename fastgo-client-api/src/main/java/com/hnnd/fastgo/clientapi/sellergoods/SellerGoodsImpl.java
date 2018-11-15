@@ -27,4 +27,31 @@ public class SellerGoodsImpl implements SellerGoodsApi {
         log.warn("商家商品查询分页列表服务异常");
         return null;
     }
+
+    @Override
+    public SystemVo save(TbBrand tbBrand) {
+        log.warn("保存品牌出错");
+        return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_SAVE_ERROR);
+    }
+
+    @Override
+    public SystemVo<TbBrand> findOneById(Long id) {
+        return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_FINDONE_ERROR);
+    }
+
+    @Override
+    public SystemVo modifyBrandById(TbBrand tbBrand) {
+        return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_MODIFY_ERROR);
+    }
+
+    @Override
+    public SystemVo delBrandById(String [] ids) {
+        return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_DEL_ERROR);
+    }
+
+    @Override
+    public PageResultVo<TbBrand> search(TbBrand tbBrand, Integer pageNum, Integer pageSize) {
+        log.error("根据查询条件查询分页列表出错:{}",tbBrand);
+        return null;
+    }
 }
