@@ -1,6 +1,6 @@
 package com.hnnd.fastgo.controller;
 
-import com.hnnd.fastgo.clientapi.sellergoods.SellerGoodsApi;
+import com.hnnd.fastgo.clientapi.sellergoods.brand.SellerGoodsBrandApi;
 import com.hnnd.fastgo.entity.TbBrand;
 import com.hnnd.fastgo.enumration.SellerGoodsEnum;
 import com.hnnd.fastgo.service.ISellerGoodsService;
@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/sellerGoods")
 @Slf4j
-public class SellerGoodsController implements SellerGoodsApi {
+public class SellerGoodsBrandController implements SellerGoodsBrandApi {
 
     @Autowired
     private ISellerGoodsService brandServiceImpl;

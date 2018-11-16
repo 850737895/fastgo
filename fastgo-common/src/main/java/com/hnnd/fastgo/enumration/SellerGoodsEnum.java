@@ -21,7 +21,15 @@ public enum SellerGoodsEnum {
 
     SELLER_GOODS_DEL_ERROR(-6,"删除品牌信息异常"),
 
-    SELLER_GOODS_DEL_NULL_PARAM(-6,"请选择需要删除的品牌信息");
+    SELLER_GOODS_DEL_NULL_PARAM(-6,"请选择需要删除的品牌信息"),
+
+    SELLER_GOODS_SAVE_SPEC_ERROR(-7,"保存商品规格异常"),
+
+    SELLER_GOODS_IN_PARAM_ERROR(-8,"商品规格入参数为空"),
+    SELLER_GOODS_FINDONE_SPEC_ERROR(-8,"根据商品规格ID查询规格信息异常");
+
+
+
 
     private Integer code;
 

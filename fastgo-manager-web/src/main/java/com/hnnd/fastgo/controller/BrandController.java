@@ -1,6 +1,6 @@
 package com.hnnd.fastgo.controller;
 
-import com.hnnd.fastgo.clientapi.sellergoods.SellerGoodsApi;
+import com.hnnd.fastgo.clientapi.sellergoods.brand.SellerGoodsBrandApi;
 import com.hnnd.fastgo.entity.TbBrand;
 import com.hnnd.fastgo.enumration.SellerGoodsEnum;
 import com.hnnd.fastgo.vo.PageResultVo;
@@ -21,17 +21,17 @@ import java.util.List;
 public class BrandController {
 
     @Autowired
-    private SellerGoodsApi sellerGoodsApi;
+    private SellerGoodsBrandApi sellerGoodsBrandApi;
 
     @RequestMapping("/list")
     public SystemVo<List<TbBrand>>  selectAll() {
-        return  sellerGoodsApi.selectAll();
+        return  sellerGoodsBrandApi.selectAll();
     }
 
     @GetMapping("/pageList")
     public SystemVo<PageResultVo<TbBrand>> selectAllByPage(@RequestParam(value = "pageNum",defaultValue = "1")Integer pageNum,
                                                  @RequestParam(value = "pageSize",defaultValue = "10")Integer pageSize) {
-        PageResultVo<TbBrand> pageResultVo = sellerGoodsApi.selectAllByPage(pageNum,pageSize);
+        PageResultVo<TbBrand> pageResultVo = sellerGoodsBrandApi.selectAllByPage(pageNum,pageSize);
         if(null == pageResultVo) {
             return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_PAGELIST_ERROR);
         }
@@ -40,17 +40,17 @@ public class BrandController {
 
     @RequestMapping("/save")
     public SystemVo saveBrand(@RequestBody TbBrand tbBrand) {
-        return sellerGoodsApi.save(tbBrand);
+        return sellerGoodsBrandApi.save(tbBrand);
     }
 
     @RequestMapping("/findOne/{id}")
     public SystemVo findOneById(@PathVariable("id") Long id) {
-        return sellerGoodsApi.findOneById(id);
+        return sellerGoodsBrandApi.findOneById(id);
     }
 
     @RequestMapping("/modify")
     public SystemVo modify(@RequestBody TbBrand tbBrand) {
-        return sellerGoodsApi.modifyBrandById(tbBrand);
+        return sellerGoodsBrandApi.modifyBrandById(tbBrand);
     }
 
     @RequestMapping("/del")
@@ -58,7 +58,7 @@ public class BrandController {
         if(null == ids|| ids.length==0) {
             return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_DEL_NULL_PARAM);
         }
-        return sellerGoodsApi.delBrandById(ids);
+        return sellerGoodsBrandApi.delBrandById(ids);
     }
 
     /**
@@ -72,7 +72,7 @@ public class BrandController {
     public SystemVo<PageResultVo<TbBrand>> search(@RequestBody TbBrand tbBrand,
                            @RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
                            @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize) {
-        PageResultVo<TbBrand> pageResultVo = sellerGoodsApi.search(tbBrand,pageNum,pageSize);
+        PageResultVo<TbBrand> pageResultVo = sellerGoodsBrandApi.search(tbBrand,pageNum,pageSize);
         if(null == pageResultVo) {
             return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_PAGELIST_ERROR);
         }

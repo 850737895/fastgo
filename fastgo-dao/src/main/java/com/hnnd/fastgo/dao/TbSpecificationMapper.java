@@ -1,6 +1,7 @@
 package com.hnnd.fastgo.dao;
 
 import com.hnnd.fastgo.entity.TbSpecification;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -44,4 +45,6 @@ public interface TbSpecificationMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(TbSpecification record);
+
+    List<TbSpecification> selectAllByPage(@Param("specName") String queryCondition);
 }

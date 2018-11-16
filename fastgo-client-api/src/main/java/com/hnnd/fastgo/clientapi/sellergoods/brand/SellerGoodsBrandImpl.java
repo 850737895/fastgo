@@ -1,4 +1,4 @@
-package com.hnnd.fastgo.clientapi.sellergoods;
+package com.hnnd.fastgo.clientapi.sellergoods.brand;
 
 import com.hnnd.fastgo.entity.TbBrand;
 import com.hnnd.fastgo.enumration.SellerGoodsEnum;
@@ -15,7 +15,7 @@ import java.util.List;
  */
 @Component
 @Slf4j
-public class SellerGoodsImpl implements SellerGoodsApi {
+public class SellerGoodsBrandImpl implements SellerGoodsBrandApi {
     @Override
     public SystemVo<List<TbBrand>> selectAll() {
         log.warn("商家商品查询列表服务异常");

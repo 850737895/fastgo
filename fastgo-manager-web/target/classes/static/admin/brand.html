@@ -16,110 +16,11 @@
 	<!--引入分页控件-->
 	<script src="../plugins/angularjs/pagination.css"></script>
 	<script src="../plugins/angularjs/pagination.js"></script>
-
-
-
-	<script type="text/javascript">
-		var app = angular.module('fastgo',['pagination']);
-		var url = "http://localhost:9100";
-		app.controller('brandController',function ($scope,$http) {
-			
-		    $scope.findList=function(){
-			    $http.get(url+"/brand/list").success(function (result) {
-					$scope.brandList=result.data;
-                });
-			}
-
-			$scope.paginationConf= {
-                currentPage: 1,
-                totalItems: 10,
-                itemsPerPage: 10,
-                perPageOptions: [10, 20, 30, 40, 50],
-                onChange: function(){
-                    $scope.loadPageList();
-                }
-			};
-
-			//加载分页列表
-			$scope.loadPageList=function () {
-				$scope.search($scope.paginationConf.currentPage,$scope.paginationConf.itemsPerPage);
-            }
-
-            //分页查询品牌列表
-			$scope.findListByPage=function (pageNum,pageSize) {
-				$http.get(url+"/brand/pageList?pageNum="+pageNum+"&pageSize="+pageSize).success(
-				    function (response) {
-				        //当前页的数据
-						$scope.brandList = response.data.result;
-						//修改总条数
-						$scope.paginationConf.totalItems=response.data.total;
-                });
-            }
-
-            $scope.save = function() {
-			    var methodName = 'save';
-			    if($scope.brand.id!=null) {
-			        methodName = 'modify';
-				}
-			    $http.post(url+"/brand/"+methodName,$scope.brand).success(function(response){
-					if(response.code!=0) {
-					    alert(response.msg);
-					}else {
-                        $scope.loadPageList();
-					}
-				})
-			}
-
-			//查询
-			$scope.findOneById=function (id) {
-				$http.get(url+"/brand/findOne/"+id).success(function (response) {
-					//查找失败
-				    if(response.code!=0) {
-					    alert(response.msg);
-					}else {
-						$scope.brand=response.data;
-					}
-                })
-            }
-
-            //删除
-            $scope.del=function(){
-			    if(confirm("你确定要删除吗?")) {
-                    $http.get(url+"/brand/del?ids=" + $scope.selectIds).success(function (response) {
-                        if (response.code != 0) {
-                            alert(response.msg);
-                        } else {
-                            $scope.loadPageList();
-                            $scope.selectIds = [];
-                        }
-                    })
-                }
-			}
-			//用户存放选择的id
-			$scope.selectIds = [];
-			$scope.getCheckIds=function($event,id) {
-			    if($event.target.checked) {//被勾选
-                    $scope.selectIds.push(id);
-				}else {
-			        var index = $scope.selectIds.indexOf(id);
-			        $scope.selectIds.splice(index,1);
-				}
-			}
-
-			//条件查询
-			$scope.searchEntity={};
-			$scope.search=function (pageNum,pageSize) {
-				$http.post(url+"/brand/search?pageNum="+pageNum+"&pageSize="+pageSize,$scope.searchEntity)
-					.success(function (response) {
-                        //当前页的数据
-                        $scope.brandList = response.data.result;
-                        //修改总条数
-                        $scope.paginationConf.totalItems=response.data.total;
-                    });
-            }
-        });
-	</script>
-
+	<!--引入自定义的js-->
+	<script src="../js/biz/base_pagination.js"></script>
+	<script src="../js/biz/service/brandService.js"></script>
+	<script src="../js/biz/controller/baseController.js"></script>
+	<script src="../js/biz/controller/brandController.js"></script>
 
 </head>
 <body class="hold-transition skin-red sidebar-mini" ng-app="fastgo" ng-controller="brandController" >
@@ -166,7 +67,7 @@
 			</thead>
 			<tbody>
 			<tr ng-repeat="brand in brandList">
-				<td><input  type="checkbox" ng-click="getCheckIds($event,brand.id)"></td>
+				<td><input  type="checkbox" ng-click="updateSelection($event,brand.id)"></td>
 				<td>{{brand.id}}</td>
 				<td>{{brand.name}}</td>
 				<td>{{brand.firstChar}}</td>

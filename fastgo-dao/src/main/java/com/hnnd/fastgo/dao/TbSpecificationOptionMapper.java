@@ -44,4 +44,6 @@ public interface TbSpecificationOptionMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(TbSpecificationOption record);
+
+    List<TbSpecificationOption> selectBySpecId(Long specId);
 }

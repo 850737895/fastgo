@@ -1,4 +1,4 @@
-package com.hnnd.fastgo.clientapi.sellergoods;
+package com.hnnd.fastgo.clientapi.sellergoods.brand;
 
 import com.hnnd.fastgo.entity.TbBrand;
 import com.hnnd.fastgo.vo.PageResultVo;
@@ -12,8 +12,8 @@ import java.util.List;
  * 商家商品管理client_api(用于暴露)
  * Created by Administrator on 2018/11/14.
  */
-@FeignClient(name = "fastgo-sellergoods-service",fallback = SellerGoodsImpl.class ,path = "/sellerGoods/brand/")
-public interface SellerGoodsApi {
+@FeignClient(name = "fastgo-sellergoods-service",fallback = SellerGoodsBrandImpl.class ,path = "/sellerGoods/brand/")
+public interface SellerGoodsBrandApi {
 
     @GetMapping("/list")
     public SystemVo<List<TbBrand>> selectAll();
