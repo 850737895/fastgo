@@ -32,7 +32,11 @@ app.controller('specController',function ($scope,$controller,specService) {
     }
 
     $scope.save= function(){
-        specService.save($scope.spec).success(function (response) {
+        var methodName = 'save';
+        if($scope.spec.id!=null) {
+            methodName = 'modify'
+        }
+        specService.save(methodName,$scope.spec).success(function (response) {
             if(response.code!=0) {
                 alert(response.msg);
             }else {
@@ -50,6 +54,19 @@ app.controller('specController',function ($scope,$controller,specService) {
                 $scope.spec=response.data;
             }
         })
+    }
+
+    $scope.del=function () {
+        if(confirm("你确定需要删除勾选的规格信息?")) {
+            specService.del($scope.selectIds).success(function (response) {
+                if (response.code != 0) {
+                    alert(response.msg);
+                } else {
+                    $scope.loadPageList();
+                    $scope.selectIds = [];
+                }
+            })
+        }
     }
 
 })

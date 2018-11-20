@@ -9,11 +9,15 @@ app.service('specService',function ($http) {
     }
 
 
-    this.save = function(spec) {
-        return $http.post(url+"/spec/save",spec);
+    this.save = function(methodName,spec) {
+        return $http.post(url+"/spec/"+methodName,spec);
     }
 
     this.findOne = function(specId) {
-        return $http.post(url+"/spec/findOne",specId);
+        return $http.post(url+"/spec/findOne/"+specId);
+    }
+
+    this.del = function (ids) {
+        return $http.get(url+"/spec/delSpecBySpecId?specIds="+ids);
     }
 })

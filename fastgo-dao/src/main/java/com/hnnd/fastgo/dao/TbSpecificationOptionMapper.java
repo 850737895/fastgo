@@ -46,4 +46,15 @@ public interface TbSpecificationOptionMapper {
     int updateByPrimaryKey(TbSpecificationOption record);
 
     List<TbSpecificationOption> selectBySpecId(Long specId);
+
+    /**
+     * 批量插入规格选项表
+     * @param tbSpecificationOptions
+     * @return
+     */
+    int insertTbSpecOpsBatch(List<TbSpecificationOption> tbSpecificationOptions);
+
+    int deleteTbSpecOpsBySpecId(Long specId);
+
+    int delTbSpecOpsBySepcIdsInBatch(List<Long> specIds);
 }

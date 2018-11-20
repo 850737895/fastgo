@@ -58,7 +58,32 @@ public class SellerGoodsSpecServiceImpl implements ISellerGoodsSpecService {
             tbSpecificationOption.setSpecId(tbSpecification.getId());
             tbSpecificationOptionMapper.insert(tbSpecificationOption);
         }
+        return SystemVo.success(SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+    }
 
+    @Transactional
+    @Override
+    public SystemVo modifySpec(SpecVo specVo) {
+        //修改规格表
+        TbSpecification tbSpecification = new TbSpecification();
+        tbSpecification.setId(specVo.getId());
+        tbSpecification.setSpecName(specVo.getSpecName());
+        tbSpecificationMapper.updateByPrimaryKey(tbSpecification);
+
+        //删除原来的规格选项
+        tbSpecificationOptionMapper.deleteTbSpecOpsBySpecId(tbSpecification.getId());
+
+        //保存规格选项表
+        List<TbSpecificationOption> tbSpecificationOptions = Lists.newArrayList();
+        for (SpecOpsVo item: specVo.getSpecOps()) {
+            TbSpecificationOption tbSpecificationOption = new TbSpecificationOption();
+            tbSpecificationOption.setOptionName(item.getOptionName());
+            tbSpecificationOption.setOrders(item.getOrders());
+            tbSpecificationOption.setSpecId(tbSpecification.getId());
+            tbSpecificationOptions.add(tbSpecificationOption);
+        }
+
+        tbSpecificationOptionMapper.insertTbSpecOpsBatch(tbSpecificationOptions);
         return SystemVo.success(SellerGoodsEnum.SELLER_GOODS_SUCCESS);
     }
 
@@ -68,9 +93,10 @@ public class SellerGoodsSpecServiceImpl implements ISellerGoodsSpecService {
 
         TbSpecification tbSpecification =tbSpecificationMapper.selectByPrimaryKey(specId);
         specVo.setSpecName(tbSpecification.getSpecName());
+        specVo.setId(tbSpecification.getId());
 
         //查询规格选项
-        List<TbSpecificationOption> tbSpecificationOptions = tbSpecificationOptionMapper.selectAll();
+        List<TbSpecificationOption> tbSpecificationOptions = tbSpecificationOptionMapper.selectBySpecId(tbSpecification.getId());
         List<SpecOpsVo> specOpsVoList = Lists.newArrayList();
         for (TbSpecificationOption item:tbSpecificationOptions) {
             SpecOpsVo specOpsVo = new SpecOpsVo();
@@ -79,5 +105,20 @@ public class SellerGoodsSpecServiceImpl implements ISellerGoodsSpecService {
         }
         specVo.setSpecOps(specOpsVoList);
         return specVo;
+    }
+
+    @Transactional
+    @Override
+    public void delSpecBySpecId(String[] specIds) {
+        //删除商品规格表
+        List<Long> ids = Lists.newArrayList();
+        for (String id:specIds) {
+            ids.add(Long.valueOf(id));
+        }
+        tbSpecificationMapper.delSpecByIdsInBatch(ids);
+
+        //删除规格选项表
+
+
     }
 }

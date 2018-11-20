@@ -26,6 +26,12 @@ public interface SellerGoodsSpecApi {
     @RequestMapping("/save")
     public SystemVo saveSpec(@RequestBody SpecVo specVo);
 
-    @RequestMapping("/findOne/{id}")
+    @RequestMapping("/modify")
+    public SystemVo modifySpec(@RequestBody SpecVo specVo);
+
+    @RequestMapping("/findOne/{specId}")
     public SystemVo<SpecVo> findOne(@PathVariable("specId") Long specId);
+
+    @RequestMapping("/delSpecBySpecId")
+    public SystemVo delSpecBySpecId(@RequestParam("specIds") String[] specIds);
 }

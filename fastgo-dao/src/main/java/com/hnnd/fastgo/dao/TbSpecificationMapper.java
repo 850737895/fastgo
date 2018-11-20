@@ -47,4 +47,6 @@ public interface TbSpecificationMapper {
     int updateByPrimaryKey(TbSpecification record);
 
     List<TbSpecification> selectAllByPage(@Param("specName") String queryCondition);
+
+    void delSpecByIdsInBatch(List<Long> ids);
 }

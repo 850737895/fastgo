@@ -12,6 +12,8 @@ import java.util.List;
 @Data
 public class SpecVo implements Serializable {
 
+    private Long id;
+
     private String specName;
 
     private List<SpecOpsVo> specOps;

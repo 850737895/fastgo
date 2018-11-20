@@ -46,7 +46,22 @@ public class SellerGoodsSpecController implements SellerGoodsSpecApi {
 
     }
 
-    @RequestMapping("/findOne/{id}")
+    @RequestMapping("/modify")
+    public SystemVo modifySpec(@RequestBody SpecVo specVo) {
+        if(null ==specVo) {
+            return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_MODIFY_SPEC_ERROR);
+        }
+        try {
+            return sellerGoodsSpecServiceImpl.modifySpec(specVo);
+        } catch (Exception e) {
+            log.error("保存商品规格异常:{}",e);
+            return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_MODIFY_SPEC_ERROR);
+        }
+
+    }
+
+
+    @RequestMapping("/findOne/{specId}")
     public SystemVo<SpecVo> findOne(@PathVariable("specId") Long specId) {
         try {
             SpecVo specVo = sellerGoodsSpecServiceImpl.findOne(specId);
@@ -54,6 +69,22 @@ public class SellerGoodsSpecController implements SellerGoodsSpecApi {
         } catch (Exception e) {
             log.error("根据规格ID:{}查询规格信息异常:{}",specId,e);
             return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_FINDONE_SPEC_ERROR);
+        }
+    }
+
+    /**
+     * 删除规格
+     * @param specIds 规格列表id
+     * @return SystemVo
+     */
+    @RequestMapping("/delSpecBySpecId")
+    public SystemVo delSpecBySpecId(@RequestParam("specIds") String[] specIds) {
+        try {
+            sellerGoodsSpecServiceImpl.delSpecBySpecId(specIds);
+            return SystemVo.success(SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+        } catch (Exception e) {
+            log.error("删除商品规格异常:{}",e);
+            return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_DEL_SPEC_ERROR);
         }
     }
 

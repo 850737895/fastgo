@@ -26,7 +26,16 @@ public enum SellerGoodsEnum {
     SELLER_GOODS_SAVE_SPEC_ERROR(-7,"保存商品规格异常"),
 
     SELLER_GOODS_IN_PARAM_ERROR(-8,"商品规格入参数为空"),
-    SELLER_GOODS_FINDONE_SPEC_ERROR(-8,"根据商品规格ID查询规格信息异常");
+
+    SELLER_GOODS_MODIFY_SPEC_ERROR(-9,"修改商品规格异常"),
+
+
+    SELLER_GOODS_FINDONE_SPEC_ERROR(-10,"根据商品规格ID查询规格信息异常"),
+
+    SELLER_GOODS_DEL_SPEC_IN_PARAM_ERROR(-11,"删除商品规格入参为空"),
+
+    SELLER_GOODS_DEL_SPEC_ERROR(-12,"删除商品规格异常");
+
 
 
 

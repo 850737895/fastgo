@@ -42,8 +42,19 @@ public class SellerGoodsSpecImpl implements SellerGoodsSpecApi {
     }
 
     @Override
+    public SystemVo modifySpec(SpecVo specVo) {
+        log.error("修改商品规格异常:{}",specVo);
+        return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_MODIFY_SPEC_ERROR);
+    }
+
+    @Override
     public SystemVo<SpecVo> findOne(Long specId) {
         log.error("保存商品规格异常:{}",specId);
         return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_FINDONE_SPEC_ERROR);
+    }
+
+    @Override
+    public SystemVo delSpecBySpecId(String[] specIds) {
+        return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_DEL_SPEC_ERROR);
     }
 }

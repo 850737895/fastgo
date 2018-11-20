@@ -6,6 +6,7 @@ import com.hnnd.fastgo.enumration.SellerGoodsEnum;
 import com.hnnd.fastgo.vo.PageResultVo;
 import com.hnnd.fastgo.vo.SpecVo;
 import com.hnnd.fastgo.vo.SystemVo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/spec")
+@Slf4j
 public class SpecController {
 
     @Autowired
@@ -48,11 +50,31 @@ public class SpecController {
     public SystemVo saveSpec(@RequestBody SpecVo specVo) {
         return sellerGoodsSpecApi.saveSpec(specVo);
     }
+·
+    @RequestMapping("/modify")
+    public SystemVo modifySpec(@RequestBody SpecVo specVo) {
+        return sellerGoodsSpecApi.modifySpec(specVo);
+    }
 
-    @RequestMapping("/findOne/{id}")
+    @RequestMapping("/findOne/{specId}")
     public SystemVo<SpecVo> findOne(@PathVariable("specId") Long specId){
         return sellerGoodsSpecApi.findOne(specId);
     }
+
+    /**
+     * 删除规格
+     * @param specIds 规格列表id
+     * @return SystemVo
+     */
+    @RequestMapping("/delSpecBySpecId")
+    public SystemVo delSpecBySpecId(@RequestParam("specIds") String[] specIds) {
+        if(null == specIds) {
+            log.error("删除商品操作入参异常");
+            return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_DEL_SPEC_IN_PARAM_ERROR);
+        }
+        return sellerGoodsSpecApi.delSpecBySpecId(specIds);
+    }
+
 
 
 }

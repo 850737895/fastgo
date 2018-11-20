@@ -8,6 +8,8 @@ import com.hnnd.fastgo.vo.PageResultVo;
 import com.hnnd.fastgo.vo.SpecVo;
 import com.hnnd.fastgo.vo.SystemVo;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 /**
@@ -27,5 +29,19 @@ public interface ISellerGoodsSpecService {
 
     SystemVo saveSpec( SpecVo specVo);
 
+    /**
+     * 修改商品信息
+     * @param specVo 商品vo
+     * @return SystemVo
+     */
+    SystemVo modifySpec( SpecVo specVo);
+
     SpecVo findOne(Long specId);
+
+    /**
+     * 删除商品规格
+     * @param specIds 规格id
+     */
+    void delSpecBySpecId(@RequestParam("specIds") String[] specIds);
+
 }
