@@ -50,7 +50,7 @@ public class SpecController {
     public SystemVo saveSpec(@RequestBody SpecVo specVo) {
         return sellerGoodsSpecApi.saveSpec(specVo);
     }
-·
+
     @RequestMapping("/modify")
     public SystemVo modifySpec(@RequestBody SpecVo specVo) {
         return sellerGoodsSpecApi.modifySpec(specVo);
