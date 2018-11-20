@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 商家商品服务的熔断服务
@@ -18,6 +19,12 @@ import java.util.List;
 public class SellerGoodsBrandImpl implements SellerGoodsBrandApi {
     @Override
     public SystemVo<List<TbBrand>> selectAll() {
+        log.warn("商家商品查询列表服务异常");
+        return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_ERROR);
+    }
+
+    @Override
+    public SystemVo<List<Map<String, Object>>> initBrandList() {
         log.warn("商家商品查询列表服务异常");
         return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_ERROR);
     }

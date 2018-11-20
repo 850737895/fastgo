@@ -7,6 +7,7 @@ import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 商家商品管理client_api(用于暴露)
@@ -17,6 +18,9 @@ public interface SellerGoodsBrandApi {
 
     @GetMapping("/list")
     public SystemVo<List<TbBrand>> selectAll();
+
+    @GetMapping("/initBrandList")
+    public SystemVo<List<Map<String,Object>>> initBrandList();
 
     @GetMapping("/pageList")
     public PageResultVo<TbBrand> selectAllByPage(@RequestParam(value = "pageNum",defaultValue = "1")Integer pageNum,

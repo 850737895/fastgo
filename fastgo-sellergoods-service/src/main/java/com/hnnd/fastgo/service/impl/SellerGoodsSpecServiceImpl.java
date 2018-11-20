@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2018/11/16.
@@ -79,5 +80,10 @@ public class SellerGoodsSpecServiceImpl implements ISellerGoodsSpecService {
         }
         specVo.setSpecOps(specOpsVoList);
         return specVo;
+    }
+
+    @Override
+    public List<Map<String, Object>> initSpecList() {
+        return tbSpecificationMapper.initSpecList();
     }
 }

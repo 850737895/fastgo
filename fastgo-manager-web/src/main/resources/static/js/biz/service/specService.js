@@ -16,4 +16,8 @@ app.service('specService',function ($http) {
     this.findOne = function(specId) {
         return $http.post(url+"/spec/findOne",specId);
     }
+
+    this.initSpecList = function(){
+        return $http.get(url+"/spec/initSpecList");
+    }
 })

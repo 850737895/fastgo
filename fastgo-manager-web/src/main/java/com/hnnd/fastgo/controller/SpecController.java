@@ -9,6 +9,9 @@ import com.hnnd.fastgo.vo.SystemVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+
 
 /**
  * 规格管理控制层
@@ -37,6 +40,14 @@ public class SpecController {
             return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_PAGELIST_ERROR);
         }
         return SystemVo.success(specLists,SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+    }
+
+    @RequestMapping("/initSpecList")
+    public SystemVo<List<Map<String,Object>>> initSpecList() {
+        if(null == sellerGoodsSpecApi.initSpecList()) {
+            return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_INIT_SELECT2_SPECLIST_ERROR);
+        }
+       return SystemVo.success(sellerGoodsSpecApi.initSpecList(),SellerGoodsEnum.SELLER_GOODS_SUCCESS);
     }
 
     /**

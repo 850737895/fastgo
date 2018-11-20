@@ -9,6 +9,9 @@ import com.hnnd.fastgo.vo.SpecVo;
 import com.hnnd.fastgo.vo.SystemVo;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+import java.util.Map;
+
 
 /**
  * 规格服务
@@ -28,4 +31,10 @@ public interface ISellerGoodsSpecService {
     SystemVo saveSpec( SpecVo specVo);
 
     SpecVo findOne(Long specId);
+
+    /**
+     * 用于加载select2组件的 规格下拉列表
+     * @return  List<Map<String,Object>>
+     */
+    List<Map<String,Object>> initSpecList();
 }

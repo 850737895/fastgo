@@ -41,4 +41,15 @@ app.controller('specController',function ($scope,$controller,specService) {
         });
     }
 
+    $scope.findOne=function(specId) {
+        specService.findOne(specId).success(function (response) {
+            //查找失败
+            if(response.code!=0) {
+                alert(response.msg);
+            }else {
+                $scope.spec=response.data;
+            }
+        })
+    }
+
 })
