@@ -74,6 +74,10 @@ public class SellerGoodsSpecServiceImpl implements ISellerGoodsSpecService {
         //删除原来的规格选项
         tbSpecificationOptionMapper.deleteTbSpecOpsBySpecId(tbSpecification.getId());
 
+        if(specVo.getSpecOps().size()==0) {
+            return SystemVo.success(SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+        }
+
         //保存规格选项表
         List<TbSpecificationOption> tbSpecificationOptions = Lists.newArrayList();
         for (SpecOpsVo item: specVo.getSpecOps()) {
@@ -108,24 +112,21 @@ public class SellerGoodsSpecServiceImpl implements ISellerGoodsSpecService {
         return specVo;
     }
 
-<<<<<<< HEAD
     @Transactional
     @Override
     public void delSpecBySpecId(String[] specIds) {
         //删除商品规格表
         List<Long> ids = Lists.newArrayList();
-        for (String id:specIds) {
+        for (String id : specIds) {
             ids.add(Long.valueOf(id));
         }
         tbSpecificationMapper.delSpecByIdsInBatch(ids);
 
         //删除规格选项表
-
-
-=======
+        tbSpecificationOptionMapper.delTbSpecOpsBySepcIdsInBatch(ids);
+    }
     @Override
     public List<Map<String, Object>> initSpecList() {
         return tbSpecificationMapper.initSpecList();
->>>>>>> c5a039e81ea04dd98164310a8cd028a03154db16
     }
 }

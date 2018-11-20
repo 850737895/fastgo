@@ -42,16 +42,14 @@ public interface ISellerGoodsSpecService {
     SpecVo findOne(Long specId);
 
     /**
-<<<<<<< HEAD
      * 删除商品规格
      * @param specIds 规格id
      */
     void delSpecBySpecId(@RequestParam("specIds") String[] specIds);
 
-=======
+    /*
      * 用于加载select2组件的 规格下拉列表
      * @return  List<Map<String,Object>>
      */
     List<Map<String,Object>> initSpecList();
->>>>>>> c5a039e81ea04dd98164310a8cd028a03154db16
 }

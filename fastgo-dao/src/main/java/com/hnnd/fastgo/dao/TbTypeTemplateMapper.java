@@ -47,4 +47,6 @@ public interface TbTypeTemplateMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(TbTypeTemplate record);
+
+    int delByInBatch(List<Long> ids);
 }

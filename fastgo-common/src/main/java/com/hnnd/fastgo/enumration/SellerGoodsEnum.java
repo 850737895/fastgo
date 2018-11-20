@@ -26,7 +26,7 @@ public enum SellerGoodsEnum {
     SELLER_GOODS_SAVE_SPEC_ERROR(-7,"保存商品规格异常"),
 
     SELLER_GOODS_IN_PARAM_ERROR(-8,"商品规格入参数为空"),
-<<<<<<< HEAD
+
 
     SELLER_GOODS_MODIFY_SPEC_ERROR(-9,"修改商品规格异常"),
 
@@ -35,15 +35,30 @@ public enum SellerGoodsEnum {
 
     SELLER_GOODS_DEL_SPEC_IN_PARAM_ERROR(-11,"删除商品规格入参为空"),
 
-    SELLER_GOODS_DEL_SPEC_ERROR(-12,"删除商品规格异常");
-
-=======
-    SELLER_GOODS_FINDONE_SPEC_ERROR(-9,"根据商品规格ID查询规格信息异常"),
+    SELLER_GOODS_DEL_SPEC_ERROR(-12,"删除商品规格异常"),
 
     SELLER_GOODS_TEMPLATE_ERROR(-13,"查询商品模版分页列表出错"),
 
-    SELLER_GOODS_INIT_SELECT2_SPECLIST_ERROR(-14,"初始化商品规格下拉列表出错");
->>>>>>> c5a039e81ea04dd98164310a8cd028a03154db16
+    SELLER_GOODS_INIT_SELECT2_SPECLIST_ERROR(-14,"初始化商品规格下拉列表出错"),
+
+    SELLER_GOODS_SAVE_TEMPTYPE_ERROR(-15,"保存商品模版异常"),
+
+    SELLER_GOODS_FINDONE_TEMPTYPE_ERROR(-16,"根据模版ID查询模版信息异常"),
+
+    SELLER_GOODS_MODIFY_TEMPTYPE_ERROR(-17,"根据模版ID更新模版信息异常"),
+
+    SELLER_GOODS_MODIFY_INPARAM_TEMPTYPE_ERROR(-18,"更新模版服务入参为空"),
+
+    SELLER_GOODS_DEL_TEMPTYPE_ERROR(-19,"批量删除模版信息异常"),
+
+    SELLER_GOODS_DEL_INPARAM_TEMPTYPE_ERROR(-20,"批量删除模版信息入参为空");
+
+
+
+
+
+
+
 
 
 
