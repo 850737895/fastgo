@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 品牌管理controller
@@ -33,6 +34,17 @@ public class SellerGoodsBrandController implements SellerGoodsBrandApi {
         List<TbBrand> tbBrandList = brandServiceImpl.selectAll();
         return SystemVo.success(tbBrandList, SellerGoodsEnum.SELLER_GOODS_SUCCESS);
     }
+
+    /**
+     * 初始化查询
+     * @return
+     */
+    @GetMapping("/brand/initBrandList")
+    public SystemVo<List<Map<String,Object>>> initBrandList() {
+        List<Map<String,Object>> retMap = brandServiceImpl.initBrandList();
+        return SystemVo.success(retMap, SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+    }
+
 
     @GetMapping("/brand/pageList")
     public PageResultVo<TbBrand> selectAllByPage(@RequestParam(value = "pageNum",defaultValue = "1")Integer pageNum,

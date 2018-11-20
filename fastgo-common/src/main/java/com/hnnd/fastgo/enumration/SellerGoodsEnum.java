@@ -26,6 +26,7 @@ public enum SellerGoodsEnum {
     SELLER_GOODS_SAVE_SPEC_ERROR(-7,"保存商品规格异常"),
 
     SELLER_GOODS_IN_PARAM_ERROR(-8,"商品规格入参数为空"),
+<<<<<<< HEAD
 
     SELLER_GOODS_MODIFY_SPEC_ERROR(-9,"修改商品规格异常"),
 
@@ -36,6 +37,13 @@ public enum SellerGoodsEnum {
 
     SELLER_GOODS_DEL_SPEC_ERROR(-12,"删除商品规格异常");
 
+=======
+    SELLER_GOODS_FINDONE_SPEC_ERROR(-9,"根据商品规格ID查询规格信息异常"),
+
+    SELLER_GOODS_TEMPLATE_ERROR(-13,"查询商品模版分页列表出错"),
+
+    SELLER_GOODS_INIT_SELECT2_SPECLIST_ERROR(-14,"初始化商品规格下拉列表出错");
+>>>>>>> c5a039e81ea04dd98164310a8cd028a03154db16
 
 
 

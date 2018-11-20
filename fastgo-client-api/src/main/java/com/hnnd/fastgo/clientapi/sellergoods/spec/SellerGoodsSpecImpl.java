@@ -8,6 +8,9 @@ import com.hnnd.fastgo.vo.SystemVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.Map;
+
 
 /**
  * 规格降级服务
@@ -54,7 +57,13 @@ public class SellerGoodsSpecImpl implements SellerGoodsSpecApi {
     }
 
     @Override
+<<<<<<< HEAD
     public SystemVo delSpecBySpecId(String[] specIds) {
         return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_DEL_SPEC_ERROR);
+=======
+    public List<Map<String, Object>> initSpecList() {
+        log.warn("商家商品规格列表分页服务异常");
+        return null;
+>>>>>>> c5a039e81ea04dd98164310a8cd028a03154db16
     }
 }

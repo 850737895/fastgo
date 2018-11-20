@@ -11,6 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+
 
 /**
  * 规格服务
@@ -30,6 +33,12 @@ public class SellerGoodsSpecController implements SellerGoodsSpecApi {
                                                     @RequestParam(value = "queryCondition",required = false) String queryCondition)
     {
         return sellerGoodsSpecServiceImpl.selectAllByPage(pageNum,pageSize,queryCondition);
+    }
+
+
+    @RequestMapping("/initSpecList")
+    public List<Map<String,Object>> initSpecList() {
+        return sellerGoodsSpecServiceImpl.initSpecList();
     }
 
     @RequestMapping("/save")

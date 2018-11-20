@@ -26,4 +26,17 @@ app.controller('baseController',function ($scope) {
         $scope.search($scope.paginationConf.currentPage,$scope.paginationConf.itemsPerPage);
     }
 
+    $scope.json2String=function(jsonStr,key) {
+        var jsonObj =  JSON.parse(jsonStr);
+        var retValue = "";
+        for(var index=0;index<jsonObj.length;index++) {
+            if(index>0) {
+                retValue+=","
+            }
+            retValue+=jsonObj[index][key];
+
+        }
+        return retValue;
+    }
+
 })

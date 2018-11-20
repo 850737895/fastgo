@@ -9,6 +9,10 @@ app.service('brandService',function($http){
         return $http.get(url+"/brand/list");
     }
 
+    this.initBrandList = function() {
+        return $http.get(url+"/brand/initBrandList");
+    }
+
     //分页列表服务
     this.findListByPage = function (pageNum,pageSize) {
         return $http.get(url+"/brand/pageList?pageNum="+pageNum+"&pageSize="+pageSize);

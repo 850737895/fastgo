@@ -5,6 +5,7 @@ import com.hnnd.fastgo.vo.PageResultVo;
 import com.hnnd.fastgo.vo.SystemVo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 品牌管理接口
@@ -17,6 +18,12 @@ public interface ISellerGoodsService {
      * @return TbBrand 列表
      */
     List<TbBrand> selectAll();
+
+    /**
+     * 查询品牌列表
+     * @return TbBrand 列表
+     */
+    List<Map<String,Object>> initBrandList();
 
     /**
      * 分页查询Tbrand列表

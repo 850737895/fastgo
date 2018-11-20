@@ -20,4 +20,12 @@ app.service('specService',function ($http) {
     this.del = function (ids) {
         return $http.get(url+"/spec/delSpecBySpecId?specIds="+ids);
     }
+
+    this.findOne = function(specId) {
+        return $http.post(url+"/spec/findOne",specId);
+    }
+
+    this.initSpecList = function(){
+        return $http.get(url+"/spec/initSpecList");
+    }
 })

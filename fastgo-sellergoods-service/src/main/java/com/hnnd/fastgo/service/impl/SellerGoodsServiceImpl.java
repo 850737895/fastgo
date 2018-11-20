@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 品牌管理业务逻辑层
@@ -25,6 +26,11 @@ public class SellerGoodsServiceImpl implements ISellerGoodsService {
     @Override
     public List<TbBrand> selectAll() {
         return tbBrandMapper.selectAll();
+    }
+
+    @Override
+    public List<Map<String, Object>> initBrandList() {
+        return tbBrandMapper.initBrandList();
     }
 
     @Override

@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+import java.util.Map;
+
 
 /**
  *
@@ -32,6 +35,11 @@ public interface SellerGoodsSpecApi {
     @RequestMapping("/findOne/{specId}")
     public SystemVo<SpecVo> findOne(@PathVariable("specId") Long specId);
 
+<<<<<<< HEAD
     @RequestMapping("/delSpecBySpecId")
     public SystemVo delSpecBySpecId(@RequestParam("specIds") String[] specIds);
+=======
+    @RequestMapping("/initSpecList")
+    public List<Map<String,Object>> initSpecList();
+>>>>>>> c5a039e81ea04dd98164310a8cd028a03154db16
 }

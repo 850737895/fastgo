@@ -56,6 +56,7 @@ app.controller('specController',function ($scope,$controller,specService) {
         })
     }
 
+<<<<<<< HEAD
     $scope.del=function () {
         if(confirm("你确定需要删除勾选的规格信息?")) {
             specService.del($scope.selectIds).success(function (response) {
@@ -69,4 +70,6 @@ app.controller('specController',function ($scope,$controller,specService) {
         }
     }
 
+=======
+>>>>>>> c5a039e81ea04dd98164310a8cd028a03154db16
 })

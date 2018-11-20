@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 商品品牌管理
@@ -27,6 +28,17 @@ public class BrandController {
     public SystemVo<List<TbBrand>>  selectAll() {
         return  sellerGoodsBrandApi.selectAll();
     }
+
+    /**
+     * 初始化查询品牌列表
+     * @return
+     */
+    @RequestMapping("/initBrandList")
+    public SystemVo<List<Map<String,Object>>>  initBrandList() {
+        return  sellerGoodsBrandApi.initBrandList();
+    }
+
+
 
     @GetMapping("/pageList")
     public SystemVo<PageResultVo<TbBrand>> selectAllByPage(@RequestParam(value = "pageNum",defaultValue = "1")Integer pageNum,

@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2018/11/16.
@@ -107,6 +108,7 @@ public class SellerGoodsSpecServiceImpl implements ISellerGoodsSpecService {
         return specVo;
     }
 
+<<<<<<< HEAD
     @Transactional
     @Override
     public void delSpecBySpecId(String[] specIds) {
@@ -120,5 +122,10 @@ public class SellerGoodsSpecServiceImpl implements ISellerGoodsSpecService {
         //删除规格选项表
 
 
+=======
+    @Override
+    public List<Map<String, Object>> initSpecList() {
+        return tbSpecificationMapper.initSpecList();
+>>>>>>> c5a039e81ea04dd98164310a8cd028a03154db16
     }
 }
