@@ -3,16 +3,14 @@ package com.hnnd.fastgo.controller;
 import com.hnnd.fastgo.clientapi.sellergoods.itemcat.ISellerGoodsItemCatApi;
 import com.hnnd.fastgo.entity.TbItemCat;
 import com.hnnd.fastgo.enumration.SellerGoodsEnum;
+import com.hnnd.fastgo.vo.ItemCatVo;
 import com.hnnd.fastgo.vo.PageResultVo;
 import com.hnnd.fastgo.vo.SystemVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 商品类目管理
@@ -62,4 +60,35 @@ public class ItemCatController {
         return SystemVo.success(tbItemCatList,SellerGoodsEnum.SELLER_GOODS_SUCCESS);
     }
 
+    @RequestMapping("/save")
+    public SystemVo save(@RequestBody ItemCatVo itemCatVo,@RequestParam("parentId")Long parentId) {
+
+        if(itemCatVo == null || parentId==null) {
+            log.error("保存商品类目入参为空");
+            return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_ERROR.SELLER_GOODS_SAVE_ITEMCAT_INPARAM_ERROR);
+        }
+        log.info("接受到前端传入的itemCatVo对象:{}",itemCatVo);
+        itemCatVo.setParentId(parentId);
+        return sellerGoodsItemCatApi.save(itemCatVo);
+    }
+
+    @RequestMapping("/findOne/{id}")
+    public SystemVo<ItemCatVo> findOneById(@PathVariable("id") Long id) {
+        ItemCatVo itemCatVo = sellerGoodsItemCatApi.findOneById(id);
+        if(null == itemCatVo) {
+            log.error("更加商品类目ID查询信息异常:{}",id);
+            return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_QRY_ITEMCAT_ERROR);
+        }
+        return SystemVo.success(sellerGoodsItemCatApi.findOneById(id),SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+    }
+
+    @RequestMapping("/modify")
+    public SystemVo modify(@RequestBody ItemCatVo itemCatVo) {
+        return sellerGoodsItemCatApi.modify(itemCatVo);
+    }
+
+    @RequestMapping("/del")
+    public SystemVo del(@RequestParam("ids") String[] ids) {
+        return sellerGoodsItemCatApi.del(ids);
+    }
 }

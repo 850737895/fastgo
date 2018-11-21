@@ -52,4 +52,6 @@ public interface TbTypeTemplateMapper {
     int delByInBatch(List<Long> ids);
 
     List<Map<String,Object>> initTempTypeList();
+
+    Map<String,Object> queryTempTypeSelect(Long id);
 }

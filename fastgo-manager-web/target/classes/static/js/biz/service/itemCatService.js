@@ -15,12 +15,30 @@ app.service('itemCatService',function ($http) {
     this.search=function(pageNum,pageSize,qryCondition){
         return $http.get(url+"/itemCat/level?pageNum="+pageNum+"&pageSize="+pageSize+"&qryCondition="+qryCondition);
     }
-    this.searchNextLevel=function(parentId) {
+/*    this.searchNextLevel=function(parentId) {
         return $http.get(url+"/itemCat/level?parentId="+parentId);
-    }
+    }*/
 
     this.findByParentId=function(parentId) {
         return $http.get(url+"/itemCat/findByParentId?parentId="+parentId);
+    }
+
+    this.save=function(methodName,itemCat,parentId) {
+        if(methodName=='save') {
+            return $http.post(url+"/itemCat/save?parentId="+parentId,itemCat);
+        }else {
+            return $http.post(url+"/itemCat/modify/",itemCat);
+        }
+
+    }
+
+
+    this.findOne=function (id) {
+        return $http.get(url+"/itemCat/findOne/"+id);
+    }
+
+    this.del = function (ids) {
+        return $http.get(url+"/itemCat/del?ids="+ids);
     }
 
 })

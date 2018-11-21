@@ -55,7 +55,17 @@ public enum SellerGoodsEnum {
 
     SELLER_GOODS_QRY_ITEMCAT_ERROR(-21,"查询商品类目服务异常"),
 
-    SELLER_GOODS_INIT_TEMPTYPELIST_ERROR(-22,"初始化商品类目下拉列表异常");
+    SELLER_GOODS_INIT_TEMPTYPELIST_ERROR(-22,"初始化商品类目下拉列表异常"),
+
+    SELLER_GOODS_SAVE_ITEMCAT_INPARAM_ERROR(-23,"保存商品类目入参为空"),
+
+    SELLER_GOODS_SAVE_ITEMCAT_ERROR(-24,"保存商品类目服务异常"),
+
+    SELLER_GOODS_MODIFY_ITEMCAT_ERROR(-25,"更新商品类目服务异常"),
+
+    SELLER_GOODS_DEL_ITEMCAT_ERROR(-26,"批量删除商品类目服务异常");
+
+
 
 
 

@@ -19,4 +19,8 @@ app.service('tempTypeService',function($http){
     this.findOne = function(id) {
         return $http.get(url+"/templateType/findOne/"+id);
     }
+
+    this.initTempTypeList=function() {
+        return $http.get(url+"/templateType/initTempTypeList");
+    }
 })

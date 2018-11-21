@@ -2,8 +2,12 @@ package com.hnnd.fastgo.clientapi.sellergoods.itemcat;
 
 import com.hnnd.fastgo.clientapi.sellergoods.spec.SellerGoodsSpecImpl;
 import com.hnnd.fastgo.entity.TbItemCat;
+import com.hnnd.fastgo.vo.ItemCatVo;
 import com.hnnd.fastgo.vo.PageResultVo;
+import com.hnnd.fastgo.vo.SystemVo;
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,4 +28,16 @@ public interface ISellerGoodsItemCatApi {
 
     @RequestMapping("/findByParentId")
     public List<TbItemCat> findByParentId(@RequestParam("parentId") Integer parentId);
+
+    @RequestMapping("/save")
+    public SystemVo save(@RequestBody ItemCatVo itemCatVo);
+
+    @RequestMapping("/findOne/{id}")
+    public ItemCatVo findOneById(@PathVariable("id") Long id);
+
+    @RequestMapping("/modify")
+    public SystemVo modify(@RequestBody ItemCatVo itemCatVo);
+
+    @RequestMapping("/del")
+    public SystemVo del(@RequestParam("ids") String[] ids);
 }
