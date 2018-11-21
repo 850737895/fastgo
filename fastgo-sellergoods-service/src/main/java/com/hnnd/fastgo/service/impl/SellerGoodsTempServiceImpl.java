@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  *  商品模版接口服务实现类
@@ -53,5 +54,10 @@ public class SellerGoodsTempServiceImpl implements ISellerGoodsTempService {
     @Override
     public void del(List<Long> ids) {
         tbTypeTemplateMapper.delByInBatch(ids);
+    }
+
+    @Override
+    public List<Map<String, Object>> initTempTypeList() {
+        return tbTypeTemplateMapper.initTempTypeList();
     }
 }

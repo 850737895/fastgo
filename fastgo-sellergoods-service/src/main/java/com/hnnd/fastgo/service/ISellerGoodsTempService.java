@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 商品模版接口
@@ -50,4 +51,10 @@ public interface ISellerGoodsTempService {
      * @param ids id集合
      */
      void del(List<Long> ids);
+
+    /**
+     * 初始化商品类目下拉列表
+     * @return
+     */
+     List<Map<String,Object>> initTempTypeList();
 }

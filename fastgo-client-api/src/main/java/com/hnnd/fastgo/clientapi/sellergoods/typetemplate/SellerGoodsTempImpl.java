@@ -8,6 +8,9 @@ import com.hnnd.fastgo.vo.TemplateTypeVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * 服务降级方法调用
  * Created by Administrator on 2018/11/20.
@@ -44,5 +47,11 @@ public class SellerGoodsTempImpl implements SellerGoodsTempApi {
     public SystemVo del(String[] ids) {
         log.error("批量删除模版信息异常:{}",ids);
         return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_MODIFY_TEMPTYPE_ERROR);
+    }
+
+    @Override
+    public List<Map<String, Object>> initTempTypeList() {
+        log.error("初始化模版下拉列表异常:{}");
+        return null;
     }
 }

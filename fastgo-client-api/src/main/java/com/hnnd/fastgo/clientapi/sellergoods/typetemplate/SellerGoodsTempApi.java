@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * 类型模版
  * Created by Administrator on 2018/11/20.
@@ -46,4 +49,11 @@ public interface SellerGoodsTempApi {
 
     @RequestMapping("/del")
     public SystemVo del(@RequestParam("ids") String[] ids);
+
+    /**
+     * 初始化商品模版下拉列表
+     * @return
+     */
+    @RequestMapping("/initTempTypeList")
+    public List<Map<String,Object>> initTempTypeList();
 }

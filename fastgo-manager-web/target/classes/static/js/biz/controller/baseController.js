@@ -1,4 +1,5 @@
 app.controller('baseController',function ($scope) {
+
     //分页对象
     $scope.paginationConf= {
         currentPage: 1,
@@ -6,7 +7,7 @@ app.controller('baseController',function ($scope) {
         itemsPerPage: 10,
         perPageOptions: [10, 20, 30, 40, 50],
         onChange: function(){
-            $scope.loadPageList();
+            $scope.loadPageList();//重新加载 这个方法会重复调用两次
         }
     };
 

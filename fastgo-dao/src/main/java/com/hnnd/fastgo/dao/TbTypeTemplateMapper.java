@@ -4,6 +4,7 @@ import com.hnnd.fastgo.entity.TbTypeTemplate;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface TbTypeTemplateMapper {
     /**
@@ -49,4 +50,6 @@ public interface TbTypeTemplateMapper {
     int updateByPrimaryKey(TbTypeTemplate record);
 
     int delByInBatch(List<Long> ids);
+
+    List<Map<String,Object>> initTempTypeList();
 }

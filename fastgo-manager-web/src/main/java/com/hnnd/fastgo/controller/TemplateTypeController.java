@@ -10,6 +10,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * 类型模版管理
  * Created by Administrator on 2018/11/20.
@@ -66,5 +69,15 @@ public class TemplateTypeController {
         }
         return sellerGoodsTempApi.del(ids);
 
+    }
+
+    @RequestMapping("/initTempTypeList")
+    public SystemVo<List<Map<String,Object>>> initTempTypeList() {
+        List<Map<String,Object>> mapList = sellerGoodsTempApi.initTempTypeList();
+        if(null == mapList) {
+            log.error("初始化商品类目列表信息异常");
+            return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_INIT_TEMPTYPELIST_ERROR);
+        }
+        return SystemVo.success(mapList,SellerGoodsEnum.SELLER_GOODS_SUCCESS);
     }
 }

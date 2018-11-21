@@ -1,6 +1,7 @@
 package com.hnnd.fastgo.dao;
 
 import com.hnnd.fastgo.entity.TbItemCat;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -44,4 +45,6 @@ public interface TbItemCatMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(TbItemCat record);
+
+     List<TbItemCat> level(@Param("parentId") Integer parentId, @Param("qryCondition") String qyrCondition);
 }

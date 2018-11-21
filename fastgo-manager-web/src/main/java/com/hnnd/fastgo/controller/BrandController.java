@@ -82,7 +82,7 @@ public class BrandController {
      */
     @RequestMapping("/search")
     public SystemVo<PageResultVo<TbBrand>> search(@RequestBody TbBrand tbBrand,
-                           @RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
+                           @RequestParam(value = "pageNum",defaultValue = "0") Integer pageNum,
                            @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize) {
         PageResultVo<TbBrand> pageResultVo = sellerGoodsBrandApi.search(tbBrand,pageNum,pageSize);
         if(null == pageResultVo) {

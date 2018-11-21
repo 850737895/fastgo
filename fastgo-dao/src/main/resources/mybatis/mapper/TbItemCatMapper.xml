@@ -60,4 +60,17 @@
     select id, parent_id, `name`, type_id
     from tb_item_cat
   </select>
+
+  <select id="level" parameterType="map" resultMap="BaseResultMap">
+        select id, parent_id, `name`, type_id
+        from tb_item_cat
+        where 1=1
+      <if test="parentId!=null">
+          and parent_id=#{parentId,jdbcType=BIGINT}
+      </if>
+      <if test="qryCondition!=null and qryCondition!=''">
+        and name LIKE CONCAT(CONCAT('%',#{qryCondition,jdbcType=VARCHAR},'%'))
+      </if>
+
+  </select>
 </mapper>

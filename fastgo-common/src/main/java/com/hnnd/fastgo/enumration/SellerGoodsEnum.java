@@ -51,7 +51,11 @@ public enum SellerGoodsEnum {
 
     SELLER_GOODS_DEL_TEMPTYPE_ERROR(-19,"批量删除模版信息异常"),
 
-    SELLER_GOODS_DEL_INPARAM_TEMPTYPE_ERROR(-20,"批量删除模版信息入参为空");
+    SELLER_GOODS_DEL_INPARAM_TEMPTYPE_ERROR(-20,"批量删除模版信息入参为空"),
+
+    SELLER_GOODS_QRY_ITEMCAT_ERROR(-21,"查询商品类目服务异常"),
+
+    SELLER_GOODS_INIT_TEMPTYPELIST_ERROR(-22,"初始化商品类目下拉列表异常");
 
 
 

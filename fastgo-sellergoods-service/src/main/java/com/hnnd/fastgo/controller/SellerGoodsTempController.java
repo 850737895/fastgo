@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 商品模版管理
@@ -93,5 +94,10 @@ public class SellerGoodsTempController implements SellerGoodsTempApi {
             return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_DEL_TEMPTYPE_ERROR);
 
         }
+    }
+
+    @RequestMapping("/initTempTypeList")
+    public List<Map<String,Object>> initTempTypeList() {
+        return sellerGoodsTempServiceImpl.initTempTypeList();
     }
 }
