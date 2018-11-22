@@ -92,8 +92,10 @@
 									      	{{itemCat.typeId}}
 									      </td>
 		                                  <td class="text-center">
+											  <span ng-if="grade!=3">
 		                                      <button type="button" class="btn bg-olive btn-xs" ng-click="setGrade(grade+1);selectList(itemCat)" >查询下级</button>
-		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal" ng-click="findOne(itemCat.id)" >修改</button>
+		                                 	  </span>
+											  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal" ng-click="findOne(itemCat.id)" >修改</button>
 		                                  </td>
 			                          </tr>
 

@@ -31,6 +31,7 @@
 		<jsqlparser.version>0.9.4</jsqlparser.version>
 		<guava.version>18.0</guava.version>
 		<fastjson.version>1.2.47</fastjson.version>
+		<security.version>1.5.14.RELEASE</security.version>
 	</properties>
 
 	<dependencyManagement>
@@ -92,6 +93,11 @@
 			<dependency>
 				<groupId>com.alibaba</groupId>
 				<artifactId>fastjson</artifactId>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-security</artifactId>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

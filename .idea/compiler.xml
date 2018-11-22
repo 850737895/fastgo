@@ -15,6 +15,7 @@
         <module name="fastgo-register" />
         <module name="fastgo-sellergoods" />
         <module name="fastgo-sellergoods-service" />
+        <module name="fastgo-shop-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -28,6 +29,7 @@
       <module name="fastgo-register" target="1.8" />
       <module name="fastgo-sellergoods" target="1.8" />
       <module name="fastgo-sellergoods-service" target="1.8" />
+      <module name="fastgo-shop-web" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
