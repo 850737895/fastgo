@@ -63,7 +63,16 @@ public enum SellerGoodsEnum {
 
     SELLER_GOODS_MODIFY_ITEMCAT_ERROR(-25,"更新商品类目服务异常"),
 
-    SELLER_GOODS_DEL_ITEMCAT_ERROR(-26,"批量删除商品类目服务异常");
+    SELLER_GOODS_DEL_ITEMCAT_ERROR(-26,"批量删除商品类目服务异常"),
+
+    //==============================商家异常信息操作===========================
+    SELLER_OPER_IN_PARAM_NULL(30,"商家用户操作入参为null"),
+
+    SELLER_OPER_GET_ERROR(31,"根据商家用户ID查询商户信息异常"),
+
+    SELLER_OPER_SAVE_ERROR(31,"保存商家用户信息异常");
+
+
 
 
 

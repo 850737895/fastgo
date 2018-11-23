@@ -8,9 +8,15 @@
 	<title>商家入驻申请</title>
     <link rel="stylesheet" type="text/css" href="css/webbase.css" />
     <link rel="stylesheet" type="text/css" href="css/pages-register.css" />
+
+	<script src="./plugins/jQuery/jquery-2.2.3.min.js"></script>
+	<script src="./plugins/angularjs/angular.min.js"></script>
+	<script src="./js/base.js"></script>
+	<script src="./js/biz/controller/sellerController.js"></script>
+	<script src="./js/biz/service/sellerService.js"></script>
 </head>
 
-<body>
+<body  ng-app="fastgo" ng-controller="sellerController">
 	<div class="register py-container ">
 		<!--head-->
 		<div class="logoArea">
@@ -23,9 +29,10 @@
 				<form class="sui-form form-horizontal">
 				
 					<div class="control-group">
-						<label class="control-label">登陆名（不可修改）：</label>
+						<label class="control-label">登陆名<span style="color: red;">*</span>：</label>
 						<div class="controls">
-							<input type="text" placeholder="登陆名" class="input-xfat input-xlarge" ng-model="seller.sellerId">
+							<input type="text" placeholder="登陆名" class="input-xfat input-xlarge" ng-blur="checkSellerId('sellerId',seller.sellerId)" ng-model="seller.sellerId">
+							<span id="sellerId" style="color: #fa85ff">{{sellerIdRet}}</span>
 						</div>
 					</div>
 					
@@ -39,7 +46,9 @@
 					<div class="control-group">
 						<label class="control-label">店铺名称：</label>
 						<div class="controls">
-							<input type="text" placeholder="店铺名称" class="input-xfat input-xlarge" ng-model="seller.nickName">
+							<input type="text" placeholder="店铺名称" class="input-xfat input-xlarge" ng-blur="checkNickName('nickName',seller.nickName)" ng-model="seller.nickName">
+							<span id="nickName" style="color: #fa85ff">{{nickNameRet}}</span>
+
 						</div>
 					</div>
 				
