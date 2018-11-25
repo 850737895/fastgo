@@ -286,4 +286,16 @@
     </trim>
   </insert>
 
+  <select id="checkSellerId" parameterType="string" resultType="int">
+    select count(1) from tb_seller where seller_id=#{sellerId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="checkNickName" parameterType="string" resultType="int">
+    select count(1) from tb_seller where nick_name=#{nickName,jdbcType=VARCHAR}
+  </select>
+
+  <select id="checkLinkmanMobile" parameterType="string" resultType="int">
+    select count(1) from tb_seller where linkman_mobile=#{linkmanMonile,jdbcType=VARCHAR}
+  </select>
+
 </mapper>

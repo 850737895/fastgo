@@ -1,6 +1,8 @@
 package com.hnnd.fastgo.service;
 
+import com.hnnd.fastgo.Qo.QryTbsellerQo;
 import com.hnnd.fastgo.entity.TbSeller;
+import com.hnnd.fastgo.vo.PageResultVo;
 
 /**
  * 商品用户服务接口
@@ -28,4 +30,21 @@ public interface ISellerService {
      * @param tbSeller 用户
      */
     void register(TbSeller tbSeller);
+
+    /**
+     * 检查表单校验
+     * @param checkType 校验的类型
+     * @param checkValue 校验值
+     * @return
+     */
+    boolean validateForm(String checkType,String checkValue);
+
+    /**
+     * 分页查询列表
+     * @param pageNum 当前页
+     * @param pageSize  每页的条数
+     * @param qryTbsellerQo 查询对象
+     * @return
+     */
+    public PageResultVo<TbSeller> qryTbSellerListByPage(Integer pageNum, Integer pageSize, QryTbsellerQo qryTbsellerQo);
 }

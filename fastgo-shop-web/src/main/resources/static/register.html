@@ -55,7 +55,7 @@
 					<div class="control-group">
 						<label class="control-label">公司名称：</label>
 						<div class="controls">
-							<input type="text" placeholder="公司名称" class="input-xfat input-xlarge" ng-model="name">
+							<input type="text" placeholder="公司名称" class="input-xfat input-xlarge" ng-model="seller.name">
 						</div>
 					</div>
 					
@@ -90,7 +90,8 @@
 					<div class="control-group">
 						<label class="control-label">联系人手机：</label>
 						<div class="controls">
-							<input type="text" placeholder="联系人手机" class="input-xfat input-xlarge" ng-model="seller.linkmanMobile">
+							<input type="text" placeholder="联系人手机" class="input-xfat input-xlarge" ng-blur="checkLinkmanMobile('linkmanMobile',seller.linkmanMobile)" ng-model="seller.linkmanMobile">
+							<span id="linkmanMobile" style="color: #fa85ff">{{linkmanMobileRet}}</span>
 						</div>
 					</div>
 					
@@ -144,13 +145,6 @@
 					</div>
 
 					<div class="control-group">
-						<label class="control-label">开户行支行：</label>
-						<div class="controls">
-							<input type="text" placeholder="开户行支行" class="input-xfat input-xlarge" ng-model="seller.bankUser">
-						</div>
-					</div>
-
-					<div class="control-group">
 						<label class="control-label">银行账号：</label>
 						<div class="controls">
 							<input type="text" placeholder="银行账号" class="input-xfat input-xlarge" ng-model="seller.bankUser">
@@ -166,7 +160,7 @@
 					<div class="control-group">
 						<label class="control-label"></label>
 						<div class="controls btn-reg">
-							<a class="sui-btn btn-block btn-xlarge btn-danger" href="home.html" target="_blank">申请入驻</a>
+							<a class="sui-btn btn-block btn-xlarge btn-danger" ng-click="register()" target="_blank">申请入驻</a>
 						</div>
 					</div>
 				</form>

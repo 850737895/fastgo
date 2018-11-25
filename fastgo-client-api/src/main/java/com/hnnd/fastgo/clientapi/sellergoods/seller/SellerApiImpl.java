@@ -19,4 +19,9 @@ public class SellerApiImpl implements SellerApi {
     public SystemVo register(TbSeller tbSeller) {
         return SystemVo.error(SellerGoodsEnum.SELLER_OPER_SAVE_ERROR);
     }
+
+    @Override
+    public SystemVo validateForm(String checkType, String checkValue) {
+        return SystemVo.error(SellerGoodsEnum.SELLER_CHECK_FORM_ERROR);
+    }
 }

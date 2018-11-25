@@ -8,4 +8,8 @@ app.service('sellerService',function($http){
     this.checkValidate=function(checkType,checkValue){
         return $http.get(url+"/seller/validate/"+checkType+"/"+checkValue);
     }
+
+    this.register=function(seller) {
+        return $http.post(url+"/seller/register",seller);
+    }
 })

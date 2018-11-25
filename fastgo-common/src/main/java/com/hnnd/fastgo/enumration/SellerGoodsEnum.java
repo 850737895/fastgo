@@ -70,7 +70,11 @@ public enum SellerGoodsEnum {
 
     SELLER_OPER_GET_ERROR(31,"根据商家用户ID查询商户信息异常"),
 
-    SELLER_OPER_SAVE_ERROR(31,"保存商家用户信息异常");
+    SELLER_OPER_SAVE_ERROR(31,"保存商家用户信息异常"),
+
+    SELLER_CHECK_FORM_ERROR(-31,"表单校验服务异常"),
+
+    SELLER_CHECK_FORM_EIXST(-31,"表单校验已存在");
 
 
 

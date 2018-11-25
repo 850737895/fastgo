@@ -1,17 +1,16 @@
 package com.hnnd.fastgo.controller;
 
+import com.hnnd.fastgo.Qo.QryTbsellerQo;
 import com.hnnd.fastgo.clientapi.sellergoods.seller.SellerApi;
 import com.hnnd.fastgo.entity.TbSeller;
-import com.hnnd.fastgo.enumration.SellerAccoutStatusEnum;
-import com.hnnd.fastgo.enumration.SellerGoodsEnum;
 import com.hnnd.fastgo.service.ISellerService;
+import com.hnnd.fastgo.enumration.SellerGoodsEnum;
+import com.hnnd.fastgo.enumration.SellerAccoutStatusEnum;
+import com.hnnd.fastgo.vo.PageResultVo;
 import com.hnnd.fastgo.vo.SystemVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 商家管理控制器
@@ -56,5 +55,28 @@ public class SellerController implements SellerApi {
             log.error("商家用户注册异常:{}",e);
             return SystemVo.error(SellerGoodsEnum.SELLER_OPER_SAVE_ERROR);
         }
+    }
+
+    @RequestMapping("/validate/{checkType}/{checkValue}")
+    public SystemVo validateForm(@PathVariable("checkType") String checkType, @PathVariable("checkValue") String checkValue) {
+        log.info("校验的类型:{},校验的值{}",checkType,checkValue);
+
+        //校验用户注册信息
+        try {
+            if(sellerServiceImpl.validateForm(checkType,checkValue)) {
+                return SystemVo.success(SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+            }
+            return SystemVo.error(SellerGoodsEnum.SELLER_CHECK_FORM_EIXST);
+        } catch (Exception e) {
+            log.error("商家用户校验异常:{}",e);
+            return SystemVo.error(SellerGoodsEnum.SELLER_CHECK_FORM_ERROR);
+        }
+    }
+
+    @RequestMapping("/findListByPage")
+    public PageResultVo<TbSeller> qryTbSellerListByPage(@RequestParam(name = "pageNum",defaultValue = "1")Integer pageNum,
+                                                  @RequestParam(name="pageSize",defaultValue = "10") Integer pageSize,
+                                                  @RequestBody QryTbsellerQo qryTbsellerQo){
+        return null;
     }
 }

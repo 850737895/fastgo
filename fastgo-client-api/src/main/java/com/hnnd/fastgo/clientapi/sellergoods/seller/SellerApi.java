@@ -19,4 +19,7 @@ public interface SellerApi {
 
     @RequestMapping("/register")
     public SystemVo register(@RequestBody TbSeller tbSeller);
+
+    @RequestMapping("/validate/{checkType}/{checkValue}")
+    public SystemVo validateForm(@PathVariable("checkType") String checkType, @PathVariable("checkValue") String checkValue);
 }

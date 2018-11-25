@@ -35,6 +35,6 @@ public class ShopUserDetailService implements UserDetailsService {
             return null;
         }
         TbSeller tbSeller = sellerSystemVo.getData();
-        return new User(tbSeller.getSellerId(),passwordEncoder.encode(tbSeller.getPassword()), AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_SELLER"));
+        return new User(tbSeller.getSellerId(),tbSeller.getPassword(), AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_SELLER"));
     }
 }

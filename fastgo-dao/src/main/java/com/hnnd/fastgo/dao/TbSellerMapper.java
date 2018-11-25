@@ -50,4 +50,25 @@ public interface TbSellerMapper {
 
 
     int register(TbSeller tbSeller);
+
+    /**
+     * 校验用户名
+     * @param sellerId 用户名``
+     * @return
+     */
+    int checkSellerId(String sellerId);
+
+    /**
+     * 校验店铺名
+     * @param nickName
+     * @return
+     */
+    int checkNickName(String nickName);
+
+    /**
+     * 校验店铺名
+     * @param linkmanMobile
+     * @return
+     */
+    int checkLinkmanMobile(String linkmanMobile);
 }
