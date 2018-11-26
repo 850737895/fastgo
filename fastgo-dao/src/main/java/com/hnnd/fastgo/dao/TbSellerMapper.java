@@ -2,6 +2,7 @@ package com.hnnd.fastgo.dao;
 
 import com.hnnd.fastgo.entity.TbSeller;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -71,4 +72,13 @@ public interface TbSellerMapper {
      * @return
      */
     int checkLinkmanMobile(String linkmanMobile);
+
+    /**
+     * 根据条件查询列表
+     * @param tbSeller 查询条件
+     * @return
+     */
+    List<TbSeller> findListByCondition(TbSeller tbSeller);
+
+    void updateAcctStatus(@Param("sellerId") String sellerId, @PathVariable("status") String status);
 }

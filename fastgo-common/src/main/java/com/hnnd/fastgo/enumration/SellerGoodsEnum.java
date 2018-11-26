@@ -66,15 +66,22 @@ public enum SellerGoodsEnum {
     SELLER_GOODS_DEL_ITEMCAT_ERROR(-26,"批量删除商品类目服务异常"),
 
     //==============================商家异常信息操作===========================
-    SELLER_OPER_IN_PARAM_NULL(30,"商家用户操作入参为null"),
+    SELLER_OPER_IN_PARAM_NULL(-30,"商家用户操作入参为null"),
 
-    SELLER_OPER_GET_ERROR(31,"根据商家用户ID查询商户信息异常"),
+    SELLER_OPER_GET_ERROR(-31,"根据商家用户ID查询商户信息异常"),
 
-    SELLER_OPER_SAVE_ERROR(31,"保存商家用户信息异常"),
+    SELLER_OPER_SAVE_ERROR(-32,"保存商家用户信息异常"),
 
-    SELLER_CHECK_FORM_ERROR(-31,"表单校验服务异常"),
+    SELLER_CHECK_FORM_ERROR(-33,"表单校验服务异常"),
 
-    SELLER_CHECK_FORM_EIXST(-31,"表单校验已存在");
+    SELLER_CHECK_FORM_EIXST(-34,"表单校验已存在"),
+
+    SELLER_QRY_LIST_ERROR(-35,"查询商家用户信息列表异常"),
+    SELLER_QRY_SELLER_DETAIL_ERROR(-36,"根据商家用户ID查询商家异常"),
+
+    SELLER_MODIFY_SELLER_ERROR(-37,"审核商家用户ID查询商家异常");
+
+
 
 
 

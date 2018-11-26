@@ -3,6 +3,10 @@ package com.hnnd.fastgo.service;
 import com.hnnd.fastgo.Qo.QryTbsellerQo;
 import com.hnnd.fastgo.entity.TbSeller;
 import com.hnnd.fastgo.vo.PageResultVo;
+import com.hnnd.fastgo.vo.SystemVo;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 商品用户服务接口
@@ -46,5 +50,12 @@ public interface ISellerService {
      * @param qryTbsellerQo 查询对象
      * @return
      */
-    public PageResultVo<TbSeller> qryTbSellerListByPage(Integer pageNum, Integer pageSize, QryTbsellerQo qryTbsellerQo);
+    PageResultVo<TbSeller> qryTbSellerListByPage(Integer pageNum, Integer pageSize, QryTbsellerQo qryTbsellerQo);
+
+    /**
+     * 根据商家账户信息
+     * @param sellerId 商家用户ID
+     * @param status 账户状态
+     */
+    void updateAcctStatus(String sellerId,String status);
 }

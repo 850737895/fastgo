@@ -75,8 +75,44 @@ public class SellerController implements SellerApi {
 
     @RequestMapping("/findListByPage")
     public PageResultVo<TbSeller> qryTbSellerListByPage(@RequestParam(name = "pageNum",defaultValue = "1")Integer pageNum,
-                                                  @RequestParam(name="pageSize",defaultValue = "10") Integer pageSize,
-                                                  @RequestBody QryTbsellerQo qryTbsellerQo){
-        return null;
+                                                        @RequestParam(name="pageSize",defaultValue = "10") Integer pageSize,
+                                                        @RequestBody(required = false) QryTbsellerQo qryTbsellerQo){
+        log.info("接受到的查询参数:{}",qryTbsellerQo);
+        return sellerServiceImpl.qryTbSellerListByPage(pageNum,pageSize,qryTbsellerQo);
+    }
+
+    @RequestMapping("/findOneById/{sellerId}")
+    public SystemVo<TbSeller> findOneById(@PathVariable("sellerId") String sellerId) {
+        try {
+            TbSeller tbSeller = sellerServiceImpl.findOneById(sellerId);
+            return SystemVo.success(tbSeller,SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+        }catch (Exception e){
+            log.error("根据商家信息ID查询商家信息异常");
+            return SystemVo.error(SellerGoodsEnum.SELLER_OPER_GET_ERROR);
+        }
+    }
+
+    /**
+     * 审核账户状态
+     * @param sellerId 商家用户信息ID
+     * @param status 账户状态
+     * @return
+     */
+    @RequestMapping("/updateAccountStatus")
+    public SystemVo updateAcctStatus(@RequestParam("sellerId")String sellerId,
+                                     @RequestParam("status") String status) {
+        try{
+            //更新账户状态
+            sellerServiceImpl.updateAcctStatus(sellerId,status);
+        }catch (Exception e) {
+            log.error("审核商家用户状态异常");
+            return SystemVo.error(SellerGoodsEnum.SELLER_MODIFY_SELLER_ERROR);
+        }
+
+        //发送短信 异步发送到消息队列中
+
+
+        return SystemVo.success(SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+
     }
 }
