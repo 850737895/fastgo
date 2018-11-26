@@ -132,6 +132,7 @@
 		<module>fastgo-sellergoods-service</module>
 		<module>fastgo-client-api</module>
 		<module>fastgo-manager-web</module>
+		<module>fastgo-shop-web</module>
 	</modules>
 
 
