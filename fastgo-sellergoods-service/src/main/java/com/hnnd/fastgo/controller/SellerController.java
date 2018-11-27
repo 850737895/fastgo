@@ -2,6 +2,7 @@ package com.hnnd.fastgo.controller;
 
 import com.hnnd.fastgo.Qo.QryTbsellerQo;
 import com.hnnd.fastgo.clientapi.sellergoods.seller.SellerApi;
+import com.hnnd.fastgo.entity.MsgLog;
 import com.hnnd.fastgo.entity.TbSeller;
 import com.hnnd.fastgo.service.ISellerService;
 import com.hnnd.fastgo.enumration.SellerGoodsEnum;
@@ -105,11 +106,10 @@ public class SellerController implements SellerApi {
             //更新账户状态
             sellerServiceImpl.updateAcctStatus(sellerId,status);
         }catch (Exception e) {
-            log.error("审核商家用户状态异常");
+            log.error("审核商家用户状态异常",e);
             return SystemVo.error(SellerGoodsEnum.SELLER_MODIFY_SELLER_ERROR);
         }
 
-        //发送短信 异步发送到消息队列中
 
 
         return SystemVo.success(SellerGoodsEnum.SELLER_GOODS_SUCCESS);

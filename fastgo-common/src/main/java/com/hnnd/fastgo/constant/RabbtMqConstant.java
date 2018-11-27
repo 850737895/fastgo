@@ -26,4 +26,14 @@ public class RabbtMqConstant {
      */
 
     public static final String FASTOG_SMS_LOCK_KEY="fastgo:sms:lockey";
+
+    /**
+     * 初始化消息重试次数
+     */
+    public static final Integer INIT_RETRY_COUNT=0;
+
+    /**
+     * 最大的消息重试次数
+     */
+    public static final Integer MAX_RETRY_COUNT=5;
 }

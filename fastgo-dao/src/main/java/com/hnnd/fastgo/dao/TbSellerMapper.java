@@ -80,5 +80,5 @@ public interface TbSellerMapper {
      */
     List<TbSeller> findListByCondition(TbSeller tbSeller);
 
-    void updateAcctStatus(@Param("sellerId") String sellerId, @PathVariable("status") String status);
+    int updateAcctStatus(@Param("sellerId") String sellerId, @Param("status") String status);
 }

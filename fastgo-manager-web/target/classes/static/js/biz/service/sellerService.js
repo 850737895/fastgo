@@ -10,4 +10,9 @@ app.service('sellerService',function ($http) {
     this.findOneById=function(sellerId) {
         return $http.post(url+"/seller/findOneById/"+sellerId);
     }
+
+    this.updateAccountStatus=function(sellerId,acctStatus)
+    {
+        return $http.get(url + "/seller/updateAccountStatus?sellerId=" + sellerId + "&status=" + acctStatus);
+    }
 })

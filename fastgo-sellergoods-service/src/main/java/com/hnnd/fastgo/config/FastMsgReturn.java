@@ -1,4 +1,4 @@
-package com.hnnd.fastgo.compent;
+package com.hnnd.fastgo.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;

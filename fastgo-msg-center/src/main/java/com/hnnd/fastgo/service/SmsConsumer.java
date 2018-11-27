@@ -1,7 +1,13 @@
 package com.hnnd.fastgo.service;
 
 import com.alibaba.fastjson.JSON;
+import com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest;
+import com.aliyuncs.exceptions.ClientException;
+import com.hnnd.fastgo.compent.AliSmsCodeSender;
 import com.hnnd.fastgo.constant.RabbtMqConstant;
+import com.hnnd.fastgo.dao.MsgLogMapper;
+import com.hnnd.fastgo.entity.MsgLog;
+import com.hnnd.fastgo.enumration.MsgStatusEnum;
 import com.hnnd.fastgo.temp.SmsContext;
 import com.rabbitmq.client.Channel;
 import com.redisoper.IRedisService;
@@ -15,6 +21,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * 短信消费者
@@ -27,13 +34,19 @@ public class SmsConsumer {
     @Autowired
     private IRedisService redisServiceImpl;
 
+    @Autowired
+    private AliSmsCodeSender aliSmsCodeSender;
+
+    @Autowired
+    private MsgLogMapper msgLogMapper;
+
     //尊敬用户【公司名称】,您在极速购平台申请的帐号【sellerId】,审核通过,已经授权登录系统
     //尊敬用户【公司名称】,您在极速购平台申请的帐号【sellerId】,审核不通过,原因【】
     @RabbitListener(queues = RabbtMqConstant.FASTGO_SMS_QUEUE)
     @RabbitHandler
     @Transactional
     public void sendMsg(Message message, Channel channel) {
-
+        log.info("接收到message:{}",message);
         String smsMsgId = message.getHeaders().get("msgId").toString();
 
         try {
@@ -47,24 +60,34 @@ public class SmsConsumer {
                 String smsContextJson = message.getPayload().toString();
                 SmsContext smsContext = JSON.parseObject(smsContextJson,SmsContext.class);
 
+                //更新消息表
+                //todo 更新消息表
+                MsgLog msgLog = new MsgLog();
+                msgLog.setMsgId(smsMsgId);
+                msgLog.setAckTime(new Date());
+                msgLog.setMsgStatus(MsgStatusEnum.MSG_ACK.getCode());
+                msgLogMapper.updateByPrimaryKey(msgLog);
+
                 //发送短信
+                aliSmsCodeSender.sender(smsContext);
 
                 //签收消息
                 channel.basicAck(deliveryTag,false);
-
-                //更新消息表
-
-
-
-
-
 
             }else{
                 //属于重复消费的消息
                 log.warn("该消息属于重复消费的消息:{}",message);
             }
+        } catch (ClientException e) {
+            //短信发送失败
+            log.warn("发送短信失败:{}",e);
+            //去除短信重复消费,需要重新发送短信
+            redisServiceImpl.expire(RabbtMqConstant.FASTOG_SMS_LOCK_KEY+smsMsgId,0);
+            throw new RuntimeException("发送短信失败");
         } catch (IOException e) {
-            e.printStackTrace();
+            //消息签收异常
+            log.warn("消息手动签收失败:{}",e);
+            throw new RuntimeException("签收消息异常");
         }
     }
 }

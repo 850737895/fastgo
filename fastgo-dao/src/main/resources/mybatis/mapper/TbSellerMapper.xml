@@ -160,7 +160,7 @@
 
 
   <update id="updateAcctStatus" parameterType="map">
-    update tb_seller t set t.stats=#{status,jdbcType=VARCHAR}
+    update tb_seller t set t.status=#{status,jdbcType=VARCHAR}
     where t.seller_id=#{sellerId,jdbcType=VARCHAR}
     and t.status='0'
   </update>

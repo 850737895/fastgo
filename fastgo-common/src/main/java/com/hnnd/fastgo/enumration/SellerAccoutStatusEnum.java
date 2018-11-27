@@ -13,7 +13,9 @@ public enum SellerAccoutStatusEnum {
 
     SELLER_ACCOUNT_PASS_ADUIT("1","商家用户账号审核通过"),
 
-    SELLER_ACCOUNT_UNPASS_ADUIT("2","商家用户账号审核不通过");
+    SELLER_ACCOUNT_UNPASS_ADUIT("2","商家用户账号审核不通过"),
+
+    SELLER_ACCOUNT_CLOSE("3","商家用户账号关闭");
 
     private String code;
 

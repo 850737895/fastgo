@@ -9,46 +9,41 @@ import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
 import com.hnnd.fastgo.constant.AliSmsConstants;
+import com.hnnd.fastgo.enumration.SellerAccoutStatusEnum;
 import com.hnnd.fastgo.exception.SendSmsException;
 import com.hnnd.fastgo.properties.AliYunSmsProperties;
+import com.hnnd.fastgo.strategy.SmsBizAduitNoPassStrategy;
+import com.hnnd.fastgo.strategy.SmsBizAduitStrategy;
+import com.hnnd.fastgo.temp.SmsContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 系统默认的发送短信验证码（使用阿里云短信推送）
  * Created by 85073 on 2018/9/8.
  */
 @Slf4j
-@EnableConfigurationProperties(AliYunSmsProperties.class)
+@Component
 public class AliSmsCodeSender implements SmsCodeSender {
 
-    @Autowired
-    private AliYunSmsProperties aliYunSmsProperties;
 
-
-    @Autowired
     private IAcsClient acsClient ;
 
     @PostConstruct
     public void initAcsClient() throws ClientException {
-        IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", aliYunSmsProperties.getAliYunSmsAccessKey(), aliYunSmsProperties.getAliYunSmsAccessSECET());
+        IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", AliSmsConstants.ALIYUN_SMS_ACCESSKEY, AliSmsConstants.ALIYUN_SMS_SECET);
         DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", AliSmsConstants.ALIYUN_SMS_PRODUCT, AliSmsConstants.ALIYUN_SMS_DOMAIN);
         acsClient = new DefaultAcsClient(profile);
 
     }
 
     @Override
-    public void sender(String mobile, String code) throws SendSmsException, ClientException {
-        Map<String,Object> inParam = new HashMap<>();
-        inParam.put("mobile",mobile);
-        inParam.put("code",code);
+    public void sender(SmsContext smsContext) throws SendSmsException, ClientException {
 
-        SendSmsRequest sendSmsRequest = buildSendSmsRequest(inParam);
+        SendSmsRequest sendSmsRequest = buildSendSmsRequest(smsContext);
         SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(sendSmsRequest);
         if(!"OK".equals(sendSmsResponse.getCode())) {
             log.warn("发送短信失败..............");
@@ -57,25 +52,21 @@ public class AliSmsCodeSender implements SmsCodeSender {
     }
 
     /**
-     * 构建SendSmsRequest
-     * @param inParam
+     * 构建对象
+     * @param smsContext
      * @return
      */
-    private SendSmsRequest buildSendSmsRequest(Map<String,Object> inParam){
-        SendSmsRequest request = new SendSmsRequest();
-
-        String phoneNum = inParam.get("mobile").toString();
-        inParam.remove("mobile");
-        String reqParam = JSON.toJSONString(inParam);
-
-        request.setPhoneNumbers(phoneNum);
-        request.setSignName(aliYunSmsProperties.getAliYunSmsSign());
-        request.setConnectTimeout(AliSmsConstants.ALIYUN_SMS_CONN_TIMEOUT);
-        request.setReadTimeout(AliSmsConstants.ALIYUN_SMS_READ_TIMEOUT);
-        request.setTemplateCode(aliYunSmsProperties.getAliYunBizSmsTempId());
-        request.setTemplateParam(reqParam);
-        request.setOutId("yourOutId");
-
-        return request;
+    private SendSmsRequest buildSendSmsRequest(SmsContext smsContext){
+        if(SellerAccoutStatusEnum.SELLER_ACCOUNT_PASS_ADUIT.getCode().equals(smsContext.getAduitStatus())) {
+            //构建审核通过的短信
+            SmsBizAduitStrategy smsBizAduitStrategy = new SmsBizAduitStrategy();
+            return smsBizAduitStrategy.generatorSmsReq(smsContext);
+        }else if(SellerAccoutStatusEnum.SELLER_ACCOUNT_UNPASS_ADUIT.getCode().equals(smsContext.getAduitStatus())){
+            //构建审核不通过的短信
+            return new SmsBizAduitNoPassStrategy().generatorSmsReq(smsContext);
+        }else {
+            //构建关闭账户的短信
+            return null;
+        }
     }
 }

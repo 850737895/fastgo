@@ -11,7 +11,7 @@ app.service('sellerService',function ($http) {
         return $http.post(url+"/seller/findOneById/"+sellerId);
     }
 
-    this.updateAccountStatus(sellerId,acctStatus)
+    this.updateAccountStatus=function(sellerId,acctStatus)
     {
         return $http.get(url + "/seller/updateAccountStatus?sellerId=" + sellerId + "&status=" + acctStatus);
     }

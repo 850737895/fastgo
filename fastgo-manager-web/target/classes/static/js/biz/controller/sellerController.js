@@ -35,7 +35,12 @@ app.controller('sellerController',function ($scope,$controller,sellerService) {
 
     //更新商家用户状态
     $scope.updateAccountStatus=function(sellerId,status) {
-        alert(sellerId);
-        alert(status);
+        sellerService.updateAccountStatus(sellerId,status).success(function (response) {
+            if(response.code!=0) {
+                alert(response.msg);
+            }else {
+                $scope.loadPageList();
+            }
+        })
     }
 })
