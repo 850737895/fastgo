@@ -71,6 +71,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.github.tobato</groupId>
+			<artifactId>fastdfs-client</artifactId>
+			<version>${fastdfs.version}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 			<version>${security.version}</version>

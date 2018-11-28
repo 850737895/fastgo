@@ -7,4 +7,6 @@ package com.hnnd.fastgo.util;
 public class BeanUtils {
 
     public void copyProperties (){}
+
+
 }

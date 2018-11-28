@@ -32,6 +32,7 @@
 		<guava.version>18.0</guava.version>
 		<fastjson.version>1.2.47</fastjson.version>
 		<security.version>1.5.14.RELEASE</security.version>
+		<fastdfs.version>1.25.2-RELEASE</fastdfs.version>
 	</properties>
 
 	<dependencyManagement>
@@ -99,6 +100,11 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-security</artifactId>
 			</dependency>
+
+			<dependency>
+				<groupId>com.github.tobato</groupId>
+				<artifactId>fastdfs-client</artifactId>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -133,6 +139,9 @@
 		<module>fastgo-client-api</module>
 		<module>fastgo-manager-web</module>
 		<module>fastgo-shop-web</module>
+		<module>fastgo-msg-center</module>
+		<module>fastgo-client-api</module>
+		<module>fastgo-register</module>
 	</modules>
 
 

@@ -1,6 +1,7 @@
 package com.hnnd.fastgo.controller;
 
 import com.hnnd.fastgo.clientapi.sellergoods.seller.SellerApi;
+import com.hnnd.fastgo.compent.FastDFSUploadUtils;
 import com.hnnd.fastgo.entity.TbSeller;
 import com.hnnd.fastgo.enumration.SellerAccoutStatusEnum;
 import com.hnnd.fastgo.enumration.SellerGoodsEnum;
@@ -9,10 +10,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 /**
  * 商家管理
@@ -28,6 +29,9 @@ public class SellerController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private FastDFSUploadUtils fastDFSUploadUtils;
 
     @RequestMapping("/register")
     public SystemVo register(@RequestBody  TbSeller tbSeller) {
@@ -46,5 +50,10 @@ public class SellerController {
             return SystemVo.error(SellerGoodsEnum.SELLER_OPER_IN_PARAM_NULL);
         }
         return sellerApi.validateForm(checkType,checkValue);
+    }
+
+    @RequestMapping("/testFileUpload")
+    public Object testFileUpload(@RequestParam(value = "upload_file",required = false) MultipartFile file) throws IOException {
+        return fastDFSUploadUtils.uploadFileWithThumbImage(file);
     }
 }

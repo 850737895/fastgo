@@ -29,7 +29,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                         .failureUrl("/shoplogin.html")
                 .and()
                         .authorizeRequests()
-                        .antMatchers("/shoplogin.html","/sampling.html","/register.html","/cooperation.html","/css/**","/img/**","/js/**","/plugins/**","/login","/seller/validate/**","/seller/register").permitAll()
+                        .antMatchers("/shoplogin.html","/sampling.html","/register.html","/cooperation.html","/css/**","/img/**","/js/**","/plugins/**","/login","/seller/validate/**","/seller/register","/seller/testFileUpload").permitAll()
                         .antMatchers("/amdin/**").hasRole("SELLER")
                 .and()
                         .authorizeRequests().anyRequest().authenticated()
