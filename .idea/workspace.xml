@@ -2,24 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="655870be-c10e-4337-ba24-458c9d6f2223" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_tobato_fastdfs_client_1_25_2_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_beanutils_commons_beanutils_1_9_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_coobird_thumbnailator_0_4_8.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_3_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_all_1_9_5.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/compent/FastDFSUploadUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fastgo-shop-web/src/test/java/com/hnnd/FastDfsTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fastgo-client-api/src/main/java/com/hnnd/fastgo/clientapi/sellergoods/file/FileApi.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fastgo-client-api/src/main/java/com/hnnd/fastgo/clientapi/sellergoods/file/FileApiImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fastgo-client-api/src/main/java/com/hnnd/fastgo/clientapi/sellergoods/goods/GoodsApi.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/bo/DfsFileBo.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/constant/FastDfsConstant.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/vo/GoodsVo.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fastgo-dao/src/main/java/com/hnnd/fastgo/dao/DelFileLogMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fastgo-dao/src/main/resources/mybatis/mapper/DelFileLogMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fastgo-entity/src/main/java/com/hnnd/fastgo/entity/DelFileLog.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/controller/FileController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/service/IFileService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/service/impl/FileServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/controller/FileController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/controller/GoodsController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fastgo-shop-web/src/main/resources/static/js/biz/controller/baseController.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fastgo-shop-web/src/main/resources/static/js/biz/controller/goodsController.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fastgo-shop-web/src/main/resources/static/js/biz/service/fileUploadService.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fastgo-shop-web/src/main/resources/static/js/biz/service/goodsService.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fastgo-common/pom.xml" afterPath="$PROJECT_DIR$/fastgo-common/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/util/BeanUtils.java" afterPath="$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/util/BeanUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fastgo-manager-web/fastgo-manager-web.iml" afterPath="$PROJECT_DIR$/fastgo-manager-web/fastgo-manager-web.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fastgo-shop-web/pom.xml" afterPath="$PROJECT_DIR$/fastgo-shop-web/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/FastgoShopWebApplication.java" afterPath="$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/FastgoShopWebApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/config/WebSecurity.java" afterPath="$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/config/WebSecurity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/enumration/SellerGoodsEnum.java" afterPath="$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/enumration/SellerGoodsEnum.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/compent/FastDFSUploadUtils.java" afterPath="$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/compent/FastDFSUploadUtils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/controller/SellerController.java" afterPath="$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/controller/SellerController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fastgo-shop-web/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/fastgo-shop-web/src/main/resources/application.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fastgo-shop-web/src/main/resources/static/admin/goods_edit.html" afterPath="$PROJECT_DIR$/fastgo-shop-web/src/main/resources/static/admin/goods_edit.html" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/fastgo-common/target/" />
@@ -51,41 +58,99 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="FastgoShopWebApplication.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/FastgoShopWebApplication.java">
+      <file leaf-file-name="FileApi.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fastgo-client-api/src/main/java/com/hnnd/fastgo/clientapi/sellergoods/file/FileApi.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-103">
-              <caret line="14" column="31" lean-forward="true" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+            <state relative-caret-position="88">
+              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="17" selection-end-column="62" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/controller/FileController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1152">
+              <caret line="32" column="65" lean-forward="false" selection-start-line="32" selection-start-column="65" selection-end-line="32" selection-end-column="65" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/controller/FileController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="9" column="33" lean-forward="true" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IFileService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/service/IFileService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/service/impl/FileServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="628">
+              <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DelFileLog.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fastgo-entity/src/main/java/com/hnnd/fastgo/entity/DelFileLog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="SellerController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/controller/SellerController.java">
+        <entry file="file://$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/controller/SellerController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+            <state relative-caret-position="150">
+              <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WebSecurity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/config/WebSecurity.java">
+      <file leaf-file-name="SellerGoodsBrandController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/controller/SellerGoodsBrandController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="31" column="225" lean-forward="false" selection-start-line="31" selection-start-column="225" selection-end-line="31" selection-end-column="225" />
+            <state relative-caret-position="-246">
+              <caret line="20" column="29" lean-forward="false" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FastDFSUploadUtils.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/compent/FastDFSUploadUtils.java">
+      <file leaf-file-name="FileApiImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fastgo-client-api/src/main/java/com/hnnd/fastgo/clientapi/sellergoods/file/FileApiImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+            <state relative-caret-position="340">
+              <caret line="14" column="24" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -93,63 +158,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/main/resources/application.properties">
+      <file leaf-file-name="GoodsApi.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fastgo-client-api/src/main/java/com/hnnd/fastgo/clientapi/sellergoods/goods/GoodsApi.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="17" column="39" lean-forward="true" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FastDfsTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/test/java/com/hnnd/FastDfsTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="16" column="2" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="17" selection-end-column="17" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FastgoShopWebApplicationTests.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/test/java/com/hnnd/FastgoShopWebApplicationTests.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fastgo-common/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fastgo-shop-web/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="73" column="48" lean-forward="false" selection-start-line="73" selection-start-column="48" selection-end-line="73" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FastgoManagerWebApplication.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fastgo-manager-web/src/main/java/com/hnnd/FastgoManagerWebApplication.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+            <state relative-caret-position="164">
+              <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -160,9 +173,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="package-info" />
         <option value="FxmlFile" />
+        <option value="JavaScript File" />
         <option value="Class" />
       </list>
     </option>
@@ -184,6 +197,13 @@
       <find>fast</find>
       <find>Map</find>
       <find>SellerA</find>
+      <find>introduction</find>
+      <find>uploadFile</find>
+      <find>新</find>
+      <find>保存</find>
+      <find>删除</find>
+      <find>$index</find>
+      <find>repeat</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -197,27 +217,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/fastgo-client-api/src/main/java/com/hnnd/fastgo/clientapi/sellergoods/seller/SellerApiImpl.java" />
-        <option value="$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/service/ISellerService.java" />
-        <option value="$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/enumration/SellerGoodsEnum.java" />
-        <option value="$PROJECT_DIR$/fastgo-manager-web/src/main/java/com/hnnd/fastgo/controller/SellerController.java" />
-        <option value="$PROJECT_DIR$/fastgo-msg-center/src/main/java/com/hnnd/fastgo/compent/FastMsgConfirm.java" />
-        <option value="$PROJECT_DIR$/fastgo-msg-center/src/main/java/com/hnnd/fastgo/compent/FastMsgReturn.java" />
-        <option value="$PROJECT_DIR$/fastgo-msg-center/src/main/java/com/hnnd/fastgo/config/RabbittmqBeanConfig.java" />
-        <option value="$PROJECT_DIR$/fastgo-msg-center/src/main/java/com/hnnd/fastgo/compent/FastGoRediServiceImpl.java" />
-        <option value="D:/m2/.m2/repository/com/hnnd/redisoper-spring-boot-autoconfiguration/0.0.1-SNAPSHOT/redisoper-spring-boot-autoconfiguration-0.0.1-SNAPSHOT.jar!/com/redisoper/RedisOperClient.class" />
-        <option value="D:/m2/.m2/repository/com/hnnd/redisoper-spring-boot-autoconfiguration/0.0.1-SNAPSHOT/redisoper-spring-boot-autoconfiguration-0.0.1-SNAPSHOT.jar!/com/redisoper/IRedisService.class" />
-        <option value="$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/exception/SendSmsException.java" />
-        <option value="$PROJECT_DIR$/fastgo-msg-center/src/main/java/com/hnnd/fastgo/compent/DefaultSmsCodeSender.java" />
-        <option value="$PROJECT_DIR$/fastgo-msg-center/src/main/java/com/hnnd/fastgo/properties/AliYunSmsProperties.java" />
-        <option value="$PROJECT_DIR$/fastgo-msg-center/src/main/java/com/hnnd/fastgo/strategy/SmsReqStrategy.java" />
-        <option value="$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/temp/SmsContext.java" />
-        <option value="$PROJECT_DIR$/fastgo-msg-center/src/main/java/com/hnnd/fastgo/compent/SmsCodeSender.java" />
-        <option value="$PROJECT_DIR$/fastgo-entity/src/main/java/com/hnnd/fastgo/entity/MsgLog.java" />
-        <option value="$PROJECT_DIR$/fastgo-msg-center/pom.xml" />
-        <option value="$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/enumration/MsgStatusEnum.java" />
-        <option value="$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/constant/RabbtMqConstant.java" />
-        <option value="$PROJECT_DIR$/fastgo-sellergoods-service/pom.xml" />
         <option value="$PROJECT_DIR$/fastgo-sellergoods-service/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/config/RabbitmqBeanConfig.java" />
         <option value="$PROJECT_DIR$/fastgo-msg-center/src/main/resources/application.properties" />
@@ -240,14 +239,35 @@
         <option value="$PROJECT_DIR$/fastgo-manager-web/src/main/resources/static/admin/seller.html" />
         <option value="$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/util/BeanUtils.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/fastgo-shop-web/src/main/resources/application.properties" />
-        <option value="$PROJECT_DIR$/fastgo-common/pom.xml" />
         <option value="$PROJECT_DIR$/fastgo-shop-web/pom.xml" />
         <option value="$PROJECT_DIR$/fastgo-shop-web/src/test/java/com/hnnd/FastDfsTest.java" />
         <option value="$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/FastgoShopWebApplication.java" />
         <option value="$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/config/WebSecurity.java" />
         <option value="$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/compent/FastDFSUploadUtils.java" />
+        <option value="$PROJECT_DIR$/fastgo-shop-web/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/vo/FileVo.java" />
+        <option value="$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/constant/FastDfsConstant.java" />
+        <option value="$PROJECT_DIR$/fastgo-common/pom.xml" />
         <option value="$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/controller/SellerController.java" />
+        <option value="$PROJECT_DIR$/fastgo-shop-web/src/main/resources/static/js/biz/service/fileuploadService.js" />
+        <option value="$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/vo/GoodsVo.java" />
+        <option value="$PROJECT_DIR$/fastgo-shop-web/src/main/resources/static/js/biz/service/goodsService.js" />
+        <option value="$PROJECT_DIR$/fastgo-shop-web/src/main/resources/static/admin/goods_edit.html" />
+        <option value="$PROJECT_DIR$/fastgo-shop-web/src/main/resources/static/js/biz/controller/goodsController.js" />
+        <option value="$PROJECT_DIR$/fastgo-shop-web/src/main/resources/static/js/biz/service/fileUploadService.js" />
+        <option value="$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/controller/GoodsController.java" />
+        <option value="$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/bo/DfsFileBo.java" />
+        <option value="$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/enumration/SellerGoodsEnum.java" />
+        <option value="$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/service/impl/IFileService.java" />
+        <option value="$PROJECT_DIR$/fastgo-dao/src/main/java/com/hnnd/fastgo/dao/DelFileLogMapper.java" />
+        <option value="$PROJECT_DIR$/fastgo-dao/src/main/resources/mybatis/mapper/DelFileLogMapper.xml" />
+        <option value="$PROJECT_DIR$/fastgo-client-api/src/main/java/com/hnnd/fastgo/clientapi/sellergoods/file/FileApiImpl.java" />
+        <option value="$PROJECT_DIR$/fastgo-client-api/src/main/java/com/hnnd/fastgo/clientapi/sellergoods/file/FileApi.java" />
+        <option value="$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/service/IFileService.java" />
+        <option value="$PROJECT_DIR$/fastgo-entity/src/main/java/com/hnnd/fastgo/entity/DelFileLog.java" />
+        <option value="$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/service/impl/FileServiceImpl.java" />
+        <option value="$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/controller/FileController.java" />
+        <option value="$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/controller/FileController.java" />
       </list>
     </option>
   </component>
@@ -300,7 +320,7 @@
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependenciesNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="com.hnnd:fastgo-client-api:0.0.1-SNAPSHOT" />
+          <option name="myItemId" value="com.github.tobato:fastdfs-client:1.25.2-RELEASE" />
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependencyNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -340,7 +360,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -478,10 +500,6 @@
               <option name="myItemId" value="fastgo" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -525,104 +543,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fastgo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fastgo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fastgo-shop-web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hnnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fastgo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fastgo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fastgo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fastgo-shop-web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hnnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fastgo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fastgo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fastgo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fastgo-common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -641,6 +563,7 @@
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\study_space\idea\fastgo\fastgo\fastgo-dao\src\main\resources\mybatis\mapper" />
+      <recent name="E:\study_space\idea\fastgo\fastgo\fastgo-shop-web\src\main\resources\static\js\biz\controller" />
       <recent name="E:\study_space\idea\fastgo\fastgo\fastgo-shop-web\src\main\resources\static\js" />
       <recent name="E:\study_space\idea\fastgo\fastgo\fastgo-shop-web\src\main\resources\static" />
       <recent name="E:\study_space\idea\fastgo\fastgo-manager-web\src\main\resources\static\plugins\angularjs" />
@@ -658,27 +581,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.FastgoShopWebApplication">
-    <configuration default="false" name="FastgoRegisterApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.hnnd.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="com.hnnd.FastgoRegisterApplication" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="fastgo-register" />
-      <envs />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Application.FileController">
     <configuration default="false" name="FastgoManagerWebApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -763,6 +666,26 @@
       </option>
       <envs />
       <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="FileController" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.hnnd.fastgo.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="com.hnnd.fastgo.controller.FileController" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="fastgo-shop-web" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -1223,19 +1146,19 @@
       <item index="3" class="java.lang.String" itemvalue="Spring Boot.FastgoApigatewayApplication" />
       <item index="4" class="java.lang.String" itemvalue="Spring Boot.FastgoShopWebApplication" />
       <item index="5" class="java.lang.String" itemvalue="Spring Boot.FastgoMsgCenterApplication" />
-      <item index="6" class="java.lang.String" itemvalue="Application.FastgoRegisterApplication" />
-      <item index="7" class="java.lang.String" itemvalue="Application.FastgoManagerWebApplication" />
-      <item index="8" class="java.lang.String" itemvalue="Application.FastgoSellergoodsApplication" />
-      <item index="9" class="java.lang.String" itemvalue="Application.FastgoShopWebApplication" />
-      <item index="10" class="java.lang.String" itemvalue="JUnit.FastDfsTest.contextLoads" />
+      <item index="6" class="java.lang.String" itemvalue="Application.FastgoManagerWebApplication" />
+      <item index="7" class="java.lang.String" itemvalue="Application.FastgoSellergoodsApplication" />
+      <item index="8" class="java.lang.String" itemvalue="Application.FastgoShopWebApplication" />
+      <item index="9" class="java.lang.String" itemvalue="JUnit.FastDfsTest.contextLoads" />
+      <item index="10" class="java.lang.String" itemvalue="Application.FileController" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.FastgoShopWebApplication" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.FastDfsTest.contextLoads" />
-        <item index="2" class="java.lang.String" itemvalue="Application.FastgoManagerWebApplication" />
-        <item index="3" class="java.lang.String" itemvalue="Application.FastgoSellergoodsApplication" />
-        <item index="4" class="java.lang.String" itemvalue="Application.FastgoRegisterApplication" />
+        <item index="0" class="java.lang.String" itemvalue="Application.FileController" />
+        <item index="1" class="java.lang.String" itemvalue="Application.FastgoShopWebApplication" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.FastDfsTest.contextLoads" />
+        <item index="3" class="java.lang.String" itemvalue="Application.FastgoManagerWebApplication" />
+        <item index="4" class="java.lang.String" itemvalue="Application.FastgoSellergoodsApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -1263,6 +1186,8 @@
       <workItem from="1543282773676" duration="14179000" />
       <workItem from="1543306534327" duration="11313000" />
       <workItem from="1543392050061" duration="5726000" />
+      <workItem from="1543398645265" duration="72000" />
+      <workItem from="1543451609232" duration="25391000" />
     </task>
     <servers />
   </component>
@@ -1275,7 +1200,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="159047000" />
+    <option name="totallyTimeSpent" value="184510000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1932" height="1048" extended-state="0" />
@@ -1284,7 +1209,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36871508" sideWeight="0.50858366" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.06512379" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10710441" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1292,7 +1217,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.493537" sideWeight="0.4914163" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3584019" sideWeight="0.4914163" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3266745" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1300,10 +1225,10 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32902467" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4347826" sideWeight="0.49785408" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4347826" sideWeight="0.49785408" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27497062" sideWeight="0.49570817" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21851453" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29440257" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
@@ -1348,20 +1273,8 @@
           <properties />
           <option name="timeStamp" value="161" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/controller/SellerController.java</url>
-          <line>56</line>
-          <properties />
-          <option name="timeStamp" value="191" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/compent/FastDFSUploadUtils.java</url>
-          <line>47</line>
-          <properties />
-          <option name="timeStamp" value="193" />
-        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="194" />
+      <option name="time" value="202" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1370,290 +1283,92 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/FastgoSellergoodsApplication.java">
+    <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/main/resources/static/js/biz/service/sellerService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        <state relative-caret-position="180">
+          <caret line="5" column="12" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://E:/tools/m2/m2/repository/org/springframework/amqp/spring-rabbit/1.7.8.RELEASE/spring-rabbit-1.7.8.RELEASE.jar!/org/springframework/amqp/rabbit/core/RabbitTemplate.class">
+    <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/config/WebSecurity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="122" column="11" lean-forward="false" selection-start-line="122" selection-start-column="11" selection-end-line="122" selection-end-column="11" />
+        <state relative-caret-position="505">
+          <caret line="38" column="8" lean-forward="false" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="62" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/config/RabbitmqBeanConfig.java" />
-    <entry file="jar://E:/tools/m2/m2/repository/org/springframework/spring-aop/4.3.18.RELEASE/spring-aop-4.3.18.RELEASE.jar!/org/springframework/aop/support/AopUtils.class">
+    <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/FastgoShopWebApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="180" column="0" lean-forward="false" selection-start-line="180" selection-start-column="0" selection-end-line="180" selection-end-column="0" />
+        <state relative-caret-position="-27">
+          <caret line="14" column="31" lean-forward="false" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+          <folding>
+            <element signature="e#786#787#0" expanded="true" />
+            <element signature="e#852#853#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://E:/tools/m2/m2/repository/org/springframework/spring-tx/4.3.18.RELEASE/spring-tx-4.3.18.RELEASE.jar!/org/springframework/transaction/interceptor/TransactionAspectSupport.class">
+    <entry file="file://$PROJECT_DIR$/fastgo-entity/src/main/java/com/hnnd/fastgo/entity/TbGoodsDesc.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="166" column="0" lean-forward="false" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+        <state relative-caret-position="144">
+          <caret line="43" column="29" lean-forward="false" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-sellergoods-service/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="28" column="28" lean-forward="true" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://E:/tools/m2/m2/repository/org/springframework/boot/spring-boot-autoconfigure/1.5.14.RELEASE/spring-boot-autoconfigure-1.5.14.RELEASE.jar!/org/springframework/boot/autoconfigure/amqp/RabbitProperties.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="358" column="20" lean-forward="false" selection-start-line="358" selection-start-column="20" selection-end-line="358" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/enumration/MsgStatusEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="13" column="34" lean-forward="true" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/config/FastMsgReturn.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-dao/src/main/java/com/hnnd/fastgo/dao/MsgLogMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="47" column="8" lean-forward="false" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-dao/src/main/resources/mybatis/mapper/MsgLogMapper.xml">
+    <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/main/resources/static/js/biz/service/goodsService.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
-          <caret line="87" column="10" lean-forward="true" selection-start-line="87" selection-start-column="10" selection-end-line="87" selection-end-column="10" />
+          <caret line="8" column="82" lean-forward="false" selection-start-line="8" selection-start-column="82" selection-end-line="8" selection-end-column="82" />
           <folding>
-            <marker date="1543310801064" expanded="true" signature="1311:1375" ph="delete from " />
-            <marker date="1543310801064" expanded="true" signature="1592:2070" ph="insert into msg_log... " />
-            <marker date="1543310801064" expanded="true" signature="2270:2386" ph="update msg_l... " />
-            <marker date="1543310801064" expanded="true" signature="2616:3519" ph="update msg_l... " />
-            <marker date="1543310801064" expanded="true" signature="3764:3951" ph="select msg_i... msg_log" />
-            <marker date="1543310801064" expanded="true" signature="4151:4293" ph="select msg_i... msg_log" />
+            <element signature="e#0#50#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/config/FastMsgConfirm.java">
+    <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-msg-center/src/main/java/com/hnnd/fastgo/strategy/AbstractSmsReqStrategy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="29" column="7" lean-forward="true" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/constant/AliSmsConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="31" column="31" lean-forward="false" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/enumration/SellerAccoutStatusEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="15" column="51" lean-forward="true" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
+        <state relative-caret-position="318">
+          <caret line="15" column="25" lean-forward="false" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-msg-center/src/main/java/com/hnnd/fastgo/strategy/SmsReqStrategy.java">
+    <entry file="file://$PROJECT_DIR$/fastgo-manager-web/src/main/resources/static/js/biz/service/brandService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-msg-center/src/main/java/com/hnnd/fastgo/strategy/SmsBizAduitStrategy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-msg-center/src/main/java/com/hnnd/fastgo/strategy/SmsBizAduitNoPassStrategy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="19" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-msg-center/src/main/java/com/hnnd/fastgo/service/SmsConsumer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="71" column="36" lean-forward="false" selection-start-line="71" selection-start-column="36" selection-end-line="71" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-msg-center/src/main/java/com/hnnd/fastgo/compent/AliSmsCodeSender.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="67" column="23" lean-forward="false" selection-start-line="67" selection-start-column="23" selection-end-line="67" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/service/ISellerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="59" column="9" lean-forward="false" selection-start-line="59" selection-start-column="9" selection-end-line="59" selection-end-column="9" />
+        <state relative-caret-position="-972">
+          <caret line="4" column="38" lean-forward="true" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="38" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-dao/src/main/resources/mybatis/mapper/TbSellerMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5796">
-          <caret line="161" column="2" lean-forward="false" selection-start-line="161" selection-start-column="2" selection-end-line="161" selection-end-column="2" />
-          <folding>
-            <marker date="1543308326138" expanded="true" signature="2418:2490" ph="delete from " />
-            <marker date="1543308326138" expanded="true" signature="2709:3888" ph="insert into tb_seller... " />
-            <marker date="1543308326138" expanded="true" signature="4119:5340" ph="update tb_se... " />
-            <marker date="1543308326138" expanded="true" signature="5582:5947" ph="select selle... tb_seller" />
-            <marker date="1543308326138" expanded="true" signature="6177:6594" ph="select selle... tb_seller" />
-            <marker date="1543308326138" expanded="true" signature="6796:7120" ph="select selle... tb_seller" />
-            <marker date="1543308326138" expanded="true" signature="8161:8291" ph="update tb_se... " />
-            <marker date="1543308326138" expanded="true" signature="12393:12468" ph="select count... tb_seller" />
-            <marker date="1543308326138" expanded="true" signature="12556:12631" ph="select count... tb_seller" />
-            <marker date="1543308326138" expanded="true" signature="12724:12809" ph="select count... tb_seller" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-dao/src/main/java/com/hnnd/fastgo/dao/TbSellerMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2808">
-          <caret line="82" column="8" lean-forward="false" selection-start-line="82" selection-start-column="8" selection-end-line="82" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/controller/SellerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3312">
-          <caret line="103" column="16" lean-forward="false" selection-start-line="103" selection-start-column="16" selection-end-line="103" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-manager-web/src/main/java/com/hnnd/fastgo/controller/SellerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="25" column="18" lean-forward="false" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-client-api/src/main/java/com/hnnd/fastgo/clientapi/sellergoods/seller/SellerApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="17" column="17" lean-forward="false" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fastgo-manager-web/src/main/resources/static/js/biz/service/sellerService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        <state relative-caret-position="-365">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/service/impl/SellerServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/fastgo-manager-web/src/main/resources/static/js/biz/controller/brandController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2772">
-          <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
-          <folding>
-            <element signature="e#1986#1987#0" expanded="false" />
-            <element signature="e#2052#2053#0" expanded="false" />
-            <element signature="e#2274#2275#0" expanded="false" />
-            <element signature="e#2323#2324#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-manager-web/src/main/resources/static/admin/seller_1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5940">
-          <caret line="221" column="172" lean-forward="false" selection-start-line="219" selection-start-column="36" selection-end-line="221" selection-end-column="172" />
-          <folding>
-            <element signature="n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#table#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#table#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#table#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-manager-web/src/main/resources/static/admin/seller.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="229" column="22" lean-forward="false" selection-start-line="229" selection-start-column="22" selection-end-line="229" selection-end-column="22" />
-          <folding>
-            <element signature="n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#table#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#table#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#table#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/util/BeanUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        <state relative-caret-position="-2327">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-sellergoods-service/pom.xml">
+    <entry file="file://$PROJECT_DIR$/fastgo-manager-web/src/main/resources/static/js/biz/controller/baseController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="47" column="35" lean-forward="false" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="35" />
+        <state relative-caret-position="-347">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="34" column="39" lean-forward="false" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-dao/src/main/resources/application.properties">
+    <entry file="file://$PROJECT_DIR$/fastgo-manager-web/src/main/resources/static/js/biz/controller/indexController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1661,143 +1376,350 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://E:/tools/m2/m2/repository/com/github/tobato/fastdfs-client/1.25.2-RELEASE/fastdfs-client-1.25.2-RELEASE.jar!/com/github/tobato/fastdfs/conn/FdfsConnectionPool.class">
+    <entry file="file://$PROJECT_DIR$/fastgo-manager-web/src/main/resources/static/js/biz/controller/sellerController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://E:/tools/m2/m2/repository/com/github/tobato/fastdfs-client/1.25.2-RELEASE/fastdfs-client-1.25.2-RELEASE.jar!/com/github/tobato/fastdfs/conn/FdfsWebServer.class">
+    <entry file="file://$PROJECT_DIR$/fastgo-manager-web/src/main/resources/static/js/biz/controller/specController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-20">
-          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        <state relative-caret-position="241">
+          <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://E:/tools/m2/m2/repository/com/github/tobato/fastdfs-client/1.25.2-RELEASE/fastdfs-client-1.25.2-RELEASE.jar!/com/github/tobato/fastdfs/conn/PooledConnectionFactory.class">
+    <entry file="file://$PROJECT_DIR$/fastgo-manager-web/src/main/resources/static/admin/brand.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        <state relative-caret-position="133">
+          <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://E:/tools/m2/m2/repository/com/github/tobato/fastdfs-client/1.25.2-RELEASE/fastdfs-client-1.25.2-RELEASE.jar!/com/github/tobato/fastdfs/FdfsClientConfig.class">
+    <entry file="file://$PROJECT_DIR$/fastgo-manager-web/src/main/resources/static/admin/content.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="8" column="34" lean-forward="false" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-manager-web/src/main/resources/static/admin/goods.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-manager-web/src/main/resources/static/admin/seller_1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-manager-web/src/main/resources/static/admin/specification.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-193">
+          <caret line="117" column="35" lean-forward="false" selection-start-line="117" selection-start-column="29" selection-end-line="117" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/main/resources/static/admin/goods_edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="197" column="42" lean-forward="true" selection-start-line="197" selection-start-column="42" selection-end-line="197" selection-end-column="42" />
+          <folding>
+            <element signature="n#style#0;n#textarea#0;n#div#11;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/main/resources/static/js/biz/controller/baseController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/main/resources/static/js/biz/controller/goodsController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#50#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/main/resources/static/js/biz/service/fileUploadService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="21" column="32" lean-forward="false" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#50#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/constant/FastDfsConstant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="9" column="31" lean-forward="false" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/tools/m2/m2/repository/com/github/tobato/fastdfs-client/1.25.2-RELEASE/fastdfs-client-1.25.2-RELEASE-sources.jar!/com/github/tobato/fastdfs/domain/StorePath.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
-          <caret line="11" column="14" lean-forward="false" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+          <caret line="24" column="64" lean-forward="false" selection-start-line="24" selection-start-column="62" selection-end-line="24" selection-end-column="64" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://E:/tools/m2/m2/repository/com/github/tobato/fastdfs-client/1.25.2-RELEASE/fastdfs-client-1.25.2-RELEASE.jar!/com/github/tobato/fastdfs/FdfsClientConstants.class">
+    <entry file="file://$PROJECT_DIR$/fastgo-client-api/src/main/java/com/hnnd/fastgo/clientapi/sellergoods/seller/SellerApi.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        <state relative-caret-position="150">
+          <caret line="17" column="17" lean-forward="false" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://E:/tools/m2/m2/repository/com/github/tobato/fastdfs-client/1.25.2-RELEASE/fastdfs-client-1.25.2-RELEASE.jar!/com/github/tobato/fastdfs/domain/ThumbImageConfig.class">
+    <entry file="file://$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/vo/GoodsVo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        <state relative-caret-position="52">
+          <caret line="19" column="21" lean-forward="true" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://E:/tools/m2/m2/repository/com/github/tobato/fastdfs-client/1.25.2-RELEASE/fastdfs-client-1.25.2-RELEASE.jar!/com/github/tobato/fastdfs/proto/storage/StorageUploadFileCommand.class">
+    <entry file="file://$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/bo/DfsFileBo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
+        <state relative-caret-position="232">
+          <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-client-api/src/main/java/com/hnnd/fastgo/clientapi/sellergoods/brand/SellerGoodsBrandApi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="15" column="28" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/vo/SystemVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="38" column="27" lean-forward="false" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-common/src/main/java/com/hnnd/fastgo/enumration/SellerGoodsEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="7" column="12" lean-forward="false" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/service/impl/SellerGoodsServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1362">
+          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/service/impl/SellerServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1109">
+          <caret line="174" column="54" lean-forward="true" selection-start-line="174" selection-start-column="33" selection-end-line="174" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/config/FastMsgReturn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
           <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-manager-web/src/main/java/com/hnnd/FastgoManagerWebApplication.java">
+    <entry file="file://$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/config/FastMsgConfirm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        <state relative-caret-position="-498">
+          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-common/pom.xml">
+    <entry file="file://$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/service/impl/IFileService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+        <state relative-caret-position="236">
+          <caret line="9" column="4" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-shop-web/pom.xml">
+    <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/controller/GoodsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="73" column="48" lean-forward="false" selection-start-line="73" selection-start-column="48" selection-end-line="73" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="17" column="39" lean-forward="true" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/test/java/com/hnnd/FastgoShopWebApplicationTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/test/java/com/hnnd/FastDfsTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="16" column="2" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="17" selection-end-column="17" />
+        <state relative-caret-position="36">
+          <caret line="23" column="17" lean-forward="false" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/FastgoShopWebApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-103">
-          <caret line="14" column="31" lean-forward="true" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/config/WebSecurity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="31" column="225" lean-forward="false" selection-start-line="31" selection-start-column="225" selection-end-line="31" selection-end-column="225" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/controller/SellerController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+        <state relative-caret-position="-720">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="27" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/compent/FastDFSUploadUtils.java">
+    <entry file="file://$PROJECT_DIR$/fastgo-dao/src/main/java/com/hnnd/fastgo/dao/DelFileLogMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+        <state relative-caret-position="144">
+          <caret line="4" column="22" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-dao/src/main/resources/mybatis/mapper/DelFileLogMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="24" column="8" lean-forward="true" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
+          <folding>
+            <marker date="1543483399294" expanded="true" signature="1044:1106" ph="delete from " />
+            <marker date="1543483399294" expanded="true" signature="1982:2277" ph="update del_f... " />
+            <marker date="1543483399294" expanded="true" signature="2520:2642" ph="select id, `... del_file_log" />
+            <marker date="1543483399294" expanded="true" signature="2842:2926" ph="select id, `... del_file_log" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/service/ShopUserDetailService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="24" column="32" lean-forward="true" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-client-api/src/main/java/com/hnnd/fastgo/clientapi/sellergoods/itemcat/ISellerGoodsItemCatApi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="19" column="10" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-client-api/src/main/java/com/hnnd/fastgo/clientapi/sellergoods/goods/GoodsApi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-client-api/src/main/java/com/hnnd/fastgo/clientapi/sellergoods/file/FileApiImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="14" column="24" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/controller/SellerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/controller/SellerGoodsBrandController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-246">
+          <caret line="20" column="29" lean-forward="false" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-client-api/src/main/java/com/hnnd/fastgo/clientapi/sellergoods/file/FileApi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="17" selection-end-column="62" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/service/IFileService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-entity/src/main/java/com/hnnd/fastgo/entity/DelFileLog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/service/impl/FileServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="628">
+          <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-sellergoods-service/src/main/java/com/hnnd/fastgo/controller/FileController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1152">
+          <caret line="32" column="65" lean-forward="false" selection-start-line="32" selection-start-column="65" selection-end-line="32" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fastgo-shop-web/src/main/java/com/hnnd/fastgo/controller/FileController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="9" column="33" lean-forward="true" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>

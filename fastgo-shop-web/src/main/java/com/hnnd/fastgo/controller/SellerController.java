@@ -52,8 +52,5 @@ public class SellerController {
         return sellerApi.validateForm(checkType,checkValue);
     }
 
-    @RequestMapping("/testFileUpload")
-    public Object testFileUpload(@RequestParam(value = "upload_file",required = false) MultipartFile file) throws IOException {
-        return fastDFSUploadUtils.uploadFileWithThumbImage(file);
-    }
+
 }

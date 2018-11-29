@@ -65,6 +65,8 @@ public enum SellerGoodsEnum {
 
     SELLER_GOODS_DEL_ITEMCAT_ERROR(-26,"批量删除商品类目服务异常"),
 
+    SELLER_GOODS_IMG_URL_NULL(-26,"删除的图片地址为null"),
+
     //==============================商家异常信息操作===========================
     SELLER_OPER_IN_PARAM_NULL(-30,"商家用户操作入参为null"),
 
@@ -79,7 +81,11 @@ public enum SellerGoodsEnum {
     SELLER_QRY_LIST_ERROR(-35,"查询商家用户信息列表异常"),
     SELLER_QRY_SELLER_DETAIL_ERROR(-36,"根据商家用户ID查询商家异常"),
 
-    SELLER_MODIFY_SELLER_ERROR(-37,"审核商家用户ID查询商家异常");
+    SELLER_MODIFY_SELLER_ERROR(-37,"审核商家用户ID查询商家异常"),
+
+    //================================文件操作模块===============================
+
+    DEL_IMG_ERROR(50,"删除文件信息异常");
 
 
 

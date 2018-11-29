@@ -29,9 +29,7 @@ public class FastDFSUploadUtils {
      */
     public String uploadFileNoThumbImage(MultipartFile multipartFile) throws IOException {
         StorePath storePath = fastFileStorageClient.uploadFile(multipartFile.getInputStream(),multipartFile.getSize(), FilenameUtils.getExtension(multipartFile.getOriginalFilename()),null);
-        log.info("文件路径",storePath.getPath());
-        log.info("文件group",storePath.getGroup());
-        log.info("文件全路径",storePath.getFullPath());
+        log.info("FastDfs返回的storePath:{}",storePath);
         return storePath.getFullPath();
     }
 
@@ -43,10 +41,15 @@ public class FastDFSUploadUtils {
      */
     public String uploadFileWithThumbImage(MultipartFile multipartFile) throws IOException {
         StorePath storePath = fastFileStorageClient.uploadImageAndCrtThumbImage(multipartFile.getInputStream(),multipartFile.getSize(), FilenameUtils.getExtension(multipartFile.getOriginalFilename()),null);
-        log.info("文件路径",storePath.getPath());
-        log.info("文件group",storePath.getGroup());
-        log.info("文件全路径",storePath.getFullPath());
+        log.info("FastDfs返回的storePath:{}",storePath);
         return storePath.getFullPath();
+    }
+
+    public String deleteFileByFileId(String fileId) {
+        String group = null ;
+        String path = null;
+        fastFileStorageClient.deleteFile(group,path);
+        return null;
     }
 
 }

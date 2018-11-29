@@ -20,14 +20,54 @@
 	<link rel="stylesheet" href="../plugins/kindeditor/themes/default/default.css" />
 	<script charset="utf-8" src="../plugins/kindeditor/kindeditor-min.js"></script>
 	<script charset="utf-8" src="../plugins/kindeditor/lang/zh_CN.js"></script>
-    
-    
-      
-    
-    
+
+	<script src="../plugins/angularjs/angular.min.js"></script>
+
+	<!--引入自定义的js-->
+	<script src="../js/base.js"></script>
+	<script src="../js/biz/controller/baseController.js"></script>
+	<script src="../js/biz/controller/goodsController.js"></script>
+	<script src="../js/biz/service/goodsService.js"></script>
+	<script src="../js/biz/service/fileUploadService.js"></script>
+
+
+	<script>
+        var editor;
+        KindEditor.ready(function(K) {//初始化editor
+            editor = K.create('#introduction',{//创建 editor
+                uploadJson:'/file/upload',//设置文件上传coltroller路径
+                filePostName:'file',//字段名
+                imageSizeLimit:'10MB',//每个文件大小的限制
+                imageUploadLimit:40,//每次可以上传多少个文件
+                allowFileManager : true,
+                filterMode: false,//是否开启过滤模式
+                afterBlur:function(){this.sync();},
+                htmlTags : {
+                    font : ['id', 'class', 'color', 'size', 'face', '.background-color'],
+                    div : [
+                        'id', 'class', 'align', '.border', '.margin', '.padding', '.text-align', '.color',
+                        '.background-color', '.font-size', '.font-family', '.font-weight', '.background',
+                        '.font-style', '.text-decoration', '.vertical-align', '.margin-left'
+                    ],
+                    a : ['id', 'class', 'href', 'target', 'name'],
+                    embed : ['id', 'class', 'src', 'width', 'height', 'type', 'loop', 'autostart', 'quality', '.width', '.height', 'align', 'allowscriptaccess'],
+                    img : ['id', 'class', 'src', 'width', 'height', 'border', 'alt', 'title', 'align', '.width', '.height', '.border'],
+                    'p,ol,ul,li,blockquote,h1,h2,h3,h4,h5,h6' : [
+                        'id', 'class', 'align', '.text-align', '.color', '.background-color', '.font-size', '.font-family', '.background',
+                        '.font-weight', '.font-style', '.text-decoration', '.vertical-align', '.text-indent', '.margin-left'
+                    ],
+                    pre : ['id', 'class'],
+                    hr : ['id', 'class', '.page-break-after'],
+                    'br,tbody,tr,strong,b,sub,sup,em,i,u,strike,s,del' : ['id', 'class'],
+                    iframe : ['id', 'class', 'src', 'frameborder', 'width', 'height', '.width', '.height']
+
+                }
+            });
+        });
+	</script>
 </head>
 
-<body class="hold-transition skin-red sidebar-mini" >
+<body class="hold-transition skin-red sidebar-mini" ng-app="fastgo" ng-controller="goodsController" >
 
             <!-- 正文区域 -->
             <section class="content">
@@ -86,7 +126,7 @@
 									
 		                           <div class="col-md-2 title">商品名称</div>
 		                           <div class="col-md-10 data">
-		                               <input type="text" class="form-control"    placeholder="商品名称" value="">
+		                               <input type="text" class="form-control" ng-model="goodsVo.goods.goodsName"    placeholder="商品名称" value="">
 		                           </div>
 		                           
 		                           <div class="col-md-2 title">品牌</div>
@@ -96,31 +136,31 @@
 		
 								   <div class="col-md-2 title">副标题</div>
 		                           <div class="col-md-10 data">
-		                               <input type="text" class="form-control"   placeholder="副标题" value="">
+		                               <input type="text" class="form-control" ng-model="goodsVo.goods.caption"   placeholder="副标题" value="">
 		                           </div>
 		                           
 		                           <div class="col-md-2 title">价格</div>
 		                           <div class="col-md-10 data">
 		                           	   <div class="input-group">
 			                          	   <span class="input-group-addon">¥</span>
-			                               <input type="text" class="form-control"  placeholder="价格" value="">
+			                               <input type="text" class="form-control"  placeholder="价格" ng-model="goodsVo.goods.price" value="">
 		                           	   </div>
 		                           </div>
 		                           
 		                           <div class="col-md-2 title editer">商品介绍</div>
                                    <div class="col-md-10 data editer">
-                                       <textarea name="content" style="width:800px;height:400px;visibility:hidden;" ></textarea>
+                                       <textarea name="introduction" id="introduction" ng-model="goodsVo.goodsDesc.introduction" style="width:800px;height:400px;visibility:hidden;" ></textarea>
                                    </div>
 		                           
 		                           <div class="col-md-2 title rowHeight2x">包装列表</div>
 		                           <div class="col-md-10 data rowHeight2x">
 		                               
-		                           	<textarea rows="4"  class="form-control"   placeholder="包装列表"></textarea>
+		                           	<textarea rows="4"  class="form-control" ng-model="goodsVo.goodsDesc.packageList"   placeholder="包装列表"></textarea>
 		                           </div>
 		                           
 		                           <div class="col-md-2 title rowHeight2x">售后服务</div>
 		                           <div class="col-md-10 data rowHeight2x">
-		                               <textarea rows="4"  class="form-control"    placeholder="售后服务"></textarea>
+		                               <textarea rows="4"  class="form-control"  ng-model="goodsVo.goodsDesc.saleService"   placeholder="售后服务"></textarea>
 		                           </div>                        
                                   
                                     
@@ -132,7 +172,7 @@
                                 <div class="row data-type">                                  
 								 <!-- 颜色图片 -->
 								 <div class="btn-group">
-					                 <button type="button" class="btn btn-default" title="新建" data-target="#uploadModal"  data-toggle="modal"  ><i class="fa fa-file-o"></i> 新建</button>
+					                 <button type="button" class="btn btn-default" title="新建" data-target="#uploadModal"  data-toggle="modal" ng-click="clearFileFrame()" ><i class="fa fa-file-o"></i> 新建</button>
                              		                 
 					             </div>
 								 
@@ -145,14 +185,14 @@
 												<th class="sorting">操作</th>
 							            </thead>
 					                    <tbody>
-					                      <tr>					                           
+					                      <tr ng-repeat="imgObj in goodsVo.goodsDesc.itemImages">
 									            <td>
-									            	
+									            	{{imgObj.color}}
 									            </td>
 									            <td>
-									           		<img alt="" src="" width="100px" height="100px">	            	 
+									           		<img alt="" src="{{imgObj.url}}" width="100px" height="100px">
 									            </td>
-												 <td> <button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button></td> 
+												 <td> <button type="button" class="btn btn-default" title="删除" ng-click="delFile($index)"><i class="fa fa-trash-o"></i> 删除</button></td>
 					                      </tr>
 					                    </tbody>
 								 </table> 
@@ -342,10 +382,10 @@
                  	
                    </div>
                   <div class="btn-toolbar list-toolbar">
-				      <button class="btn btn-primary" ><i class="fa fa-save"></i>保存</button>
+				      <button class="btn btn-primary" ng-click="save()"><i class="fa fa-save" ></i>保存</button>
 				      <button class="btn btn-default" >返回列表</button>
 				  </div>
-			
+
             </section>
             
             
@@ -362,7 +402,7 @@
 			<table class="table table-bordered table-striped">
 		      	<tr>
 		      		<td>颜色</td>
-		      		<td><input  class="form-control" placeholder="颜色" >  </td>
+		      		<td><input ng-model="imgObj.color"  class="form-control" placeholder="颜色" >  </td>
 		      	</tr>			    
 		      	<tr>
 		      		<td>商品图片</td>
@@ -371,12 +411,12 @@
 							<tr>
 								<td>
 								<input type="file" id="file" />				                
-					                <button class="btn btn-primary" type="button" >
+					                <button class="btn btn-primary" type="button" ng-click="uploadFile()" >
 				                   		上传
 					                </button>	
 					            </td>
 								<td>
-									<img  src="" width="200px" height="200px">
+									<img id="showUploadImg" src="{{imgObj.url}}" width="200px" height="200px">
 								</td>
 							</tr>						
 						</table>
@@ -386,7 +426,7 @@
 			
 		</div>
 		<div class="modal-footer">						
-			<button class="btn btn-success"  data-dismiss="modal" aria-hidden="true">保存</button>
+			<button class="btn btn-success"  data-dismiss="modal" aria-hidden="true" ng-click="add_image_entity()">保存</button>
 			<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
 		</div>
 	  </div>
