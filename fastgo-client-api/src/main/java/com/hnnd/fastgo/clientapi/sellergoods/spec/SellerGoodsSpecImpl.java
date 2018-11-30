@@ -65,4 +65,10 @@ public class SellerGoodsSpecImpl implements SellerGoodsSpecApi {
         log.warn("商家商品规格列表分页服务异常");
         return null;
     }
+
+    @Override
+    public List<SpecVo> findSpecOpsByTypeTempId(Long typeTempId) {
+        log.error("通过模板ID 查询商品规格信息异常");
+        return null;
+    }
 }

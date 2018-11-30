@@ -1,12 +1,18 @@
 package com.hnnd.fastgo.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONAware;
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
 import com.hnnd.fastgo.dao.TbSpecificationMapper;
 import com.hnnd.fastgo.dao.TbSpecificationOptionMapper;
+import com.hnnd.fastgo.dao.TbTypeTemplateMapper;
 import com.hnnd.fastgo.entity.TbSpecification;
 import com.hnnd.fastgo.entity.TbSpecificationOption;
+import com.hnnd.fastgo.entity.TbTypeTemplate;
 import com.hnnd.fastgo.enumration.SellerGoodsEnum;
 import com.hnnd.fastgo.service.ISellerGoodsSpecService;
 import com.hnnd.fastgo.vo.PageResultVo;
@@ -29,6 +35,9 @@ public class SellerGoodsSpecServiceImpl implements ISellerGoodsSpecService {
 
     @Autowired
     private TbSpecificationMapper tbSpecificationMapper;
+
+    @Autowired
+    private TbTypeTemplateMapper tbTypeTemplateMapper;
 
     @Autowired
     private TbSpecificationOptionMapper tbSpecificationOptionMapper;
@@ -128,5 +137,53 @@ public class SellerGoodsSpecServiceImpl implements ISellerGoodsSpecService {
     @Override
     public List<Map<String, Object>> initSpecList() {
         return tbSpecificationMapper.initSpecList();
+    }
+
+    @Override
+    public List<SpecVo> findSpecOpsByTypeTempId(Long typeTempId) {
+        //通过模版ID查询模版对象
+        TbTypeTemplate tbTypeTemplate = tbTypeTemplateMapper.selectByPrimaryKey(typeTempId);
+        if(null == tbTypeTemplate) {
+            throw new RuntimeException("通过模版ID查询模版信息不存在 typeTempId:"+typeTempId);
+        }
+
+        //获取规格列表的list
+        List<Long> specIdList = Lists.newArrayList();
+        List<SpecVo> specVoList = Lists.newArrayList();
+
+        String specListStr = tbTypeTemplate.getSpecIds();
+        JSONArray specJsonArray =  JSON.parseArray(specListStr);
+        for(int index=0;index<specJsonArray.size();index++){
+            specIdList.add(specJsonArray.getJSONObject(index).getLong("id"));
+        }
+
+        List<TbSpecification> tbSpecificationList = tbSpecificationMapper.selectBySpecIds(specIdList);
+
+        //通过规格ID 列表加载规格选项
+        List<TbSpecificationOption> tbSpecificationOptions = tbSpecificationOptionMapper.selectBySpecIds(specIdList);
+
+        //封装返回结果集合
+        for(TbSpecification tbSpecification:tbSpecificationList) {
+            SpecVo specVo = new SpecVo();
+            specVo.setId(tbSpecification.getId());
+            specVo.setSpecName(tbSpecification.getSpecName());
+            specVo.setSpecOps(findSpecOpsListBySpecId(tbSpecification.getId(),tbSpecificationOptions));
+            specVoList.add(specVo);
+        }
+        return specVoList;
+    }
+
+    //通过规格ID 查询出对应的规格选项
+    private List<SpecOpsVo> findSpecOpsListBySpecId(Long specId,List<TbSpecificationOption> tbSpecificationOptions) {
+        List<SpecOpsVo> specOpsVoList = Lists.newArrayList();
+
+        for(TbSpecificationOption tbSpecificationOption:tbSpecificationOptions) {
+            if(tbSpecificationOption.getSpecId().equals(specId)) {
+                SpecOpsVo specOpsVo = new SpecOpsVo();
+                BeanUtils.copyProperties(tbSpecificationOption,specOpsVo);
+                specOpsVoList.add(specOpsVo);
+            }
+        }
+        return specOpsVoList;
     }
 }

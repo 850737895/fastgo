@@ -57,7 +57,6 @@ public class FileController {
             log.warn("需要删除文件的URL路径不能为空:{}",fileUrl);
             return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_IMG_URL_NULL);
         }
-
         //文件删除
         try{
             DfsFileBo dfsFileBo = parseFileUrl(fileUrl);

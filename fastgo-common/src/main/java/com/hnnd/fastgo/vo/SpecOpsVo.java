@@ -7,9 +7,13 @@ import lombok.Data;
  * Created by Administrator on 2018/11/16.
  */
 @Data
-public class SpecOpsVo {
+public class SpecOpsVo  {
 
     private String optionName;
 
     private Integer orders;
+
+    private Long id;
+
+    private Long specId;
 }

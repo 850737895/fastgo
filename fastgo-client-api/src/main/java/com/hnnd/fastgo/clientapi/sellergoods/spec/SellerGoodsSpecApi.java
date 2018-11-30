@@ -42,4 +42,7 @@ public interface SellerGoodsSpecApi {
     @RequestMapping("/initSpecList")
     public List<Map<String,Object>> initSpecList();
 
+    @RequestMapping("/specOpsList/{typeTempId}")
+    public List<SpecVo> findSpecOpsByTypeTempId(@PathVariable("typeTempId") Long typeTempId);
+
 }

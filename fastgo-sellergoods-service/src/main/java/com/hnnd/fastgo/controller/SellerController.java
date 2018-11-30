@@ -4,14 +4,19 @@ import com.hnnd.fastgo.Qo.QryTbsellerQo;
 import com.hnnd.fastgo.clientapi.sellergoods.seller.SellerApi;
 import com.hnnd.fastgo.entity.MsgLog;
 import com.hnnd.fastgo.entity.TbSeller;
+import com.hnnd.fastgo.entity.TbSpecificationOption;
+import com.hnnd.fastgo.service.ISellerGoodsSpecService;
 import com.hnnd.fastgo.service.ISellerService;
 import com.hnnd.fastgo.enumration.SellerGoodsEnum;
 import com.hnnd.fastgo.enumration.SellerAccoutStatusEnum;
 import com.hnnd.fastgo.vo.PageResultVo;
+import com.hnnd.fastgo.vo.SpecVo;
 import com.hnnd.fastgo.vo.SystemVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 商家管理控制器
@@ -109,10 +114,9 @@ public class SellerController implements SellerApi {
             log.error("审核商家用户状态异常",e);
             return SystemVo.error(SellerGoodsEnum.SELLER_MODIFY_SELLER_ERROR);
         }
-
-
-
         return SystemVo.success(SellerGoodsEnum.SELLER_GOODS_SUCCESS);
 
     }
+
+
 }

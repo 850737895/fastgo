@@ -42,7 +42,15 @@
     )
   </delete>
 
+  <select id="selectBySpecIds" parameterType="list" resultMap="BaseResultMap">
+        select id, option_name, spec_id, orders
+        from tb_specification_option
+        WHERE spec_id in
+      <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+        #{item}
+      </foreach>
 
+  </select>
 
 
 

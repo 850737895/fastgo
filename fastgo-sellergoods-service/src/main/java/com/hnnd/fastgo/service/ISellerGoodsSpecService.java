@@ -4,9 +4,11 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hnnd.fastgo.entity.TbBrand;
 import com.hnnd.fastgo.entity.TbSpecification;
+import com.hnnd.fastgo.entity.TbSpecificationOption;
 import com.hnnd.fastgo.vo.PageResultVo;
 import com.hnnd.fastgo.vo.SpecVo;
 import com.hnnd.fastgo.vo.SystemVo;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,4 +54,7 @@ public interface ISellerGoodsSpecService {
      * @return  List<Map<String,Object>>
      */
     List<Map<String,Object>> initSpecList();
+
+
+    List<SpecVo> findSpecOpsByTypeTempId( Long typeTempId);
 }

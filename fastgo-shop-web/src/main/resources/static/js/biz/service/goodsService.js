@@ -7,6 +7,7 @@ app.service('goodsService',function($http){
 
     this.save=function(goodsVo){
         goodsVo.goodsDesc.itemImages=JSON.stringify(goodsVo.goodsDesc.itemImages);
+        goodsVo.goodsDesc.customAttributeItems=JSON.stringify(goodsVo.goodsDesc.customAttributeItems);
         return $http.post(url+"/goods/save",goodsVo);
     }
 })

@@ -97,4 +97,18 @@ public class SellerGoodsSpecController implements SellerGoodsSpecApi {
         }
     }
 
+    /**
+     * 通过模版ID查询规格列表
+     * @return SystemVo<List<TbSpecificationOption>>
+     */
+    @RequestMapping("/specOpsList/{typeTempId}")
+    public List<SpecVo> findSpecOpsByTypeTempId(@PathVariable("typeTempId") Long typeTempId) {
+        try{
+            return sellerGoodsSpecServiceImpl.findSpecOpsByTypeTempId(typeTempId);
+        }catch (Exception e) {
+            log.error("根据模板查询商品规格异常:",e);
+            return null;
+        }
+    }
+
 }

@@ -19,6 +19,6 @@ app.service('fileUploadService',function($http){
 
     //删除文件服务器上的文件
     this.delFile=function(imgUrl) {
-        $http.get(url+"/file/del?fileUrl="+imgUrl);
+        return $http.get(url+"/file/del?fileUrl="+imgUrl);
     }
 })

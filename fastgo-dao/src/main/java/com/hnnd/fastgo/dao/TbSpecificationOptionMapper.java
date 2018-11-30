@@ -57,4 +57,7 @@ public interface TbSpecificationOptionMapper {
     int deleteTbSpecOpsBySpecId(Long specId);
 
     int delTbSpecOpsBySepcIdsInBatch(List<Long> specIds);
+
+    List<TbSpecificationOption> selectBySpecIds(List<Long> specIds);
+
 }

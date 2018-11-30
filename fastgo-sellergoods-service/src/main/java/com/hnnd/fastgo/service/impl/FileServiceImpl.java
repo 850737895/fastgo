@@ -24,7 +24,7 @@ public class FileServiceImpl implements IFileService {
         //文件记录表
         DelFileLog delFileLog = new DelFileLog();
         delFileLog.setGroup(dfsFileBo.getGorup());
-        delFileLog.setPath(delFileLog.getPath());
+        delFileLog.setPath(dfsFileBo.getPath());
         delFileLog.setCreateTime(new Date());
         delFileLog.setStatus(0);
         delFileLogMapper.insert(delFileLog);

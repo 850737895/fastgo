@@ -83,6 +83,10 @@ public enum SellerGoodsEnum {
 
     SELLER_MODIFY_SELLER_ERROR(-37,"审核商家用户ID查询商家异常"),
 
+    SELLER_QRY_SPECINFO_BY_TEMPID_ERROR(-38,"通过商品模板ID查询商品规格信息异常"),
+
+    SELLER_QRY_SPECINFO_BY_TEMPID_ISNULL(-39,"模板ID为null"),
+
     //================================文件操作模块===============================
 
     DEL_IMG_ERROR(50,"删除文件信息异常");
