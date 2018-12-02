@@ -89,6 +89,10 @@ public enum SellerGoodsEnum {
 
     //================================文件操作模块===============================
 
+    SELLER_GOODSINFO_SAVE_ERROR(-40,"保存商品信息服务异常"),
+
+    SELLER_GOODS_SAVE_INPARAM_NULL(-41,"保存商品信息入參为空"),
+
     DEL_IMG_ERROR(50,"删除文件信息异常");
 
 

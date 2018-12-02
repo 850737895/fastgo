@@ -1,5 +1,6 @@
 package com.hnnd.fastgo.vo;
 
+import com.hnnd.fastgo.bo.SmallImageBo;
 import com.hnnd.fastgo.entity.TbGoods;
 import com.hnnd.fastgo.entity.TbGoodsDesc;
 import com.hnnd.fastgo.entity.TbItem;
@@ -19,5 +20,7 @@ public class GoodsVo implements Serializable{
 
     private TbGoodsDesc goodsDesc;
 
-    private List<TbItem> itemList;
+    private String itemList;
+
+    private SmallImageBo smallImageBo;
 }

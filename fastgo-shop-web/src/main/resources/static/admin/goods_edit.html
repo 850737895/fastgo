@@ -39,10 +39,10 @@
 
 
 
-	<script>
+<!--	<script>
         var editor;
         KindEditor.ready(function(K) {//初始化editor
-            editor = K.create('#introduction',{//创建 editor
+            var editor = K.create('#introduction',{//创建 editor
                 uploadJson:'/file/upload',//设置文件上传coltroller路径
                 filePostName:'file',//字段名
                 imageSizeLimit:'10MB',//每个文件大小的限制
@@ -72,7 +72,7 @@
                 }
             });
         });
-	</script>
+	</script>-->
 </head>
 
 <body class="hold-transition skin-red sidebar-mini" ng-app="fastgo" ng-controller="goodsController" ng-init="qryItemCat1Level(0)" >
@@ -218,18 +218,17 @@
 	                                </div>
                                 </div>
                             </div>
-                      
                             <!--规格-->
                             <div class="tab-pane" id="spec">
                             	<div class="row data-type">
-	                            	<div class="col-md-2 title">是否启用规格</div>
+	                            	<div class="col-md-2 title" >是否启用规格</div>
 			                        <div class="col-md-10 data">
-			                        	<input type="checkbox" >			                           
+			                        	<input type="checkbox" ng-model="goodsVo.goods.isEnableSpec" ng-true-value="1" ng-false-value="0" >
 			                        </div>
                             	</div>
                             	<p>
                             	
-                            	<div>
+                            	<div ng-if="goodsVo.goods.isEnableSpec=='1'">
                             	
 	                                <div class="row data-type">
 	                                
@@ -238,22 +237,26 @@
 					                        <div class="col-md-10 data">
 					                               
 					                            <span ng-repeat="specOps in spec.specOps">
-					                            	<input  type="checkbox" ng-click="addSpecOps($event,spec.specName,specOps.optionName)" >{{specOps.optionName}}
+					                            	<input  type="checkbox" ng-click="addSpecOps($event,spec.specName,specOps.optionName);generatorItemList()" >{{specOps.optionName}}
 					                            </span>  	
 
 					                        </div>
-		                                </div>   
+		                                </div>
 
 		                                                                                  
 	                                </div>
-	
+
 	                                
 	                                <div class="row data-type">
 	                                	 <table class="table table-bordered table-striped table-hover dataTable">
 						                    <thead>
-						                        <tr>					                          
-												    <th class="sorting">屏幕尺寸</th>
-													<th class="sorting">网络制式</th>
+						                        <tr>
+<!--
+													{"attributeName":"网络制式","attributeValue":["移动3G","移动4G"]},{"attributeName":"屏幕尺寸","attributeValue":["5.5寸","5寸"]}]
+-->
+												    <th class="sorting" ng-repeat="specItem in goodsVo.goodsDesc.specificationItems">
+														{{specItem.attributeName}}
+													</th>
 												    <th class="sorting">价格</th>
 												    <th class="sorting">库存</th>
 												    <th class="sorting">是否启用</th>
@@ -261,87 +264,25 @@
 											    </tr>
 								            </thead>
 						                    <tbody>
-						                      <tr>					                           
-										            <td>
-										            	4.0
-										            </td>
-													<td>
-										            	3G
-										            </td>
-										            <td>
-										           		<input class="form-control"  placeholder="价格">
+						                      <tr ng-repeat=" item in goodsVo.itemList">
+												  <td ng-repeat="specItem in goodsVo.goodsDesc.specificationItems">
+													  {{item.spec[specItem.attributeName]}}
+												  </td>
+												  <td>
+										           		<input class="form-control"  placeholder="价格" ng-model="item.price">
 										            </td>
 										            <td>
-										            	<input class="form-control" placeholder="库存数量">
+										            	<input class="form-control" placeholder="库存数量" ng-model="item.num">
 										            </td>
 										            <td>
-										             	<input type="checkbox" >
+										             	<input type="checkbox" ng-model="item.status" ng-true-value="1" ng-false-value="0" >
 										            </td>
 										            <td>
-										                <input type="checkbox" >									             	
-										            </td>
+														<input type="checkbox" ng-model="item.isDefault" ng-true-value="1" ng-false-value="0" >
+
+													</td>
 						                      </tr>
-											  <tr>					                           
-										            <td>
-										            	4.0
-										            </td>
-													<td>
-										            	4G
-										            </td>
-										            <td>
-										           		<input class="form-control"  placeholder="价格">
-										            </td>
-										            <td>
-										            	<input class="form-control" placeholder="库存数量">
-										            </td>
-										            <td>
-										             	<input type="checkbox" >
-										            </td>
-										            <td>
-										                <input type="checkbox" >									             	
-										            </td>
-						                      </tr>
-											  <tr>					                           
-													<td>
-										            	5.0
-										            </td>
-													<td>
-										            	3G
-										            </td>
-										            <td>
-										           		<input class="form-control"  placeholder="价格">
-										            </td>
-										            <td>
-										            	<input class="form-control" placeholder="库存数量">
-										            </td>
-										            <td>
-										             	<input type="checkbox" >
-										            </td>
-										            <td>
-										                <input type="checkbox" >									             	
-										            </td>
-						                      </tr>
-											  <tr>					                           
-													<td>
-										            	5.0
-										            </td>
-													<td>
-										            	4G
-										            </td>
-										            <td>
-										           		<input class="form-control"  placeholder="价格">
-										            </td>
-										            <td>
-										            	<input class="form-control" placeholder="库存数量">
-										            </td>
-										            <td>
-										             	<input type="checkbox" >
-										            </td>
-										            <td>
-										                <input type="checkbox" >									             	
-										            </td>
-						                      </tr>
-											  
+
 						                    </tbody>
 									 	</table>
 								
@@ -413,17 +354,43 @@
 </div>
 
             
-<!--            &lt;!&ndash; 正文区域 /&ndash;&gt;
+
 <script type="text/javascript">
 
 	var editor;
 	KindEditor.ready(function(K) {
-		editor = K.create('textarea[name="content"]', {
-			allowFileManager : true
+		editor = K.create('textarea[name="introduction"]', {
+            uploadJson:'/file/upload',//设置文件上传coltroller路径
+            filePostName:'file',//字段名
+            imageSizeLimit:'10MB',//每个文件大小的限制
+            imageUploadLimit:40,//每次可以上传多少个文件
+            allowFileManager : true,
+            filterMode: false,//是否开启过滤模式
+            afterBlur:function(){this.sync();},
+            htmlTags : {
+                font : ['id', 'class', 'color', 'size', 'face', '.background-color'],
+                div : [
+                    'id', 'class', 'align', '.border', '.margin', '.padding', '.text-align', '.color',
+                    '.background-color', '.font-size', '.font-family', '.font-weight', '.background',
+                    '.font-style', '.text-decoration', '.vertical-align', '.margin-left'
+                ],
+                a : ['id', 'class', 'href', 'target', 'name'],
+                embed : ['id', 'class', 'src', 'width', 'height', 'type', 'loop', 'autostart', 'quality', '.width', '.height', 'align', 'allowscriptaccess'],
+                img : ['id', 'class', 'src', 'width', 'height', 'border', 'alt', 'title', 'align', '.width', '.height', '.border'],
+                'p,ol,ul,li,blockquote,h1,h2,h3,h4,h5,h6' : [
+                    'id', 'class', 'align', '.text-align', '.color', '.background-color', '.font-size', '.font-family', '.background',
+                    '.font-weight', '.font-style', '.text-decoration', '.vertical-align', '.text-indent', '.margin-left'
+                ],
+                pre : ['id', 'class'],
+                hr : ['id', 'class', '.page-break-after'],
+                'br,tbody,tr,strong,b,sub,sup,em,i,u,strike,s,del' : ['id', 'class'],
+                iframe : ['id', 'class', 'src', 'frameborder', 'width', 'height', '.width', '.height']
+
+            }
 		});
 	});
 
-</script>-->
+</script>
        
 </body>
 

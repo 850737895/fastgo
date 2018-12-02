@@ -1,18 +1,24 @@
 /**
  * Created by Administrator on 2018/11/29.
  */
-app.controller('goodsController',function ($scope,goodsService,fileUploadService,itemCatService,tempTypeService) {
+app.controller('goodsController',function ($scope,$controller,goodsService,fileUploadService,itemCatService,tempTypeService) {
+
+    $controller('baseController',{$scope:$scope});//继承
 
     //新增商品
     $scope.save=function(){
-        $scope.goodsVo.goodsDesc.introduction=$("#introduction").val();
+        alert($("#introduction").val());
+        $scope.goodsVo.goodsDesc.introduction=editor.html();
         goodsService.save($scope.goodsVo).success(function (response) {
             if(response.code!=0) {
                 alert(response.msg);
             }else{
                 alert(response.msg);
-                $scope.goodsVo={};
-                KindEditor.html("#introduction","");
+                $scope.goodsVo={goods:{},itemList:{},goodsDesc:{itemImages:[],specificationItems:[]}};
+                $scope.itemCat1Leve2List={};
+                $scope.itemCat1Leve3List={};
+                $scope.specList={};
+                editor.html("");
             }
         })
     }
@@ -31,7 +37,7 @@ app.controller('goodsController',function ($scope,goodsService,fileUploadService
         $("#file").val("");
     }
 
-    $scope.goodsVo={goods:{},goodsDesc:{itemImages:[],specificationItems:[]}};
+    $scope.goodsVo={goods:{},itemList:{},goodsDesc:{itemImages:[],specificationItems:[]}};
 
     $scope.add_image_entity=function() {
         $scope.goodsVo.goodsDesc.itemImages.push($scope.imgObj);
@@ -64,6 +70,9 @@ app.controller('goodsController',function ($scope,goodsService,fileUploadService
     }
 
     $scope.$watch('goodsVo.goods.category1Id',function(newValue,oldValue){
+        if(typeof($scope.goodsVo.goods.category1Id) == "undefined") {
+            return;
+        }
         itemCatService.findByParentId(newValue).success(function(response){
             if(response.code!==0) {
                 alert('初始化商品二级分类出错');
@@ -74,6 +83,9 @@ app.controller('goodsController',function ($scope,goodsService,fileUploadService
     })
 
     $scope.$watch('goodsVo.goods.category2Id',function(newValue,oldValue){
+        if(typeof(newValue) == "undefined") {
+            return;
+        }
         itemCatService.findByParentId(newValue).success(function(response){
             if(response.code!==0) {
                 alert('初始化商品三级分类出错');
@@ -84,6 +96,9 @@ app.controller('goodsController',function ($scope,goodsService,fileUploadService
     })
 
     $scope.$watch('goodsVo.goods.category3Id',function(newValue,oldValue){
+        if(typeof(newValue) == "undefined") {
+            return;
+        }
         itemCatService.findOne(newValue).success(function(response){
             if(response.code!==0) {
                 alert('初始化商品三级分类模版出错');
@@ -95,6 +110,9 @@ app.controller('goodsController',function ($scope,goodsService,fileUploadService
     })
     $scope.typeTemplate={};
     $scope.$watch('goodsVo.goods.typeTemplateId',function(newValue,oldValue){
+        if(typeof(newValue) == "undefined") {
+            return;
+        }
         tempTypeService.findOne(newValue).success(function(response){
             if(response.code!==0) {
                 alert('初始化商品品牌出错');
@@ -113,38 +131,48 @@ app.controller('goodsController',function ($scope,goodsService,fileUploadService
         })
     })
 
-    //定义规格选项结构
-    $scope.specItem={attributeName:{},attributeValue:[]}
-
+    //添加规格选项
     $scope.addSpecOps=function($event,name,value) {
-        if($event.target.checked) { //勾选
-
-            //看规格对象是否添加到集合中
-            var specificationItem = $scope.judgeSpecInSpecList($scope.goodsVo.goodsDesc.specificationItems,'attributeName',value);
-
-            if(specificationItem!=null) {//添加过
-                specificationItem.attributeValue.push(value);
-                $scope.goodsVo.goodsDesc.specificationItems.push(specificationItem);
-
-            }else{
-                $scope.specItem.attributeName=name;
-                $scope.specItem.attributeValue.push(value);
-                $scope.goodsVo.goodsDesc.specificationItems.push($scope.specItem);
-                $scope.specItem={attributeName:{},attributeValue:[]}
+        //判断规格选项是否添加过
+        var specItem = $scope.judgeSpecInSpecList($scope.goodsVo.goodsDesc.specificationItems,'attributeName',name);
+        if(specItem!=null) {//添加过
+            if($event.target.checked) { //添加
+                specItem.attributeValue.push(value);
+            }else {//清除
+                specItem.attributeValue.splice(specItem.attributeValue.indexOf(value),1);
+                if(specItem.attributeValue.length==0) {
+                    $scope.goodsVo.goodsDesc.specificationItems.splice($scope.goodsVo.goodsDesc.specificationItems.indexOf(specItem),1);
+                }
             }
 
-        }else{//反选
-
+        }else{//没有添加
+            $scope.goodsVo.goodsDesc.specificationItems.push({'attributeName':name,'attributeValue':[value]})
         }
     }
 
-    $scope.judgeSpecInSpecList=function(list,key,keyValue){
-        for(var index=0;list.length;index++) {
-            if(list[index][key]==keyValue) {
-                return list[index];
+    //[{"attributeName":"网络","attributeValue":["移动3G","移动4G"]},{"attributeName":"机身内存","attributeValue":["16G","32G"]}]
+    //生成规格选项列表
+    $scope.generatorItemList=function() {
+        //初始化itemList
+        $scope.goodsVo.itemList=[{'spec':{},'price':0,'num':9999,'status':0,'isDefault':0}];
+
+        var specList = $scope.goodsVo.goodsDesc.specificationItems;
+        for(var index=0;index<specList.length;index++) {
+            $scope.goodsVo.itemList = addTableColumn($scope.goodsVo.itemList,specList[index].attributeName,specList[index].attributeValue);
+        }
+    }
+
+    addTableColumn=function(itemList,columnName,columnValue) {
+        var newItemList=[]
+        for(var i=0;i<itemList.length;i++) {
+            var oldItem = itemList[i];
+            for(var j=0;j<columnValue.length;j++) {
+                var newItem = JSON.parse(JSON.stringify(oldItem));
+                newItem.spec[columnName]=columnValue[j];
+                newItemList.push(newItem);
             }
         }
-        return null;
+        return newItemList;
     }
 
 })
