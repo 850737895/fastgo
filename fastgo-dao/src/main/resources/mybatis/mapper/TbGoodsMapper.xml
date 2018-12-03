@@ -96,4 +96,20 @@
     is_enable_spec, is_delete
     from tb_goods
   </select>
+
+  <select id="findList4Page" resultMap="BaseResultMap" parameterType="com.hnnd.fastgo.entity.TbGoods">
+        select id, seller_id, goods_name, default_item_id, audit_status, is_marketable, brand_id,
+        caption, category1_id, category2_id, category3_id, small_pic, price, type_template_id,
+        is_enable_spec, is_delete from tb_goods
+        where 1=1
+        <if test="sellerId!=null and sellerId!=''">
+          and seller_id=#{sellerId,jdbcType=VARCHAR}
+        </if>
+        <if test="auditStatus!=null and auditStatus!=''">
+          and audit_status=#{auditStatus,jdbcType=VARCHAR}
+        </if>
+        <if test="goodsName!=null and goodsName!=''">
+          and goods_name like CONCAT(CONCAT('%',#{goodsName,jdbcType=VARCHAR},'%'))
+        </if>
+  </select>
 </mapper>

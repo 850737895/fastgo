@@ -4,7 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
+import com.hnnd.fastgo.Qo.GoodsQo;
 import com.hnnd.fastgo.bo.ItemImageBo;
 import com.hnnd.fastgo.bo.SmallImageBo;
 import com.hnnd.fastgo.constant.GoodsItemConstant;
@@ -16,6 +19,7 @@ import com.hnnd.fastgo.enumration.GoodsMarkableEnum;
 import com.hnnd.fastgo.enumration.GoodsStartSpecEnum;
 import com.hnnd.fastgo.service.IGoodsService;
 import com.hnnd.fastgo.vo.GoodsVo;
+import com.hnnd.fastgo.vo.PageResultVo;
 import com.hnnd.fastgo.vo.SystemVo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -75,6 +79,14 @@ public class GoodsServiceImpl implements IGoodsService {
         }else {
             unStartSpec(goodsVo);
         }
+    }
+
+    @Override
+    public PageResultVo<TbGoods> findList4Page(TbGoods tbGoods, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<TbGoods> tbGoodsList = tbGoodsMapper.findList4Page(tbGoods);
+        PageInfo<TbGoods> pageInfo = new PageInfo<>(tbGoodsList);
+        return new PageResultVo<>(pageInfo.getTotal(),pageInfo.getList());
     }
 
 

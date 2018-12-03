@@ -1,7 +1,8 @@
 package com.hnnd.fastgo.service;
 
+import com.hnnd.fastgo.entity.TbGoods;
 import com.hnnd.fastgo.vo.GoodsVo;
-import com.hnnd.fastgo.vo.SystemVo;
+import com.hnnd.fastgo.vo.PageResultVo;
 
 /**
  * 商品服务接口
@@ -14,4 +15,13 @@ public interface IGoodsService {
      * @param goodsVo 商品VO对象
      */
     void save(GoodsVo goodsVo) throws RuntimeException;
+
+    /**
+     * 条件分页查询
+     * @param tbGoods 查询条件
+     * @param pageNum 当前页码
+     * @param pageSize 每页多少条
+     * @return  PageResultVo<TbGoods>
+     */
+    PageResultVo<TbGoods> findList4Page(TbGoods tbGoods,Integer pageNum,Integer pageSize);
 }

@@ -93,6 +93,8 @@ public enum SellerGoodsEnum {
 
     SELLER_GOODS_SAVE_INPARAM_NULL(-41,"保存商品信息入參为空"),
 
+    SELLER_GOODS_QRY_GOODS_LIST_ERROR(-42,"查询商品列表服务异常"),
+
     DEL_IMG_ERROR(50,"删除文件信息异常");
 
 

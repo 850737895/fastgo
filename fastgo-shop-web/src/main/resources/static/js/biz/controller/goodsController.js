@@ -7,7 +7,6 @@ app.controller('goodsController',function ($scope,$controller,goodsService,fileU
 
     //新增商品
     $scope.save=function(){
-        alert($("#introduction").val());
         $scope.goodsVo.goodsDesc.introduction=editor.html();
         goodsService.save($scope.goodsVo).success(function (response) {
             if(response.code!=0) {
@@ -173,6 +172,28 @@ app.controller('goodsController',function ($scope,$controller,goodsService,fileU
             }
         }
         return newItemList;
+    }
+
+    $scope.searchGoods={};
+
+    $scope.goodsStatus=['未申请','申请中','审核通过','已驳回'];
+
+    //分页以及查找
+    $scope.search=function(pageNum,pageSize){
+        if(typeof($scope.searchGoods.auditStatus) == "undefined") {
+            $scope.searchGoods.auditStatus='';
+        }
+        goodsService.findList4Page(pageNum,pageSize,$scope.searchGoods).success(function(response){
+            if(response.code!=0) {
+                alert(response.msg);
+            }else{
+                //当前页的数据
+                $scope.goodsList = response.data.result;
+                //修改总条数
+                $scope.paginationConf.totalItems=response.data.total;
+            }
+        })
+
     }
 
 })

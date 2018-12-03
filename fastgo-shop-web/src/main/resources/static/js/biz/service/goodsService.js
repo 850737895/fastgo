@@ -12,4 +12,8 @@ app.service('goodsService',function($http){
         goodsVo.itemList=JSON.stringify(goodsVo.itemList);
         return $http.post(url+"/goods/save",goodsVo);
     }
+
+    this.findList4Page=function(pageNum,pageSize,searchGoods){
+        return $http.post(url+"/goods/findList4Page?pageNum="+pageNum+"&pageSize="+pageSize,searchGoods);
+    }
 })
