@@ -30,7 +30,7 @@
 	<script src="../js/biz/service/tempTypeService.js"></script>
 </head>
 
-<body class="hold-transition skin-red sidebar-mini" ng-app="fastgo" ng-controller="goodsController"  >
+<body class="hold-transition skin-red sidebar-mini" ng-app="fastgo" ng-controller="goodsController" ng-init="findAllItemCatInit()" >
   <!-- .box-body -->
                 
                     <div class="box-header with-border">
@@ -57,7 +57,7 @@
                             <div class="box-tools pull-right">
                                 <div class="has-feedback">
                                   状态：<select ng-model="searchGoods.auditStatus">
-                                         	<option value="''" checked="true">全部</option>
+                                         	<option value="" checked="true">全部</option>
                                          	<option value="0">未申请</option>
                                          	<option value="1">申请中</option>    
                                          	<option value="2">审核通过</option>    
@@ -92,9 +92,9 @@
 				                          <td>{{goods.id}}</td>
 									      <td>{{goods.goodsName}}</td>
 									      <td>{{goods.price}}</td>
-									      <td>{{goods.category1Id}}</td>
-									      <td>{{goods.category2Id}}</td>
-									      <td>{{goods.category3Id}}</td>
+									      <td>{{itemCatListValue[goods.category1Id]}}</td>
+									      <td>{{itemCatListValue[goods.category2Id]}}</td>
+									      <td>{{itemCatListValue[goods.category3Id]}}</td>
 		                                  <td>
 		                                  	<span>
 		                                  		{{goodsStatus[goods.auditStatus]}}

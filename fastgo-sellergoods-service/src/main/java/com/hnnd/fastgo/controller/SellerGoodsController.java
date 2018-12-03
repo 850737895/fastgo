@@ -1,7 +1,6 @@
 package com.hnnd.fastgo.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.hnnd.fastgo.Qo.GoodsQo;
 import com.hnnd.fastgo.clientapi.sellergoods.goods.GoodsApi;
 import com.hnnd.fastgo.entity.TbGoods;
 import com.hnnd.fastgo.enumration.SellerGoodsEnum;

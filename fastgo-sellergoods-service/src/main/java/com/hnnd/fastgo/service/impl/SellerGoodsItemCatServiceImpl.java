@@ -78,6 +78,11 @@ public class SellerGoodsItemCatServiceImpl implements ISellerGoodsItemCatService
         tbItemCatMapper.delInbatch(idList);
     }
 
+    @Override
+    public List<TbItemCat> findAll() {
+        return tbItemCatMapper.selectAll();
+    }
+
     private TbItemCat vo2pojo(ItemCatVo itemCatVo) {
         TbItemCat tbItemCat = new TbItemCat();
         tbItemCat.setParentId(itemCatVo.getParentId());

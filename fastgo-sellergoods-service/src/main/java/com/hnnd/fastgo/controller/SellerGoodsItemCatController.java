@@ -81,4 +81,10 @@ public class SellerGoodsItemCatController {
             return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_DEL_ITEMCAT_ERROR);
         }
     }
+
+
+    @RequestMapping("/findAll")
+    public List<TbItemCat> findAll() {
+        return sellerGoodsItemCatServiceImpl.findAll();
+    }
 }

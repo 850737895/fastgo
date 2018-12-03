@@ -56,5 +56,7 @@ public interface ISellerGoodsItemCatService {
      */
     void del(String[] ids);
 
+    List<TbItemCat> findAll();
+
 
 }

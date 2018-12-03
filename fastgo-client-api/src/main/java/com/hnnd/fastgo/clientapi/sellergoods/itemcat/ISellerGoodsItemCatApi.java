@@ -40,4 +40,7 @@ public interface ISellerGoodsItemCatApi {
 
     @RequestMapping("/del")
     public SystemVo del(@RequestParam("ids") String[] ids);
+
+    @RequestMapping("/findAll")
+    public List<TbItemCat> findAll();
 }

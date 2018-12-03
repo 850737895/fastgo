@@ -181,7 +181,7 @@ app.controller('goodsController',function ($scope,$controller,goodsService,fileU
     //分页以及查找
     $scope.search=function(pageNum,pageSize){
         if(typeof($scope.searchGoods.auditStatus) == "undefined") {
-            $scope.searchGoods.auditStatus='';
+            $scope.searchGoods.auditStatus="";
         }
         goodsService.findList4Page(pageNum,pageSize,$scope.searchGoods).success(function(response){
             if(response.code!=0) {
@@ -194,6 +194,20 @@ app.controller('goodsController',function ($scope,$controller,goodsService,fileU
             }
         })
 
+    }
+
+    $scope.itemCatListValue=[];
+
+    $scope.findAllItemCatInit=function () {
+        itemCatService.findAll().success(function (resposne) {
+            if(resposne.code!=0) {
+                alert(resposne.msg);
+            }else{
+                for(var index=0;index<resposne.data.length;index++) {
+                    $scope.itemCatListValue[resposne.data[index].id]=resposne.data[index].name;
+                }
+            }
+        })
     }
 
 })

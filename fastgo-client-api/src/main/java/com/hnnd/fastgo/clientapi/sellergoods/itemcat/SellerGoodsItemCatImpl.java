@@ -52,4 +52,10 @@ public class SellerGoodsItemCatImpl implements ISellerGoodsItemCatApi {
         log.error("批量删除商品类目信息异常:{}",ids);
         return SystemVo.success(SellerGoodsEnum.SELLER_GOODS_DEL_ITEMCAT_ERROR);
     }
+
+    @Override
+    public List<TbItemCat> findAll() {
+        log.error("查询分类列表异常");
+        return null;
+    }
 }

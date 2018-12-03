@@ -19,6 +19,10 @@ app.service('itemCatService',function ($http) {
         return $http.get(url+"/itemCat/level?parentId="+parentId);
     }*/
 
+    this.findAll=function() {
+        return $http.get(url+"/itemCat/findAll");
+    }
+
     this.findByParentId=function(parentId) {
         return $http.get(url+"/itemCat/findByParentId?parentId="+parentId);
     }
