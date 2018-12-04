@@ -67,4 +67,32 @@
     package_list, sale_service
     from tb_goods_desc
   </select>
+
+  <update id="updateByExampleSelective" parameterType="com.hnnd.fastgo.entity.TbGoodsDesc" >
+  update tb_goods_desc
+    <set>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="introduction != null" >
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="specificationItems != null" >
+        specification_items = #{specificationItems,jdbcType=VARCHAR},
+      </if>
+      <if test="customAttributeItems != null" >
+        custom_attribute_items = #{customAttributeItems,jdbcType=VARCHAR},
+      </if>
+      <if test="itemImages != null" >
+        item_images = #{itemImages,jdbcType=VARCHAR},
+      </if>
+      <if test="packageList != null" >
+        package_list = #{packageList,jdbcType=VARCHAR},
+      </if>
+      <if test="saleService != null" >
+        sale_service = #{saleService,jdbcType=VARCHAR},
+      </if>
+    </set>
+      where goods_id=#{goodsId,jdbcType=BIGINT}
+  </update>
 </mapper>

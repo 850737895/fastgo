@@ -7,9 +7,9 @@ import com.alibaba.fastjson.TypeReference;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
-import com.hnnd.fastgo.Qo.GoodsQo;
 import com.hnnd.fastgo.bo.ItemImageBo;
 import com.hnnd.fastgo.bo.SmallImageBo;
+import com.hnnd.fastgo.bo.UpdateGoodsStatusBo;
 import com.hnnd.fastgo.constant.GoodsItemConstant;
 import com.hnnd.fastgo.dao.*;
 import com.hnnd.fastgo.entity.*;
@@ -64,13 +64,14 @@ public class GoodsServiceImpl implements IGoodsService {
 
         //设置主键
         Long goodsId = System.currentTimeMillis();
-        goodsVo.getGoodsDesc().setGoodsId(goodsId);
+        goodsVo.getGoods().setId(goodsId);
 
         //保存goods表
         TbGoods tbGoods = supplementGoods(goodsVo);
         tbGoodsMapper.insert(tbGoods);
 
         //保存goodsDesc表
+        goodsVo.getGoodsDesc().setGoodsId(goodsId);
         tbGoodsDescMapper.insert(goodsVo.getGoodsDesc());
 
         //保存item表
@@ -78,6 +79,29 @@ public class GoodsServiceImpl implements IGoodsService {
             startSpecSave(goodsVo);
         }else {
             unStartSpec(goodsVo);
+        }
+    }
+
+    @Transactional
+    @Override
+    public void update(GoodsVo goodsVo) throws RuntimeException {
+
+        try {
+            //更新 goods表
+            TbGoods tbGoods = supplementGoods(goodsVo);
+            tbGoodsMapper.updateByExampleSelective(tbGoods);
+
+            //更新goodsDesc表
+            tbGoodsDescMapper.updateByExampleSelective(goodsVo.getGoodsDesc());
+
+            //更新TbItem表
+            List<TbItem> tbItemList = JSON.parseObject(goodsVo.getItemList(),new TypeReference<List<TbItem>>(){});
+            for(TbItem tbItem:tbItemList) {
+                tbItemMapper.updateByExampleSelective(tbItem);
+            }
+        } catch (Exception e) {
+            log.error("更新商品信息异常:{}",e);
+            throw new RuntimeException("更新商品信息异常"+e);
         }
     }
 
@@ -89,6 +113,29 @@ public class GoodsServiceImpl implements IGoodsService {
         return new PageResultVo<>(pageInfo.getTotal(),pageInfo.getList());
     }
 
+    @Override
+    public GoodsVo findGoodsVoById(Long goodsId) {
+        GoodsVo goodsVo = new GoodsVo();
+
+        TbGoods tbGoods = tbGoodsMapper.selectByPrimaryKey(goodsId);
+        goodsVo.setGoods(tbGoods);
+
+        TbGoodsDesc tbGoodsDesc = tbGoodsDescMapper.selectByPrimaryKey(goodsId);
+        goodsVo.setGoodsDesc(tbGoodsDesc);
+
+        List<TbItem> tbItems = tbItemMapper.selectByGoodsId(goodsId);
+        goodsVo.setItemList(JSON.toJSONString(tbItems));
+        return goodsVo;
+    }
+
+    @Override
+    public void applyAduit(UpdateGoodsStatusBo updateGoodsStatusBo) {
+        List<Long> ids = Lists.newArrayList();
+
+        //批量更新商品状态
+        tbGoodsMapper.updateGoodsStatusBatch(updateGoodsStatusBo.getSellerId(),updateGoodsStatusBo.getChangeStatus(),updateGoodsStatusBo.getGoodIdList());
+    }
+
 
     /**
      * 封装goods对象
@@ -98,9 +145,8 @@ public class GoodsServiceImpl implements IGoodsService {
     private TbGoods supplementGoods(GoodsVo goodsVo) {
 
         TbGoods tbGoods= goodsVo.getGoods();
-        tbGoods.setId(System.currentTimeMillis());
         //设置商品审核状态
-        tbGoods.setAuditStatus(GoodsAduitEnum.WAITT_ADUIT.getCode());
+        tbGoods.setAuditStatus(GoodsAduitEnum.WAITT_APPLY.getCode());
         tbGoods.setIsMarketable(GoodsMarkableEnum.IS_MARK.getCode());
         tbGoods.setIsDelete(GoodsDelEnum.UN_DEL.getCode());
 
@@ -141,7 +187,7 @@ public class GoodsServiceImpl implements IGoodsService {
      * @param goodsVo goodsVo对象
      */
     private void setGoodsItem(TbItem tbItem,GoodsVo goodsVo) {
-        tbItem.setGoodsId(goodsVo.getGoods().getId());
+        tbItem.setGoodsId(goodsVo.getGoodsDesc().getGoodsId());
         //设置品牌
         TbBrand tbBrand = tbBrandMapper.selectByPrimaryKey(goodsVo.getGoods().getBrandId());
         tbItem.setBrand(tbBrand.getName());

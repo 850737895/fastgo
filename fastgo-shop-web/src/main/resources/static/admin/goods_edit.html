@@ -75,7 +75,7 @@
 	</script>-->
 </head>
 
-<body class="hold-transition skin-red sidebar-mini" ng-app="fastgo" ng-controller="goodsController" ng-init="qryItemCat1Level(0)" >
+<body class="hold-transition skin-red sidebar-mini" ng-app="fastgo" ng-controller="goodsController" ng-init="qryItemCat1Level(0);findOne()" >
 
             <!-- 正文区域 -->
             <section class="content">
@@ -231,13 +231,12 @@
                             	<div ng-if="goodsVo.goods.isEnableSpec=='1'">
                             	
 	                                <div class="row data-type">
-	                                
 		                                <div ng-repeat="spec in specList">
 			                                <div class="col-md-2 title">{{spec.specName}}</div>
 					                        <div class="col-md-10 data">
 					                               
 					                            <span ng-repeat="specOps in spec.specOps">
-					                            	<input  type="checkbox" ng-click="addSpecOps($event,spec.specName,specOps.optionName);generatorItemList()" >{{specOps.optionName}}
+					                            	<input  type="checkbox" ng-click="addSpecOps($event,spec.specName,specOps.optionName);generatorItemList()" ng-checked="checkAttributeValue(spec.specName,specOps.optionName)" >{{specOps.optionName}}
 					                            </span>  	
 
 					                        </div>

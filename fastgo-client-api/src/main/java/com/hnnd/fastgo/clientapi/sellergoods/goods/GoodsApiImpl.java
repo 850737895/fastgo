@@ -1,5 +1,6 @@
 package com.hnnd.fastgo.clientapi.sellergoods.goods;
 
+import com.hnnd.fastgo.bo.UpdateGoodsStatusBo;
 import com.hnnd.fastgo.entity.TbGoods;
 import com.hnnd.fastgo.enumration.SellerGoodsEnum;
 import com.hnnd.fastgo.vo.GoodsVo;
@@ -22,8 +23,26 @@ public class GoodsApiImpl implements GoodsApi {
     }
 
     @Override
+    public SystemVo update(GoodsVo goodsVo) {
+        log.error("根据商品ID修改商品信息异常");
+        return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_UPDATE_GOODSINFO_ERROR);
+    }
+
+    @Override
     public PageResultVo<TbGoods> findList4Page(TbGoods tbGoods, Integer pageNum, Integer pageSize) {
         log.error("分页查询商品列表异常");
         return null;
+    }
+
+    @Override
+    public SystemVo<GoodsVo> findGoodsVoById(Long goodsId) {
+        log.error("通过商品ID查询商品信息异常：goodsId:{}",goodsId);
+        return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_QRY_GOODSINFO_ERROR);
+    }
+
+    @Override
+    public SystemVo applyAduit(UpdateGoodsStatusBo updateGoodsStatusBo) {
+        log.error("提交商品审核异常");
+        return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_APPLYADUIT_ERROR);
     }
 }

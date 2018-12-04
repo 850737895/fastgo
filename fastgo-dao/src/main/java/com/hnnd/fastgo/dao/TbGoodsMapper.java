@@ -47,4 +47,8 @@ public interface TbGoodsMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(TbGoods record);
+
+    int updateByExampleSelective(TbGoods record);
+
+    int updateGoodsStatusBatch(@Param("sellerId") String sellerId,@Param("changeStatus") String changeStatus,@Param("ids") List<Long> ids);
 }

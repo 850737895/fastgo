@@ -95,6 +95,16 @@ public enum SellerGoodsEnum {
 
     SELLER_GOODS_QRY_GOODS_LIST_ERROR(-42,"查询商品列表服务异常"),
 
+    SELLER_GOODS_QRY_GOODSINFO_PARAM_NULL(-43,"传入的商品id为null"),
+
+    SELLER_GOODS_QRY_GOODSINFO_ERROR(-44,"根据商品ID查询商品信息异常"),
+
+    SELLER_GOODS_UPDATE_GOODSINFO_ERROR(-45,"根据商品ID更新商品信息异常"),
+
+    SELLER_GOODS_APPLYADUIT_GOODSIDS_NULL(-46,"提交审核的商品列表入参为空"),
+
+    SELLER_GOODS_APPLYADUIT_ERROR(-47,"提交审核的商品列表审核异常"),
+
     DEL_IMG_ERROR(50,"删除文件信息异常");
 
 

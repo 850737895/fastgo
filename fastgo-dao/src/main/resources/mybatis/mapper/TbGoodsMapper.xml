@@ -112,4 +112,70 @@
           and goods_name like CONCAT(CONCAT('%',#{goodsName,jdbcType=VARCHAR},'%'))
         </if>
   </select>
+
+    <update id="updateByExampleSelective" parameterType="com.hnnd.fastgo.entity.TbGoods" >
+      update tb_goods
+      <set >
+        <if test="id != null" >
+          id = #{id,jdbcType=BIGINT},
+        </if>
+        <if test="sellerId != null" >
+          seller_id = #{sellerId,jdbcType=VARCHAR},
+        </if>
+        <if test="goodsName != null" >
+          goods_name = #{goodsName,jdbcType=VARCHAR},
+        </if>
+        <if test="defaultItemId != null" >
+          default_item_id = #{defaultItemId,jdbcType=BIGINT},
+        </if>
+        <if test="auditStatus != null" >
+          audit_status = #{auditStatus,jdbcType=VARCHAR},
+        </if>
+        <if test="isMarketable != null" >
+          is_marketable = #{isMarketable,jdbcType=VARCHAR},
+        </if>
+        <if test="brandId != null" >
+          brand_id = #{brandId,jdbcType=BIGINT},
+        </if>
+        <if test="caption != null" >
+          caption = #{caption,jdbcType=VARCHAR},
+        </if>
+        <if test="category1Id != null" >
+          category1_id = #{category1Id,jdbcType=BIGINT},
+        </if>
+        <if test="category2Id != null" >
+          category2_id = #{category2Id,jdbcType=BIGINT},
+        </if>
+        <if test="category3Id != null" >
+          category3_id = #{category3Id,jdbcType=BIGINT},
+        </if>
+        <if test="smallPic != null" >
+          small_pic = #{smallPic,jdbcType=VARCHAR},
+        </if>
+        <if test="price != null" >
+          price = #{price,jdbcType=DECIMAL},
+        </if>
+        <if test="typeTemplateId != null" >
+          type_template_id = #{typeTemplateId,jdbcType=BIGINT},
+        </if>
+        <if test="isEnableSpec != null" >
+          is_enable_spec = #{isEnableSpec,jdbcType=VARCHAR},
+        </if>
+        <if test="isDelete != null" >
+          is_delete = #{isDelete,jdbcType=VARCHAR},
+        </if>
+      </set>
+      where id=#{id,jdbcType=BIGINT}
+      and seller_id=#{sellerId,jdbcType=VARCHAR}
+    </update>
+
+  <update id="updateGoodsStatusBatch" parameterType="map">
+    update tb_goods t set t.audit_status=#{changeStatus,jdbcType=VARCHAR}
+    where t.seller_id=#{sellerId,jdbcType=VARCHAR}
+    and t.id in (
+      <foreach collection="ids" item="goodsId" separator=",">
+        #{goodsId}
+      </foreach>
+    )
+  </update>
 </mapper>

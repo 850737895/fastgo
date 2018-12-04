@@ -44,4 +44,6 @@ public interface TbGoodsDescMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(TbGoodsDesc record);
+
+    int updateByExampleSelective(TbGoodsDesc record);
 }

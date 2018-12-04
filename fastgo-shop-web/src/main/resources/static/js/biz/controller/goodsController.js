@@ -1,25 +1,33 @@
 /**
  * Created by Administrator on 2018/11/29.
  */
-app.controller('goodsController',function ($scope,$controller,goodsService,fileUploadService,itemCatService,tempTypeService) {
+app.controller('goodsController',function ($scope,$controller,$location,goodsService,fileUploadService,itemCatService,tempTypeService) {
 
     $controller('baseController',{$scope:$scope});//继承
 
     //新增商品
     $scope.save=function(){
         $scope.goodsVo.goodsDesc.introduction=editor.html();
-        goodsService.save($scope.goodsVo).success(function (response) {
-            if(response.code!=0) {
-                alert(response.msg);
-            }else{
-                alert(response.msg);
-                $scope.goodsVo={goods:{},itemList:{},goodsDesc:{itemImages:[],specificationItems:[]}};
-                $scope.itemCat1Leve2List={};
-                $scope.itemCat1Leve3List={};
-                $scope.specList={};
-                editor.html("");
-            }
-        })
+        if($scope.goodsVo.goods.id==null) {//新增
+            goodsService.save($scope.goodsVo).success(function (response) {
+                if(response.code!=0) {
+                    alert(response.msg);
+                }else{
+                    alert(response.msg);
+                    $scope.goodsVo={goods:{},itemList:{},goodsDesc:{itemImages:[],specificationItems:[]}};
+                    $scope.itemCat1Leve2List={};
+                    $scope.itemCat1Leve3List={};
+                    $scope.specList={};
+                    editor.html("");
+                }
+            })
+        }else{//修改
+            goodsService.update($scope.goodsVo).success(function(response){
+                window.location.href='goods.html';
+                $scope.loadPageList();
+            })
+        }
+
     }
     $scope.uploadFile=function () {
         fileUploadService.fileUpload().success(function(response){
@@ -117,7 +125,9 @@ app.controller('goodsController',function ($scope,$controller,goodsService,fileU
                 alert('初始化商品品牌出错');
             }else {
                 $scope.typeTemplate.brandIds=JSON.parse(response.data.brandIds);
-                $scope.goodsVo.goodsDesc.customAttributeItems=JSON.parse(response.data.customAttributeItems);
+                if($location.search()['id']==null) {
+                    $scope.goodsVo.goodsDesc.customAttributeItems=JSON.parse(response.data.customAttributeItems);
+                }
             }
         });
 
@@ -208,6 +218,84 @@ app.controller('goodsController',function ($scope,$controller,goodsService,fileU
                 }
             }
         })
+    }
+
+    //查询商品vo 信息加载到编辑页面
+    $scope.findOne=function() {
+        var goodsId = $location.search()['id'];
+        if(goodsId==null) {
+            return null;
+        }
+        goodsService.findOne(goodsId).success(function(response) {
+            $scope.goodsVo=response.data;
+            editor.html($scope.goodsVo.goodsDesc.introduction );//商品介绍
+            //商品图片
+            $scope.goodsVo.goodsDesc.itemImages=JSON.parse($scope.goodsVo.goodsDesc.itemImages);
+            //扩展属性
+            $scope.goodsVo.goodsDesc.customAttributeItems=JSON.parse($scope.goodsVo.goodsDesc.customAttributeItems);
+            //规格选择
+            $scope.goodsVo.goodsDesc.specificationItems= JSON.parse($scope.goodsVo.goodsDesc.specificationItems);
+            //转换sku列表中的规格对象
+            $scope.goodsVo.itemList=JSON.parse( $scope.goodsVo.itemList);
+            for(var i=0;i< $scope.goodsVo.itemList.length;i++ ){
+                $scope.goodsVo.itemList[i].spec=  JSON.parse($scope.goodsVo.itemList[i].spec);
+            }
+        })
+    }
+
+
+    //判断规格与规格选项是否应该被勾选
+    $scope.checkAttributeValue=function(specName,optionName){
+        var items= $scope.goodsVo.goodsDesc.specificationItems;
+        var object =$scope.judgeSpecInSpecList( items,'attributeName', specName);
+
+        if(object!=null){
+            if(object.attributeValue.indexOf(optionName)>=0){//如果能够查询到规格选项
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
+    //获取提交审核列表
+    $scope.sumbitAduit=function(){
+        var sumbitFlag = true;
+        for(var index=0;index<$scope.selectIds.length;index++) {
+            sumbitFlag=checkSumbitAduitStatus($scope.selectIds[index],$scope.goodsList);
+            if(!sumbitFlag) {
+                break;
+            }
+        }
+        if(!sumbitFlag){
+            alert("提交商品审核的数据只能是未申请状态的数据");
+            return ;
+        }
+        goodsService.sumbitAduit($scope.selectIds).success(function(response){
+            if(response.code!=0) {
+                alert(response.msg);
+            }else {
+                $scope.loadPageList();
+            }
+        })
+    }
+
+    //检测提交审核的状态只能为为（未申请的状态）
+    checkSumbitAduitStatus=function(goodsId,goodsList){
+
+        for(var index=0;index<goodsList.length;index++) {
+            if(goodsId==goodsList[index]['id']){
+                if(goodsList[index]['auditStatus']=='0'){
+                    return true;
+                }
+            }else{
+                continue;
+            }
+        }
+        return false;
+
     }
 
 })
