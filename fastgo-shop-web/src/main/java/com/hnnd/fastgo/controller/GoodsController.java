@@ -7,6 +7,7 @@ import com.hnnd.fastgo.clientapi.sellergoods.goods.GoodsApi;
 import com.hnnd.fastgo.clientapi.sellergoods.spec.SellerGoodsSpecApi;
 import com.hnnd.fastgo.entity.TbGoods;
 import com.hnnd.fastgo.enumration.GoodsAduitEnum;
+import com.hnnd.fastgo.enumration.GoodsDelEnum;
 import com.hnnd.fastgo.enumration.SellerGoodsEnum;
 import com.hnnd.fastgo.vo.*;
 import lombok.extern.slf4j.Slf4j;
@@ -137,11 +138,33 @@ public class GoodsController {
             return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_APPLYADUIT_GOODSIDS_NULL);
         }
 
-        UpdateGoodsStatusBo updateGoodsStatusBo = new UpdateGoodsStatusBo();
-        updateGoodsStatusBo.setSellerId(SecurityContextHolder.getContext().getAuthentication().getName());
-        updateGoodsStatusBo.setGoodIdList(Arrays.asList(goodsIds));
+        UpdateGoodsStatusBo updateGoodsStatusBo = setUpdateGoodStatus(goodsIds);
         updateGoodsStatusBo.setChangeStatus(GoodsAduitEnum.APPLYING.getCode());
 
         return  goodsApi.applyAduit(updateGoodsStatusBo);
+    }
+
+    private UpdateGoodsStatusBo setUpdateGoodStatus(Long[]  goodsIds) {
+        UpdateGoodsStatusBo updateGoodsStatusBo = new UpdateGoodsStatusBo();
+        updateGoodsStatusBo.setSellerId(SecurityContextHolder.getContext().getAuthentication().getName());
+        updateGoodsStatusBo.setGoodIdList(Arrays.asList(goodsIds));
+        return updateGoodsStatusBo;
+    }
+
+
+    /**
+     * 做逻辑删除
+     * @param ids 商品id列表
+     * @return SystemVo
+     */
+    @RequestMapping("/del")
+    public SystemVo del(@RequestParam("ids") Long[] ids) {
+        if(ArrayUtils.isEmpty(ids)) {
+            return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_DEL_ERROR);
+        }
+        UpdateGoodsStatusBo updateGoodsStatusBo = setUpdateGoodStatus(ids);
+        updateGoodsStatusBo.setChangeStatus(GoodsDelEnum.DEL.getCode());
+
+        return goodsApi.del(updateGoodsStatusBo);
     }
 }

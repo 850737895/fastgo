@@ -105,7 +105,13 @@ public enum SellerGoodsEnum {
 
     SELLER_GOODS_APPLYADUIT_ERROR(-47,"提交审核的商品列表审核异常"),
 
-    DEL_IMG_ERROR(50,"删除文件信息异常");
+    SELLER_GOODSIFNO_DEL_INPARAM_NULL(-48,"删除商品传入商品ID列表入参为空"),
+
+    SELLER_GOODSIFNO_DEL_ERROR(-49,"删除商品传入商品ID列表异常"),
+    SELLER_GOODSIFNO_ADUIT_PARAM_ERROR(-50,"审核商品入参为空"),
+    SELLER_GOODSIFNO_ADUIT__ERROR(-50,"审核商品异常"),
+
+    DEL_IMG_ERROR(-61,"删除文件信息异常");
 
 
 

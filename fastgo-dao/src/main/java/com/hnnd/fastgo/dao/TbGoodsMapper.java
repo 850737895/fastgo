@@ -51,4 +51,9 @@ public interface TbGoodsMapper {
     int updateByExampleSelective(TbGoods record);
 
     int updateGoodsStatusBatch(@Param("sellerId") String sellerId,@Param("changeStatus") String changeStatus,@Param("ids") List<Long> ids);
+
+    int updateGoodsDelStatusBatch(@Param("sellerId") String sellerId,@Param("changeStatus") String changeStatus,@Param("ids") List<Long> ids);
+
+
+    void aduitPass(@Param("goodIds") List<Long> goodIds,@Param("status") String status);
 }

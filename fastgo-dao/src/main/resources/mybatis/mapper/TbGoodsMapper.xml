@@ -111,6 +111,8 @@
         <if test="goodsName!=null and goodsName!=''">
           and goods_name like CONCAT(CONCAT('%',#{goodsName,jdbcType=VARCHAR},'%'))
         </if>
+
+         and is_delete='0'
   </select>
 
     <update id="updateByExampleSelective" parameterType="com.hnnd.fastgo.entity.TbGoods" >
@@ -178,4 +180,27 @@
       </foreach>
     )
   </update>
+
+  <update id="updateGoodsDelStatusBatch" parameterType="map">
+    update tb_goods t set t.is_delete=#{changeStatus,jdbcType=VARCHAR}
+    where t.seller_id=#{sellerId,jdbcType=VARCHAR}
+    and t.id in (
+    <foreach collection="ids" item="goodsId" separator=",">
+      #{goodsId}
+    </foreach>
+    )
+  </update>
+
+  <update id="aduitPass" parameterType="map">
+    update tb_goods t set t.audit_status=#{status,jdbcType=VARCHAR}
+    where t.audit_status='1'
+    and t.id in (
+    <foreach collection="goodIds" item="goodsId" separator=",">
+      #{goodsId}
+    </foreach>
+    )
+  </update>
+
+
+
 </mapper>

@@ -35,6 +35,12 @@ public interface GoodsApi {
     public SystemVo<GoodsVo> findGoodsVoById(@PathVariable("goodsId")Long goodsId);
 
     @RequestMapping("/applyAduit")
-    public SystemVo applyAduit(UpdateGoodsStatusBo updateGoodsStatusBo);
+    public SystemVo applyAduit(@RequestBody  UpdateGoodsStatusBo updateGoodsStatusBo);
+
+    @RequestMapping("/del")
+    public SystemVo del(@RequestBody UpdateGoodsStatusBo updateGoodsStatusBo);
+
+    @RequestMapping("/aduitPass")
+    public SystemVo aduitPass(@RequestParam("ids") Long[] ids,@RequestParam("status") String status);
 
 }

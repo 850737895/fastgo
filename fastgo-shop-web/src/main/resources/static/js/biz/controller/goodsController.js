@@ -278,6 +278,7 @@ app.controller('goodsController',function ($scope,$controller,$location,goodsSer
                 alert(response.msg);
             }else {
                 $scope.loadPageList();
+                $scope.selectIds=[];
             }
         })
     }
@@ -296,6 +297,20 @@ app.controller('goodsController',function ($scope,$controller,$location,goodsSer
         }
         return false;
 
+    }
+
+    /**
+     * 刪除
+     */
+    $scope.del=function() {
+        goodsService.del($scope.selectIds).success(function(response){
+            if(response.code!=0) {
+                alert(response.msg);
+            }else{
+                $scope.loadPageList();
+                $scope.selectIds=[];
+            }
+        });
     }
 
 })

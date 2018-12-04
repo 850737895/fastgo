@@ -13,6 +13,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * 商品服务controlelr
  * Created by 85073 on 2018/12/1.
@@ -76,7 +79,7 @@ public class SellerGoodsController implements GoodsApi {
     }
 
     @RequestMapping("/applyAduit")
-    public SystemVo applyAduit(UpdateGoodsStatusBo updateGoodsStatusBo){
+    public SystemVo applyAduit(@RequestBody UpdateGoodsStatusBo updateGoodsStatusBo){
 
         try {
             goodsServiceImpl.applyAduit(updateGoodsStatusBo);
@@ -84,6 +87,29 @@ public class SellerGoodsController implements GoodsApi {
         } catch (Exception e) {
             log.error("更新商品状态异常:{}"+e);
             return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_APPLYADUIT_ERROR);
+        }
+    }
+
+    @RequestMapping("/del")
+    public SystemVo del(@RequestBody UpdateGoodsStatusBo updateGoodsStatusBo) {
+        try {
+            goodsServiceImpl.del(updateGoodsStatusBo);
+            return SystemVo.success(SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+        } catch (Exception e) {
+            log.error("删除商品状态异常:{}"+e);
+            return SystemVo.error(SellerGoodsEnum.SELLER_GOODSIFNO_DEL_ERROR);
+        }
+    }
+
+    @RequestMapping("/aduitPass")
+    public SystemVo aduitPass(@RequestParam("ids") Long[] ids,@RequestParam("status") String status) {
+
+        try {
+            goodsServiceImpl.aduitPass(ids,status);
+            return SystemVo.success(SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+        } catch (Exception e) {
+            log.error("审核商品异常{}",e);
+            return SystemVo.error(SellerGoodsEnum.SELLER_GOODSIFNO_ADUIT__ERROR);
         }
     }
 

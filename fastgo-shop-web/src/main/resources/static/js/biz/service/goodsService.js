@@ -24,7 +24,7 @@ app.service('goodsService',function($http){
     }
 
     this.sumbitAduit=function(ids) {
-        return $http.get(url+"/goods/applyAduit/ids"+ids);
+        return $http.get(url+"/goods/applyAduit?goodsIds="+ids);
     }
 
     transGoodsVo=function(goodsVo) {
@@ -32,5 +32,9 @@ app.service('goodsService',function($http){
         goodsVo.goodsDesc.customAttributeItems=JSON.stringify(goodsVo.goodsDesc.customAttributeItems);
         goodsVo.goodsDesc.specificationItems=JSON.stringify(goodsVo.goodsDesc.specificationItems);
         goodsVo.itemList=JSON.stringify(goodsVo.itemList);
+    }
+
+    this.del=function (ids) {
+        return $http.get(url+"/goods/del?ids="+ids);
     }
 })

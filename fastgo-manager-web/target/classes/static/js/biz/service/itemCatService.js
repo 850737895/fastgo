@@ -41,4 +41,8 @@ app.service('itemCatService',function ($http) {
         return $http.get(url+"/itemCat/del?ids="+ids);
     }
 
+    this.findAll=function() {
+        return $http.get(url+"/itemCat/findAll");
+    }
+
 })

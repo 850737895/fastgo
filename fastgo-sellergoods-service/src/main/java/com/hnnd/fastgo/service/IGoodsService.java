@@ -46,4 +46,12 @@ public interface IGoodsService {
      * @param updateGoodsStatusBo 提交的商品审核列表
      */
     void applyAduit(UpdateGoodsStatusBo updateGoodsStatusBo);
+
+    /**
+     * 批量做逻辑删除信息
+     * @param updateGoodsStatusBo
+     */
+    void del(UpdateGoodsStatusBo updateGoodsStatusBo);
+
+    void aduitPass(Long[] ids, String status);
 }

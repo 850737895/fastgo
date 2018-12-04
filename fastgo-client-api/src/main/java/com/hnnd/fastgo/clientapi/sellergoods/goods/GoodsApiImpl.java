@@ -45,4 +45,16 @@ public class GoodsApiImpl implements GoodsApi {
         log.error("提交商品审核异常");
         return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_APPLYADUIT_ERROR);
     }
+
+    @Override
+    public SystemVo del(UpdateGoodsStatusBo updateGoodsStatusBo) {
+        log.error("根据商品ID列表删除商品信息异常:{}",updateGoodsStatusBo);
+        return SystemVo.error(SellerGoodsEnum.SELLER_GOODSIFNO_DEL_ERROR);
+    }
+
+    @Override
+    public SystemVo aduitPass(Long[] ids, String status) {
+        log.error("审核商品状态异常");
+        return SystemVo.error(SellerGoodsEnum.SELLER_GOODSIFNO_ADUIT__ERROR);
+    }
 }

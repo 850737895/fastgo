@@ -91,4 +91,14 @@ public class ItemCatController {
     public SystemVo del(@RequestParam("ids") String[] ids) {
         return sellerGoodsItemCatApi.del(ids);
     }
+
+    @RequestMapping("/findAll")
+    public SystemVo<List<TbItemCat>> findAll() {
+        List<TbItemCat> tbItemCatList = sellerGoodsItemCatApi.findAll();
+        if(null == tbItemCatList) {
+            return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_QRY_ITEMCAT_ERROR);
+        }
+
+        return SystemVo.success(tbItemCatList,SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+    }
 }
