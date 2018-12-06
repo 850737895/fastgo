@@ -54,6 +54,7 @@ public interface TbGoodsMapper {
 
     int updateGoodsDelStatusBatch(@Param("sellerId") String sellerId,@Param("changeStatus") String changeStatus,@Param("ids") List<Long> ids);
 
+    int goodsUpOrDownMarket(@Param("sellerId") String sellerId,@Param("changeStatus") String changeStatus,@Param("ids") List<Long> ids);
 
     void aduitPass(@Param("goodIds") List<Long> goodIds,@Param("status") String status);
 }

@@ -4,7 +4,12 @@ import com.alibaba.fastjson.parser.Feature;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.github.tobato.fastdfs.service.DefaultAppendFileStorageClient;
+import com.github.tobato.fastdfs.service.DefaultFastFileStorageClient;
+import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import com.google.common.collect.Lists;
+import com.hnnd.fastgo.util.FastDFSUploadUtils;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -39,4 +44,5 @@ public class FastGoWebConfig extends WebMvcConfigurerAdapter {
         fastJsonHttpMessageConverter.setFastJsonConfig(fastJsonConfig);
         converters.add(fastJsonHttpMessageConverter);
     }
+
 }

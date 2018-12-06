@@ -201,6 +201,20 @@
     )
   </update>
 
+  <update id="goodsUpOrDownMarket" parameterType="map">
+    update tb_goods t set t.is_marketable=#{changeStatus,jdbcType=VARCHAR}
+    where t.audit_status='2'
+    and t.seller_id=#{sellerId,jdbcType=VARCHAR}
+    and t.id in (
+    <foreach collection="ids" item="goodsId" separator=",">
+      #{goodsId}
+    </foreach>
+    )
+  </update>
+
+
+
+
 
 
 </mapper>

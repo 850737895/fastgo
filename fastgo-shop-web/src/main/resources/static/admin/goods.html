@@ -49,9 +49,10 @@
                                         <button type="button" class="btn btn-default" title="新建"><i class="fa fa-file-o"></i> 新建</button>
                                         <button type="button" class="btn btn-default" title="删除" ng-click="del()" ><i class="fa fa-trash-o"></i> 删除</button>
                                         <button type="button" class="btn btn-default" title="提交审核" ng-click="sumbitAduit()" ><i class="fa fa-check"></i> 提交审核</button>
-                                        <button type="button" class="btn btn-default" title="屏蔽" onclick='confirm("你确认要屏蔽吗？")'><i class="fa fa-ban"></i> 屏蔽</button>
-                                        <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
-                                    </div>
+                                        <button type="button" class="btn btn-default" title="商品上架" ><i class="fa fa-ban"></i> 商品上架</button>
+										<button type="button" class="btn btn-default" title="商品下架" ><i class="fa fa-ban"></i> 商品上架</button>
+
+									</div>
                                 </div>
                             </div>
                             <div class="box-tools pull-right">
@@ -82,8 +83,9 @@
 									      <th class="sorting">一级分类</th>
 									      <th class="sorting">二级分类</th>
 									      <th class="sorting">三级分类</th>
-									      <th class="sorting">状态</th>									     						
-					                      <th class="text-center">操作</th>
+									      <th class="sorting">状态</th>
+										  <th class="sorting">上/下架状态</th>
+										  <th class="text-center">操作</th>
 			                          </tr>
 			                      </thead>
 			                      <tbody>
@@ -99,10 +101,18 @@
 		                                  	<span>
 		                                  		{{goodsStatus[goods.auditStatus]}}
 		                                  	</span>
+											<td>
+											  	<span>
+		                                  		{{goodsMarketStatus[goods.isMarketable]}}
+		                                  		</span>
+									  		</td>
+
 
 		                                  </td>		                                  
 		                                  <td class="text-center">
 											  <a href="goods_edit.html#?id={{goods.id}}" class="btn bg-olive btn-xs">修改</a>
+											  <button ng-if="goods.isMarketable==0" class="btn bg-olive btn-xs" ng-click="goodsUpMarket(goods.id)">上架</button>
+											  <button  ng-if="goods.isMarketable==1" class="btn bg-olive btn-xs" ng-click="goodsDownMarket(goods.id)">下架</button>
 		                                  </td>
 			                          </tr>
 			                      </tbody>

@@ -40,4 +40,13 @@ app.controller('baseController',function ($scope) {
         return retValue;
     }
 
+    $scope.judgeSpecInSpecList=function(list,key,keyValue){
+        for(var index=0;index<list.length;index++) {
+            if(list[index][key]==keyValue) {
+                return list[index];
+            }
+        }
+        return null;
+    }
+
 })

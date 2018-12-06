@@ -53,5 +53,16 @@ public interface IGoodsService {
      */
     void del(UpdateGoodsStatusBo updateGoodsStatusBo);
 
+    /**
+     * 商品审核通过或者不通过
+     * @param ids 操作的id列表
+     * @param status 传入的状态
+     */
     void aduitPass(Long[] ids, String status);
+
+    /**
+     * 商品上下架操作
+     * @param updateGoodsStatusBo 操作对象
+     */
+    void goodsUpOrDownMarket(UpdateGoodsStatusBo updateGoodsStatusBo);
 }

@@ -44,4 +44,6 @@ public interface TbContentMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(TbContent record);
+
+    List<TbContent> selectListByCategoryId(Long categoryId);
 }

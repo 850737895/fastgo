@@ -109,7 +109,34 @@ public enum SellerGoodsEnum {
 
     SELLER_GOODSIFNO_DEL_ERROR(-49,"删除商品传入商品ID列表异常"),
     SELLER_GOODSIFNO_ADUIT_PARAM_ERROR(-50,"审核商品入参为空"),
-    SELLER_GOODSIFNO_ADUIT__ERROR(-50,"审核商品异常"),
+    SELLER_GOODSIFNO_ADUIT__ERROR(-51,"审核商品异常"),
+    SELLER_GOODS_UP_OR_DOWN_MARKET_IN_PARAM(-52,"商品上下架入参为空"),
+    SELLER_GGOODS_UP_OR_DOWN_MARKET_ERROR(-53,"商品上下架异常"),
+
+    SELLER_MRG_ADVERT_LIST_ERROR(-54,"查询广告类别列表异常"),
+
+    SELLER_MRG_ADVERT_SAVE_ERROR(-55,"查询广告类别列表异常"),
+
+    SELLER_MRG_ADVERT_DEL_ERROR(-56,"删除广告类别列表异常"),
+
+    SELLER_MRG_ADVERT_DEL_INPARAM_NULL(-57,"删除广告类别入参异常"),
+
+    SELLER_MRG_ADVERT_MODIFY_INPARAM_NULL(-57,"更新广告类别入参异常"),
+
+    SELLER_MRG_ADVERT_MODIFY_ERROR(-58,"更新广告类别异常"),
+
+    SELLER_MRG_ADVERT_QRY_INPARAM_NULL(-59,"查询广告类别入参为空"),
+
+    SELLER_MRG_ADVERT_QRY__ERROR(-60,"查询广告类别异常"),
+
+    SELLER_MRG_ADVERT_CONTENT_QRY__ERROR(-60,"查询广告列表异常"),
+
+    SELLER_MRG_ADVERT_CONTENT_SAVE_PARAM_NULL(-61,"保存广告信息入参为空"),
+
+    SELLER_MRG_ADVERT_CONTENT_SAVE_ERROR(-62,"保存广告信息异常"),
+
+
+
 
     DEL_IMG_ERROR(-61,"删除文件信息异常");
 

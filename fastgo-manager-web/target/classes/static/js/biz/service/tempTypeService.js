@@ -23,4 +23,8 @@ app.service('tempTypeService',function($http){
     this.initTempTypeList=function() {
         return $http.get(url+"/templateType/initTempTypeList");
     }
+
+    this.findSpecListByTempTypeId=function(tempTypeId) {
+        return $http.get(url+"/goods/specOpsList/"+tempTypeId);
+    }
 })

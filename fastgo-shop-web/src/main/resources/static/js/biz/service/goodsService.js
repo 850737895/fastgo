@@ -37,4 +37,8 @@ app.service('goodsService',function($http){
     this.del=function (ids) {
         return $http.get(url+"/goods/del?ids="+ids);
     }
+
+    this.goodsUpOrDownMarket=function(goodsId,status){
+        return $http.get(url+"/goods/goodsUpOrDownMarket?goodsId="+goodsId+"&status="+status);
+    }
 })

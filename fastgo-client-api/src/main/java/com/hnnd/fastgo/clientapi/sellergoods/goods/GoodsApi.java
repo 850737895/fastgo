@@ -43,4 +43,7 @@ public interface GoodsApi {
     @RequestMapping("/aduitPass")
     public SystemVo aduitPass(@RequestParam("ids") Long[] ids,@RequestParam("status") String status);
 
+    @RequestMapping("/goodsUpOrDownMarket")
+    public SystemVo goodsUpOrDownMarket(@RequestBody UpdateGoodsStatusBo updateGoodsStatusBo);
+
 }

@@ -147,6 +147,11 @@ public class GoodsServiceImpl implements IGoodsService {
         tbGoodsMapper.aduitPass(goodIds,status);
     }
 
+    @Override
+    public void goodsUpOrDownMarket(UpdateGoodsStatusBo updateGoodsStatusBo) {
+        tbGoodsMapper.goodsUpOrDownMarket(updateGoodsStatusBo.getSellerId(),updateGoodsStatusBo.getChangeStatus(),updateGoodsStatusBo.getGoodIdList());
+    }
+
 
     /**
      * 封装goods对象
@@ -158,7 +163,7 @@ public class GoodsServiceImpl implements IGoodsService {
         TbGoods tbGoods= goodsVo.getGoods();
         //设置商品审核状态
         tbGoods.setAuditStatus(GoodsAduitEnum.WAITT_APPLY.getCode());
-        tbGoods.setIsMarketable(GoodsMarkableEnum.IS_MARK.getCode());
+        tbGoods.setIsMarketable(GoodsMarkableEnum.NOT_MARK.getCode());
         tbGoods.setIsDelete(GoodsDelEnum.UN_DEL.getCode());
 
         //上传了图片保存第一张图片(设置小图)

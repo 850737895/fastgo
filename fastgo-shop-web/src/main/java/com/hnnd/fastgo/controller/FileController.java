@@ -3,13 +3,14 @@ package com.hnnd.fastgo.controller;
 import com.google.common.collect.Maps;
 import com.hnnd.fastgo.bo.DfsFileBo;
 import com.hnnd.fastgo.clientapi.sellergoods.file.FileApi;
-import com.hnnd.fastgo.compent.FastDFSUploadUtils;
+import com.hnnd.fastgo.util.FastDFSUploadUtils;
 import com.hnnd.fastgo.constant.FastDfsConstant;
 import com.hnnd.fastgo.enumration.SellerGoodsEnum;
 import com.hnnd.fastgo.vo.SystemVo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,6 +32,7 @@ public class FileController {
     private FileApi fileApi;
 
     @Autowired
+    @Qualifier("fastDFSUploadUtils")
     private FastDFSUploadUtils fastDFSUploadUtils;
 
     @RequestMapping("/upload")

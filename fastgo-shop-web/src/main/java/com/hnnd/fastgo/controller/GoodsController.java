@@ -12,11 +12,13 @@ import com.hnnd.fastgo.enumration.SellerGoodsEnum;
 import com.hnnd.fastgo.vo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
@@ -167,4 +169,22 @@ public class GoodsController {
 
         return goodsApi.del(updateGoodsStatusBo);
     }
+
+    /**
+     * 商品上下架
+     * @param goodsId 商品id
+     * @param status 商品上下架状态
+     * @return goodsUpOrDownMarket
+     */
+    @RequestMapping("/goodsUpOrDownMarket")
+    public SystemVo goodsUpOrDownMarket(@RequestParam("goodsId")Long[] goodsId,@RequestParam("status")String status){
+        if(null == goodsId || StringUtils.isEmpty(status)) {
+            log.error("商品上下架入参为空");
+            return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_UP_OR_DOWN_MARKET_IN_PARAM);
+        }
+        UpdateGoodsStatusBo updateGoodsStatusBo = setUpdateGoodStatus(goodsId);
+        updateGoodsStatusBo.setChangeStatus(status);
+        return goodsApi.goodsUpOrDownMarket(updateGoodsStatusBo);
+    }
+
 }

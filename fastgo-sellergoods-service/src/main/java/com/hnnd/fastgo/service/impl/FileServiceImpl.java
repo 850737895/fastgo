@@ -21,6 +21,9 @@ public class FileServiceImpl implements IFileService {
 
     @Override
     public void insertFileLog(DfsFileBo dfsFileBo) {
+
+        //todo  删除文件需要定时任务来定时清除垃圾文件
+
         //文件记录表
         DelFileLog delFileLog = new DelFileLog();
         delFileLog.setGroup(dfsFileBo.getGorup());

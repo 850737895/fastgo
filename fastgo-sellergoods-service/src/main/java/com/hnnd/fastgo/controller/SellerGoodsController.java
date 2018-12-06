@@ -113,4 +113,16 @@ public class SellerGoodsController implements GoodsApi {
         }
     }
 
+    @RequestMapping("/goodsUpOrDownMarket")
+    public SystemVo goodsUpOrDownMarket(@RequestBody UpdateGoodsStatusBo updateGoodsStatusBo) {
+
+        try {
+            goodsServiceImpl.goodsUpOrDownMarket(updateGoodsStatusBo);
+            return SystemVo.success(SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+        } catch (Exception e) {
+            log.error("上下架商品状态异常:{}",e);
+            return SystemVo.error(SellerGoodsEnum.SELLER_GGOODS_UP_OR_DOWN_MARKET_ERROR);
+        }
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.hnnd.fastgo.dao;
 
 import com.hnnd.fastgo.entity.TbContentCategory;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -44,4 +45,8 @@ public interface TbContentCategoryMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(TbContentCategory record);
+
+    List<TbContentCategory> selectAllByCategoryName(@Param("categoryName") String categoryName );
+
+    void delByIdInBatch(List<Long> list);
 }

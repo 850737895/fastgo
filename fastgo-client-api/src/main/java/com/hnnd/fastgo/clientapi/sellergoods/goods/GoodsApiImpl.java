@@ -57,4 +57,10 @@ public class GoodsApiImpl implements GoodsApi {
         log.error("审核商品状态异常");
         return SystemVo.error(SellerGoodsEnum.SELLER_GOODSIFNO_ADUIT__ERROR);
     }
+
+    @Override
+    public SystemVo goodsUpOrDownMarket(UpdateGoodsStatusBo updateGoodsStatusBo) {
+        log.error("商品上下架操作异常:{}",updateGoodsStatusBo);
+        return SystemVo.error(SellerGoodsEnum.SELLER_GGOODS_UP_OR_DOWN_MARKET_ERROR);
+    }
 }

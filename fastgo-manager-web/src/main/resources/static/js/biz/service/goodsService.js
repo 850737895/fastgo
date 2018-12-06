@@ -13,4 +13,8 @@ app.service('goodsService',function($http){
         return $http.get(url+"/goods/aduitPass?ids="+ids+"&status="+status);
     }
 
+    this.findOne=function(goodsId) {
+        return $http.get(url+"/goods/findGoodsVoById/"+goodsId);
+    }
+
 })

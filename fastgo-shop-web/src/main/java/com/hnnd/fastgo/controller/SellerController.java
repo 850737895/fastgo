@@ -1,7 +1,7 @@
 package com.hnnd.fastgo.controller;
 
 import com.hnnd.fastgo.clientapi.sellergoods.seller.SellerApi;
-import com.hnnd.fastgo.compent.FastDFSUploadUtils;
+import com.hnnd.fastgo.util.FastDFSUploadUtils;
 import com.hnnd.fastgo.entity.TbSeller;
 import com.hnnd.fastgo.enumration.SellerAccoutStatusEnum;
 import com.hnnd.fastgo.enumration.SellerGoodsEnum;
@@ -11,9 +11,6 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 
 /**
  * 商家管理

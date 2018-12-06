@@ -188,6 +188,8 @@ app.controller('goodsController',function ($scope,$controller,$location,goodsSer
 
     $scope.goodsStatus=['未申请','申请中','审核通过','已驳回'];
 
+    $scope.goodsMarketStatus=['下架','上架'];
+
     //分页以及查找
     $scope.search=function(pageNum,pageSize){
         if(typeof($scope.searchGoods.auditStatus) == "undefined") {
@@ -311,6 +313,65 @@ app.controller('goodsController',function ($scope,$controller,$location,goodsSer
                 $scope.selectIds=[];
             }
         });
+    }
+
+
+    /**
+     * 上架
+     * @param goodsId 商品id
+     */
+    $scope.goodsUpMarket=function(goodsId){
+        var goods = searchGoodsByGoodsId(goodsId);
+        if(goods!=null) {
+            //判断商品状态
+            if(goods.auditStatus=='2') {
+                //上架操作
+                goodsService.goodsUpOrDownMarket(goodsId,"1").success(function(response){
+                    if(response.code!=0) {
+                        alert(response.msg);
+                    }else{
+                        $scope.loadPageList();
+                    }
+                })
+            }else{
+                alert('商品上架操作只能针对【审核通过】')
+            }
+        }else{
+            return;
+        }
+    }
+
+    /**
+     * 下架
+     * @param goodsId 商品id
+     */
+    $scope.goodsDownMarket=function(goodsId){
+        var goods = searchGoodsByGoodsId(goodsId);
+        if(goods!=null) {
+            //判断商品状态
+            if(goods.auditStatus=='2') {
+                //上架操作
+                goodsService.goodsUpOrDownMarket(goodsId,"0").success(function(response){
+                    if(response.code!=0) {
+                        alert(response.msg);
+                    }else{
+                        $scope.loadPageList();
+                    }
+                })
+            }else{
+                alert('商品上架操作只能针对【审核通过】的商品')
+            }
+        }else{
+            return;
+        }
+    }
+
+    searchGoodsByGoodsId=function(goodsId) {
+        for(var index=0;index<$scope.goodsList.length;index++) {
+            if(goodsId==$scope.goodsList[index]['id']) {
+                return $scope.goodsList[index];
+            }
+        }
     }
 
 })
