@@ -72,4 +72,31 @@ app.controller('contentController',function($scope,$controller,contentService,co
             }
         });
     }
+
+
+    $scope.clearFileFrame=function() {
+        $scope.imgObj={};
+        $("#file").val("");
+    }
+
+    $scope.del=function(){
+        contentService.del($scope.selectIds).success(function(response){
+            if(response.code!=0) {
+                alert(response.msg);
+            }else{
+                $scope.loadPageList();
+                $scope.selectIds=[];
+            }
+        })
+    }
+
+    $scope.findOneById=function(id) {
+        contentService.findOneById(id).success(function(response){
+            if(response.code!=0) {
+                alert(response.msg);
+            }else{
+                $scope.content=response.data;
+            }
+        })
+    }
 })

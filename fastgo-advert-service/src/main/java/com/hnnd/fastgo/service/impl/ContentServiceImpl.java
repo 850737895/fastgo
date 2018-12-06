@@ -15,10 +15,8 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import javax.annotation.PostConstruct;
+import java.util.*;
 
 /**
  * 广告接口实现类
@@ -33,6 +31,21 @@ public class ContentServiceImpl implements IContentService {
 
     @Autowired
     private IRedisService redisServiceImpl;
+
+    /**
+     *
+     */
+    @PostConstruct
+    public void initAllContent() {
+        List<TbContent> tbContents = tbContentMapper.selectAll();
+        log.info("初始化广告缓存:{}",tbContents);
+        if(tbContents!=null) {
+            for (TbContent tbContent:tbContents) {
+                delObj4Cache(tbContent.getId(),tbContent.getCategoryId()+"");
+                pushObj2Cache(tbContent);
+            }
+        }
+    }
 
     @Override
     public PageResultVo<TbContent> list4Page(Integer pageNum, Integer pageSize) {
@@ -57,7 +70,7 @@ public class ContentServiceImpl implements IContentService {
         //先去缓存中查询
         Map<String,String> cacheMap = redisServiceImpl.hgetAll(RedisConstant.CONTENT_KEY+categoryId);
         //缓存中有
-        if(!cacheMap.isEmpty()) {
+        if(cacheMap==null) {
             log.info("从缓存中,通过广告类别ID加载的广告列表:{}",JSON.toJSONString(cacheMap));
             return getTbContentList4CacheMap(cacheMap);
         }
@@ -74,11 +87,7 @@ public class ContentServiceImpl implements IContentService {
     @Override
     public TbContent findOneById(Long id) {
         String categoryId=null;
-        try {
-             categoryId = redisServiceImpl.get(RedisConstant.CONTENTID_MAPPING_CATEGORYID+id);
-        } catch (Exception e) {
-            log.error("在缓存中通过id查找映射的categoryId异常:{}",e);
-        }
+        categoryId = redisServiceImpl.get(RedisConstant.CONTENTID_MAPPING_CATEGORYID+id);
 
         if(!StringUtils.isEmpty(categoryId)) {
             //有该id的映射
@@ -96,6 +105,34 @@ public class ContentServiceImpl implements IContentService {
             return tbContent;
         }
 
+    }
+
+    @Override
+    public void modify(TbContent tbContent) {
+        //更新数据库
+        tbContentMapper.updateByPrimaryKey(tbContent);
+
+        //去缓存中尝试获取老的映射
+        String oldCategoryId = redisServiceImpl.get(RedisConstant.CONTENTID_MAPPING_CATEGORYID+tbContent.getId());
+
+        //修改过广告的分类
+        if(!oldCategoryId.isEmpty()&&!(oldCategoryId.equals(tbContent))) {
+            //需要删除老的
+            delObj4Cache(tbContent.getId(),oldCategoryId);
+        }
+        //更新缓存
+        pushObj2Cache(tbContent);
+    }
+
+    @Override
+    public void del(Long[] ids) {
+        List<Long> idList = Arrays.asList(ids);
+        tbContentMapper.deleteInBatch(idList);
+        //从缓存中移除
+        for(Long id:ids) {
+            String categoryId = redisServiceImpl.get(RedisConstant.CONTENTID_MAPPING_CATEGORYID+id);
+            delObj4Cache(id,categoryId);
+        }
     }
 
     /**
@@ -121,16 +158,18 @@ public class ContentServiceImpl implements IContentService {
      * @param tbContent 广告对象
      */
     private void pushObj2Cache(TbContent tbContent) {
-        try {
-            //第二步加载到缓存中
-            String contentJson = JSON.toJSONString(tbContent);
-            //缓存数据
-            redisServiceImpl.hset(RedisConstant.CONTENT_KEY+tbContent.getCategoryId(),RedisConstant.CONTENT_FIELD_PREFIX+tbContent.getId(),contentJson);
-            //缓存contentId 和 categoryID的映射关系
-            redisServiceImpl.set(RedisConstant.CONTENTID_MAPPING_CATEGORYID+tbContent.getId(),tbContent.getCategoryId()+"");
-        } catch (Exception e) {
-            log.warn("为了保证缓存服务器挂了还是能够保存业务数据:{},异常为:{}",tbContent,e);
-        }
+
+        //第二步加载到缓存中
+        String contentJson = JSON.toJSONString(tbContent);
+        //缓存数据
+        redisServiceImpl.hset(RedisConstant.CONTENT_KEY+tbContent.getCategoryId(),RedisConstant.CONTENT_FIELD_PREFIX+tbContent.getId(),contentJson);
+        //缓存contentId 和 categoryID的映射关系
+        redisServiceImpl.set(RedisConstant.CONTENTID_MAPPING_CATEGORYID+tbContent.getId(),tbContent.getCategoryId()+"");
+    }
+
+    private void delObj4Cache(long id,String categoryId) {
+        redisServiceImpl.del(RedisConstant.CONTENTID_MAPPING_CATEGORYID+id);
+        redisServiceImpl.hdel(RedisConstant.CONTENT_KEY+categoryId,RedisConstant.CONTENT_FIELD_PREFIX+id);
     }
 
 }

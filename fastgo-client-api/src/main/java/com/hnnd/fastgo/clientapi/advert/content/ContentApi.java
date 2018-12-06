@@ -1,10 +1,10 @@
 package com.hnnd.fastgo.clientapi.advert.content;
 
-import com.hnnd.fastgo.clientapi.advert.contentCategory.ContentCategoryApiImpl;
 import com.hnnd.fastgo.entity.TbContent;
 import com.hnnd.fastgo.vo.PageResultVo;
 import com.hnnd.fastgo.vo.SystemVo;
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,5 +22,14 @@ public interface ContentApi {
 
     @RequestMapping("/save")
     public SystemVo save(@RequestBody TbContent content);
+
+    @RequestMapping("/findOneById/{id}")
+    public TbContent findOneById(@PathVariable("id")Long id);
+
+    @RequestMapping("/modify")
+    public SystemVo modify(@RequestBody TbContent tbContent) ;
+
+    @RequestMapping("/del")
+    public SystemVo del(@RequestParam("ids")Long[] ids);
 
 }

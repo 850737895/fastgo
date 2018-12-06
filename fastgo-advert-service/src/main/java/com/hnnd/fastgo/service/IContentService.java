@@ -29,9 +29,18 @@ public interface IContentService {
     List<TbContent> findListByCategoryId(Long categoryId);
 
     /**
+     * 根据id查询广告信息
      * 根据id
      * @param id
      * @return
      */
     TbContent findOneById(Long id);
+
+    /**
+     * 更新广告信息
+     * @param tbContent
+     */
+    void modify(TbContent tbContent);
+
+    void del(Long[] ids);
 }

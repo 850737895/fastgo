@@ -2,7 +2,6 @@ package com.hnnd.fastgo.controller;
 
 import com.hnnd.fastgo.clientapi.advert.content.ContentApi;
 import com.hnnd.fastgo.entity.TbContent;
-import com.hnnd.fastgo.entity.TbContentCategory;
 import com.hnnd.fastgo.enumration.SellerGoodsEnum;
 import com.hnnd.fastgo.service.IContentService;
 import com.hnnd.fastgo.vo.PageResultVo;
@@ -71,6 +70,30 @@ public class ContentController implements ContentApi {
         } catch (Exception e) {
             log.error("根据广告类别ID查询广告异常");
             return null;
+        }
+    }
+
+
+    @RequestMapping("/modify")
+    public SystemVo modify(@RequestBody TbContent tbContent) {
+
+        try {
+            contentServiceImpl.modify(tbContent);
+            return SystemVo.success(SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+        } catch (Exception e) {
+            log.error("更新广告信息异常:{}",e);
+            return SystemVo.error(SellerGoodsEnum.SELLER_MRG_ADVERT_CONTENT_MODIFY_ERROR);
+        }
+    }
+
+    @RequestMapping("/del")
+    public SystemVo del(@RequestParam("ids")Long[] ids){
+        try {
+            contentServiceImpl.del(ids);
+            return SystemVo.success(SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+        } catch (Exception e) {
+            log.error("批量删除广告信息异常:{}",e);
+            return SystemVo.error(SellerGoodsEnum.SELLER_MRG_ADVERT_CONTENT_DEL_ERROR);
         }
     }
 

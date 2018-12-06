@@ -7,7 +7,7 @@ package com.hnnd.fastgo.enumration;
 
 public enum SellerGoodsEnum {
     //商家商品服务系统枚举模块
-    SELLER_GOODS_SUCCESS(0,"调用商家商品服务成功"),
+    SELLER_GOODS_SUCCESS(0,"调用远程服务成功"),
 
     SELLER_GOODS_ERROR(-1,"调用商家商品服务失败"),
 
@@ -135,10 +135,20 @@ public enum SellerGoodsEnum {
 
     SELLER_MRG_ADVERT_CONTENT_SAVE_ERROR(-62,"保存广告信息异常"),
 
+    SELLER_MRG_ADVERT_CONTENT_QRY_INPARAM_NULL(-63,"根据ID查询广告信息入参为空"),
+
+    SELLER_MRG_ADVERT_CONTENT_QRY_ERROR(-64,"根据ID查询广告信息异常"),
+
+    SELLER_MRG_ADVERT_CONTENT_MODIFY_INPARAM_NULL(-65,"修改广告信息入参为空"),
+
+    SELLER_MRG_ADVERT_CONTENT_MODIFY_ERROR(-66,"修改广告信息异常"),
+
+    SELLER_MRG_ADVERT_CONTENT_DEL_INPARAM_NULL(-67,"根据ID删除广告信息入参为空"),
+    SELLER_MRG_ADVERT_CONTENT_DEL_ERROR(-68,"根据ID删除广告信息异常"),
 
 
 
-    DEL_IMG_ERROR(-61,"删除文件信息异常");
+    DEL_IMG_ERROR(-70,"删除文件信息异常");
 
 
 

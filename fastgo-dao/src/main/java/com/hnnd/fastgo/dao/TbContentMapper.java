@@ -46,4 +46,6 @@ public interface TbContentMapper {
     int updateByPrimaryKey(TbContent record);
 
     List<TbContent> selectListByCategoryId(Long categoryId);
+
+    void deleteInBatch(List<Long> idList);
 }

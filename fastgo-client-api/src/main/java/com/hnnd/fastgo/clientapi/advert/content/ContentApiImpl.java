@@ -26,4 +26,22 @@ public class ContentApiImpl implements ContentApi {
         log.error("保存广告信息异常");
         return SystemVo.error(SellerGoodsEnum.SELLER_MRG_ADVERT_CONTENT_SAVE_ERROR);
     }
+
+    @Override
+    public TbContent findOneById(Long id) {
+        log.error("根据id查询广告信息异常");
+        return null;
+    }
+
+    @Override
+    public SystemVo modify(TbContent tbContent) {
+        log.error("修改广告信息服务异常");
+        return SystemVo.error(SellerGoodsEnum.SELLER_MRG_ADVERT_CONTENT_MODIFY_ERROR);
+    }
+
+    @Override
+    public SystemVo del(Long[] ids) {
+        log.error("根据ID删除广告信息异常");
+        return SystemVo.error(SellerGoodsEnum.SELLER_MRG_ADVERT_DEL_ERROR);
+    }
 }
