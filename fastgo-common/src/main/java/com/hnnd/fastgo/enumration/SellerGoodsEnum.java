@@ -146,6 +146,8 @@ public enum SellerGoodsEnum {
     SELLER_MRG_ADVERT_CONTENT_DEL_INPARAM_NULL(-67,"根据ID删除广告信息入参为空"),
     SELLER_MRG_ADVERT_CONTENT_DEL_ERROR(-68,"根据ID删除广告信息异常"),
 
+    SELLER_MRG_ADVERT_CONTENT_LIST_BY_CATEGORY_ERROR(-69,"根据广告类别ID查询广告信息异常"),
+    SELLER_MRG_ADVERT_CONTENT_LIST_BY_CATEGORY_NULL_PARAM(-70,"根据广告类别ID查询广告信息入参为空"),
 
 
     DEL_IMG_ERROR(-70,"删除文件信息异常");

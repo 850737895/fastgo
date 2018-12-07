@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 /**
  * 广告调用服务
  * Created by Administrator on 2018/12/5.
@@ -31,5 +33,8 @@ public interface ContentApi {
 
     @RequestMapping("/del")
     public SystemVo del(@RequestParam("ids")Long[] ids);
+
+    @RequestMapping("/findListByCategoryId/{categoryId}")
+    public List<TbContent> findListByCategoryId(@PathVariable("categoryId")Long categoryId);
 
 }

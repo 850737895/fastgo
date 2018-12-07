@@ -7,6 +7,8 @@ import com.hnnd.fastgo.vo.SystemVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * 广告降级废物
  * Created by Administrator on 2018/12/5.
@@ -43,5 +45,11 @@ public class ContentApiImpl implements ContentApi {
     public SystemVo del(Long[] ids) {
         log.error("根据ID删除广告信息异常");
         return SystemVo.error(SellerGoodsEnum.SELLER_MRG_ADVERT_DEL_ERROR);
+    }
+
+    @Override
+    public List<TbContent> findListByCategoryId(Long categoryId) {
+        log.error("根据广告类别id查询广告信息异常");
+        return null;
     }
 }

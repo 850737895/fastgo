@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
+import com.hnnd.fastgo.constant.FastGoContant;
 import com.hnnd.fastgo.constant.RedisConstant;
 import com.hnnd.fastgo.dao.TbContentMapper;
 import com.hnnd.fastgo.entity.TbContent;
@@ -148,7 +149,10 @@ public class ContentServiceImpl implements IContentService {
             String mapKey = stringIterator.next();
             String mapValue = cahceMap.get(mapKey);
             TbContent tbContent = JSON.parseObject(mapValue,TbContent.class);
-            tbContentList.add(tbContent);
+            //有效的新闻才能显示
+            if(FastGoContant.CONTENT_STATUS_1.equals(tbContent.getStatus())) {
+                tbContentList.add(tbContent);
+            }
         }
         return tbContentList;
     }
