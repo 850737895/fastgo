@@ -48,4 +48,6 @@ public interface TbItemMapper {
     int updateByPrimaryKey(TbItem record);
 
     int updateByExampleSelective(TbItem tbItem);
+
+    List<TbItem> selectSolrList();
 }

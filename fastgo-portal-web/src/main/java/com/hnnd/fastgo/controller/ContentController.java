@@ -2,14 +2,20 @@ package com.hnnd.fastgo.controller;
 
 import com.hnnd.fastgo.clientapi.advert.content.ContentApi;
 import com.hnnd.fastgo.entity.TbContent;
+import com.hnnd.fastgo.entity.TbItem;
 import com.hnnd.fastgo.enumration.SellerGoodsEnum;
 import com.hnnd.fastgo.vo.SystemVo;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.solr.client.solrj.SolrClient;
+import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.solr.core.SolrTemplate;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -20,6 +26,9 @@ import java.util.List;
 @RequestMapping("/content")
 @Slf4j
 public class ContentController {
+
+    @Autowired
+    private SolrClient solrClient;
 
     @Autowired
     private ContentApi contentApi;
@@ -37,4 +46,8 @@ public class ContentController {
         return SystemVo.success(tbContentList,SellerGoodsEnum.SELLER_GOODS_SUCCESS);
     }
 
+
 }
+
+
+

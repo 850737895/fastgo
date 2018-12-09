@@ -16,9 +16,12 @@
         <module name="fastgo-msg-center" />
         <module name="fastgo-portal-web" />
         <module name="fastgo-register" />
+        <module name="fastgo-search-service" />
+        <module name="fastgo-search-web" />
         <module name="fastgo-sellergoods" />
         <module name="fastgo-sellergoods-service" />
         <module name="fastgo-shop-web" />
+        <module name="fasto-search-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -34,9 +37,12 @@
       <module name="fastgo-msg-center" target="1.8" />
       <module name="fastgo-portal-web" target="1.8" />
       <module name="fastgo-register" target="1.8" />
+      <module name="fastgo-search-service" target="1.8" />
+      <module name="fastgo-search-web" target="1.8" />
       <module name="fastgo-sellergoods" target="1.8" />
       <module name="fastgo-sellergoods-service" target="1.8" />
       <module name="fastgo-shop-web" target="1.8" />
+      <module name="fasto-search-web" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

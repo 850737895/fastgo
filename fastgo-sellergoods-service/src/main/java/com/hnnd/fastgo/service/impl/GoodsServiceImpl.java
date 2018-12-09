@@ -27,6 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -299,9 +300,9 @@ public class GoodsServiceImpl implements IGoodsService {
         //不启用商品规格逻辑
         TbItem tbItem = new TbItem();
         tbItem.setTitle(goodsVo.getGoods().getGoodsName());
-        tbItem.setPrice(goodsVo.getGoods().getPrice());
+        tbItem.setPrice(goodsVo.getGoods().getPrice().doubleValue());
 
-        tbItem.setStatus(GoodsItemConstant.ITEM_STATUS);//状态
+        tbItem.setStatus(GoodsItemConstant.ITEM_STATUS_PASS);//状态
         tbItem.setIsDefault(GoodsItemConstant.ITEM_IS_DEFAULT);//是否默认
         tbItem.setNum(99999);//库存数量
         tbItem.setSpec("{}");

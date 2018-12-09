@@ -149,6 +149,9 @@ public enum SellerGoodsEnum {
     SELLER_MRG_ADVERT_CONTENT_LIST_BY_CATEGORY_ERROR(-69,"根据广告类别ID查询广告信息异常"),
     SELLER_MRG_ADVERT_CONTENT_LIST_BY_CATEGORY_NULL_PARAM(-70,"根据广告类别ID查询广告信息入参为空"),
 
+    SOLR_INIT_ERROR(-71,"加载数据到solr服务异常"),
+
+    KEYWORKDS_SEARCH_ERROR(-72,"执行搜索服务异常"),
 
     DEL_IMG_ERROR(-70,"删除文件信息异常");
 

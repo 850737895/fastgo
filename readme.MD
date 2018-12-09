@@ -4,11 +4,13 @@ fastgo-register 7001端口
 fastgo-manager-web 9100端口 运营商管理后台
 fastgo-shop-web   9101端口  商家管理后台
 fastgo-portal-web 9102端口  fastgo网站前台
+fastgo-search-web 9103端口  搜索工程 
 
 ####服务层工程
-fastgo-sellergoods-service 8090端口
-fastgo-msg-center 8091端口
-fastgo-advert-service 8092端口
+fastgo-sellergoods-service 8090端口  商家商品服务
+fastgo-msg-center 8091端口 消息中心
+fastgo-advert-service 8092端口 首页广告服务
+fastgo-search-servvice 8093 搜索服务
 
 solr安装: https://www.cnblogs.com/wang-meng/p/5814459.html
 
