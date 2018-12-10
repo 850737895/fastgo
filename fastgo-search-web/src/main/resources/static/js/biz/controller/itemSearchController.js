@@ -13,6 +13,7 @@ app.controller('itemSearchController',function($scope,$controller,itemSearchServ
                 alert("搜索君开小差了，请稍后再试......");
             }else{
                 $scope.itemList = response.data.rows;
+                $scope.categoryNameList = response.data.groupNames;
             }
         })
     }

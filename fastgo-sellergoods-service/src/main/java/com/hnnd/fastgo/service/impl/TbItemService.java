@@ -32,10 +32,6 @@ public class TbItemService implements ITbItemService {
     @Autowired
     private SolrClient solrClient;
 
-/*
-    @Autowired
-   private SolrTemplate solrTemplate;
-*/
 
     @Override
     public void initSolr() throws IOException, SolrServerException {

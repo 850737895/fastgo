@@ -4,6 +4,7 @@ import com.hnnd.fastgo.entity.TbItemCat;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface TbItemCatMapper {
     /**
@@ -48,6 +49,8 @@ public interface TbItemCatMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(TbItemCat record);
+
+    List<Map<String,String>> initItemCatCache();
 
      List<TbItemCat> level(@Param("parentId") Integer parentId, @Param("qryCondition") String qyrCondition);
 }

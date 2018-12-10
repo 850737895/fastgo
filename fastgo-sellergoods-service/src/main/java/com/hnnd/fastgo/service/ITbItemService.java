@@ -15,3 +15,4 @@ public interface ITbItemService {
      */
     void initSolr() throws IOException, SolrServerException;
 }
+

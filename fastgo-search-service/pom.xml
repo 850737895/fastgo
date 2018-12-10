@@ -59,6 +59,12 @@
 			<artifactId>spring-boot-starter-data-solr</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.hnnd</groupId>
+			<artifactId>redisoper-springboot-starter</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

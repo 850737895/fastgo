@@ -14,4 +14,12 @@ public class RedisConstant {
     public static final String CONTENT_FIELD_PREFIX="contentId:";
     /**广告ID映射广告类别id(保存时候插入,查询的时候用)*/
     public static final String CONTENTID_MAPPING_CATEGORYID = "fastgo:id_mapping_category:";
+
+    public static final String ITEMCATE_LIST_KEY = "fastgo:itemCateList";
+
+    public static final String TEMPLATE_KEY = "fastgo:typeTemplate";
+
+    public static final String TEMPLATE_BRAND_KEY = "brand";
+
+    public static final String TEMPLATE_SPEC_KEY = "spec";
 }

@@ -1,18 +1,25 @@
 package com.hnnd.fastgo.service.impl;
 
+import com.alibaba.druid.support.json.JSONUtils;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.hnnd.fastgo.constant.RedisConstant;
 import com.hnnd.fastgo.dao.TbItemCatMapper;
 import com.hnnd.fastgo.dao.TbTypeTemplateMapper;
+import com.hnnd.fastgo.entity.TbItem;
 import com.hnnd.fastgo.entity.TbItemCat;
 import com.hnnd.fastgo.service.ISellerGoodsItemCatService;
 import com.hnnd.fastgo.vo.ItemCatVo;
 import com.hnnd.fastgo.vo.PageResultVo;
+import com.redisoper.IRedisService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +28,7 @@ import java.util.Map;
  * Created by Administrator on 2018/11/21.
  */
 @Service
+@Slf4j
 public class SellerGoodsItemCatServiceImpl implements ISellerGoodsItemCatService {
 
     @Autowired
@@ -28,6 +36,9 @@ public class SellerGoodsItemCatServiceImpl implements ISellerGoodsItemCatService
 
     @Autowired
     private TbTypeTemplateMapper tbTypeTemplateMapper;
+    @Autowired
+    private IRedisService redisServiceImpl;
+
 
     @Override
     public PageResultVo<TbItemCat> level(Integer pageNum, Integer pageSize, Integer parentId, String qyrCondition) {
@@ -40,7 +51,24 @@ public class SellerGoodsItemCatServiceImpl implements ISellerGoodsItemCatService
     @Override
     public List<TbItemCat> findByParentId(Integer parentId) {
         List<TbItemCat> tbItemCatList = tbItemCatMapper.level(parentId,null);
+        //加载商品分类列表到缓存
+        loadItemCateList2Redis();
         return tbItemCatList;
+    }
+
+
+    private void loadItemCateList2Redis() {
+        long beginTime = System.currentTimeMillis();
+        List<TbItemCat> itemCatList = tbItemCatMapper.selectAll();
+        List<Map<String,String>> listMap = Lists.newArrayList();
+        for(TbItemCat tbItemCat:itemCatList) {
+            Map<String,String> map = Maps.newHashMap();
+            map.put(tbItemCat.getName(),tbItemCat.getTypeId()+"");
+            listMap.add(map);
+        }
+        redisServiceImpl.hmsetWithBatch(RedisConstant.ITEMCATE_LIST_KEY,listMap);
+        long endTime = System.currentTimeMillis();
+        log.info("加载到缓存耗时:{}",(endTime-beginTime));
     }
 
     @Override
