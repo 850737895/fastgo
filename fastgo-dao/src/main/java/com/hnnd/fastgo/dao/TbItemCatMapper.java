@@ -52,5 +52,5 @@ public interface TbItemCatMapper {
 
     List<Map<String,String>> initItemCatCache();
 
-     List<TbItemCat> level(@Param("parentId") Integer parentId, @Param("qryCondition") String qyrCondition);
+    List<TbItemCat> level(@Param("parentId") Integer parentId, @Param("qryCondition") String qyrCondition);
 }

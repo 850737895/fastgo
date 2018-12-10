@@ -1,6 +1,5 @@
 package com.hnnd.fastgo.service.impl;
 
-import com.alibaba.druid.support.json.JSONUtils;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -9,7 +8,6 @@ import com.google.common.collect.Maps;
 import com.hnnd.fastgo.constant.RedisConstant;
 import com.hnnd.fastgo.dao.TbItemCatMapper;
 import com.hnnd.fastgo.dao.TbTypeTemplateMapper;
-import com.hnnd.fastgo.entity.TbItem;
 import com.hnnd.fastgo.entity.TbItemCat;
 import com.hnnd.fastgo.service.ISellerGoodsItemCatService;
 import com.hnnd.fastgo.vo.ItemCatVo;
@@ -19,7 +17,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Map;
 
@@ -57,6 +54,9 @@ public class SellerGoodsItemCatServiceImpl implements ISellerGoodsItemCatService
     }
 
 
+    /**
+     * 加载商品分类到缓存中
+     */
     private void loadItemCateList2Redis() {
         long beginTime = System.currentTimeMillis();
         List<TbItemCat> itemCatList = tbItemCatMapper.selectAll();

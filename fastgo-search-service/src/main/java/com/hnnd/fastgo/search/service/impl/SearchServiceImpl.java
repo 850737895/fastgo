@@ -1,6 +1,8 @@
 package com.hnnd.fastgo.search.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.hnnd.fastgo.constant.RedisConstant;
 import com.hnnd.fastgo.search.service.ISearchService;
 import com.redisoper.IRedisService;
@@ -46,11 +48,12 @@ public class SearchServiceImpl implements ISearchService {
         List<String> groupNames = searchCategoryGroup(searchMap);
         if(groupNames!=null &&groupNames.size()>0) {
             resultMap.put("groupNames",groupNames);
-            //
+            //设置规格以及品牌
             Map brandAndSpecMap = searchBrandListAndSpecList(groupNames.get(0));
+            if(!brandAndSpecMap.isEmpty()) {
+                resultMap.putAll(brandAndSpecMap);
+            }
         }
-
-
 
         return resultMap;
     }
@@ -61,9 +64,28 @@ public class SearchServiceImpl implements ISearchService {
      * @return
      */
     private Map searchBrandListAndSpecList(String itemCategoryName) {
-        redisServiceImpl.hget(RedisConstant.ITEMCATE_LIST_KEY,itemCategoryName);
+        Map<String,Object> resultMap = Maps.newHashMap();
+        //获取模版id
+        String typeId =  redisServiceImpl.hget(RedisConstant.ITEMCATE_LIST_KEY,itemCategoryName);
+        if(StringUtils.isEmpty(typeId)) {
+            log.warn("通过itemCategoryName:{}从redis加载typeId为空",itemCategoryName);
+            return null;
+        }
+        //从缓存中取该模版关联的指定品牌列表
+        String brandListStr = redisServiceImpl.hget(RedisConstant.TEMPLATE_KEY,RedisConstant.TEMPLATE_BRAND_KEY+":"+typeId);
+        if(StringUtils.isNotEmpty(brandListStr)) {
+            List brandList = JSON.parseObject(brandListStr,List.class);
+            resultMap.put("brandList",brandList);
+        }
 
-        return null;
+        //缓存中取该模版关联的指定规格选项列表
+        String specListStr = redisServiceImpl.hget(RedisConstant.TEMPLATE_KEY,RedisConstant.TEMPLATE_SPEC_KEY+":"+typeId);
+        if(StringUtils.isNotEmpty(specListStr)) {
+            List specList = JSON.parseObject(specListStr,List.class);
+            resultMap.put("specList",specList);
+        }
+
+        return resultMap;
     }
 
     /**
@@ -97,7 +119,13 @@ public class SearchServiceImpl implements ISearchService {
         return resultMap;
     }
 
-
+    /**
+     * 查询分组
+     * @param searchMap
+     * @return
+     * @throws IOException
+     * @throws SolrServerException
+     */
     private List<String> searchCategoryGroup(Map<String,Object> searchMap) throws IOException, SolrServerException {
         List<String> groupNames = Lists.newArrayList();
         SolrQuery solrQuery = new SolrQuery("*:*");
