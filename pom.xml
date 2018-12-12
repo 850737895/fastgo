@@ -144,6 +144,8 @@
 		<module>fastgo-msg-center</module>
 		<module>fastgo-client-api</module>
 		<module>fastgo-register</module>
+		<module>fastgo-search-service</module>
+		<module>fastgo-search-web</module>
 	</modules>
 
 

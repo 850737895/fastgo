@@ -6,11 +6,26 @@ app.controller('itemSearchController',function($scope,$controller,itemSearchServ
 
     $scope.searchEntity={"keywords":'',"categoryName":'',"brand":'','spec':{},'price':'','pageNum':1,'pageSize':20};
 
+
     $scope.keyworkdSearch=function() {
         if(typeof ($scope.searchEntity)=='undefined' || $scope.searchEntity=="''") {
             alert('请输入搜索结果');
         }
+
+        if(isNaN($scope.searchEntity.pageNum)) {
+            alert("请输入正确的数字查询");
+            return ;
+        }
+        if($scope.searchEntity.pageNum<=0) {
+            $scope.searchEntity.pageNum=1;
+        }
+        if($scope.searchEntity.pageNum>=$scope.totalPage&&$scope.totalPage>0) {
+            $scope.searchEntity.pageNum=$scope.totalPage;
+        }
+        $scope.searchEntity.pageNum= parseInt( $scope.searchEntity.pageNum) ;
+
         itemSearchService.keyworkdSearch($scope.searchEntity).success(function (response) {
+
             if(response.code!=0) {
                 alert("搜索君开小差了，请稍后再试......");
             }else{
@@ -20,7 +35,9 @@ app.controller('itemSearchController',function($scope,$controller,itemSearchServ
                 $scope.specList = response.data.specList;
                 $scope.totalPage = response.data.totalPage;
                 $scope.totalCount = response.data.totalCount;
+                $scope.targetPage=$scope.searchEntity.pageNum;
                 buildPageAble();
+                $scope.searchEntity.pageNum=1;
             }
         })
     }
@@ -35,7 +52,35 @@ app.controller('itemSearchController',function($scope,$controller,itemSearchServ
         var lastPage = $scope.totalPage;
         $scope.pageLable=[];
 
-        for(var index=1;index<=$scope.totalPage;index++) {
+        //前面有点
+         $scope.firstDot = true;
+        //后面有点
+        $scope.lastDot = true;
+        if($scope.totalPage>5) {
+
+            if($scope.searchEntity.pageNum<3) {//当前页小于等于三
+                lastPage = 5;
+                $scope.firstDot= false;
+            }else if($scope.searchEntity.pageNum>=$scope.totalPage-2) {
+                firstPage= $scope.totalPage-4;
+                $scope.lastDot = false;
+            }else {
+                firstPage = $scope.searchEntity.pageNum-2;
+                lastPage = $scope.searchEntity.pageNum+2;
+                //前面有点
+                $scope.firstDot = true;
+                //后面有点
+                $scope.lastDot = true;
+            }
+
+        }else {
+            //前面有点
+            $scope.firstDot = false;
+            //后面有点
+            $scope.lastDot = false;
+        }
+
+        for(var index=firstPage;index<=lastPage;index++) {
             $scope.pageLable.push(index);
         }
 
@@ -65,5 +110,32 @@ app.controller('itemSearchController',function($scope,$controller,itemSearchServ
         }
         $scope.keyworkdSearch();
     }
+
+    $scope.queryByPage=function(currentPage) {
+        if(currentPage<1) {
+            currentPage=1;
+        }else if(currentPage>$scope.totalPage) {
+            currentPage = $scope.totalPage
+        }
+        $scope.searchEntity.pageNum=currentPage;
+        $scope.keyworkdSearch();
+    }
+
+    $scope.isFirstPage=function() {
+        if($scope.searchEntity.pageNum==1) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    $scope.isLastPage=function() {
+        if($scope.searchEntity.pageNum==$scope.totalPage) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
 
 })

@@ -107,6 +107,8 @@ public class SearchServiceImpl implements ISearchService {
         Map<String,Object> resultMap = new HashMap<>();
         SolrQuery solrQuery = new SolrQuery("*:*");
 
+
+
         //设置基础查询
         setBaseQuery(solrQuery,searchMap);
 

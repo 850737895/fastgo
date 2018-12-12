@@ -31,7 +31,7 @@ public class SearchController {
     public SystemVo<Map> searchList(@RequestBody Map<String,Object> searchMap) {
         Map resultMap = searchApiImpl.searchList(searchMap);
         if(resultMap==null) {
-            log.error("调用远程搜索服务异常");
+            //log.error("调用远程搜索服务异常");
             return SystemVo.error(SellerGoodsEnum.KEYWORKDS_SEARCH_ERROR);
         }else {
             return SystemVo.success(resultMap,SellerGoodsEnum.SELLER_GOODS_SUCCESS);
