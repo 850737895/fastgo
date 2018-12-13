@@ -1,8 +1,12 @@
 package com.hnnd.fastgo.clientapi.search;
 
+import com.hnnd.fastgo.entity.TbItem;
+import com.hnnd.fastgo.enumration.SellerGoodsEnum;
+import com.hnnd.fastgo.vo.SystemVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,5 +20,11 @@ public class ItemSearchApiImpl implements ItemSearchApi {
     public Map searchList(Map<String, Object> searchMap) {
         log.error("根据搜索条件:{}执行搜索服务异常",searchMap);
         return null;
+    }
+
+    @Override
+    public SystemVo addAduitPassTbItemList(List<TbItem> tbItemList) {
+        log.error("添加审核通过的商品详情到solr库中异常");
+        return SystemVo.error(SellerGoodsEnum.IMPORT_ADUIT_PASS_SKU_ERROR);
     }
 }

@@ -10,13 +10,11 @@ import com.google.common.collect.Lists;
 import com.hnnd.fastgo.bo.ItemImageBo;
 import com.hnnd.fastgo.bo.SmallImageBo;
 import com.hnnd.fastgo.bo.UpdateGoodsStatusBo;
+import com.hnnd.fastgo.clientapi.search.ItemSearchApi;
 import com.hnnd.fastgo.constant.GoodsItemConstant;
 import com.hnnd.fastgo.dao.*;
 import com.hnnd.fastgo.entity.*;
-import com.hnnd.fastgo.enumration.GoodsAduitEnum;
-import com.hnnd.fastgo.enumration.GoodsDelEnum;
-import com.hnnd.fastgo.enumration.GoodsMarkableEnum;
-import com.hnnd.fastgo.enumration.GoodsStartSpecEnum;
+import com.hnnd.fastgo.enumration.*;
 import com.hnnd.fastgo.service.IGoodsService;
 import com.hnnd.fastgo.vo.GoodsVo;
 import com.hnnd.fastgo.vo.PageResultVo;
@@ -59,6 +57,9 @@ public class GoodsServiceImpl implements IGoodsService {
 
     @Autowired
     private TbItemCatMapper tbItemCatMapper;
+
+    @Autowired
+    private ItemSearchApi itemSearchApi;
 
     @Transactional
     @Override
@@ -143,10 +144,23 @@ public class GoodsServiceImpl implements IGoodsService {
     }
 
     @Override
+    @Transactional
     public void aduitPass(Long[] ids, String status) {
         List<Long> goodIds = Arrays.asList(ids);
         tbGoodsMapper.aduitPass(goodIds,status);
+
+        //批量查询
+        List<TbItem> tbItemList = tbItemMapper.selectSkuListBySpuId(goodIds);
+        //批量更新状态
+        for(TbItem tbItem:tbItemList) {
+            tbItem.setStatus(SkuStatus.SKU_STATUS_1.getCode());
+        }
+        tbItemMapper.batchUpdateTbItem(tbItemList);
+
+        //导入到索引库
+        itemSearchApi.addAduitPassTbItemList(tbItemList);
     }
+
 
     @Override
     public void goodsUpOrDownMarket(UpdateGoodsStatusBo updateGoodsStatusBo) {
@@ -302,7 +316,7 @@ public class GoodsServiceImpl implements IGoodsService {
         tbItem.setTitle(goodsVo.getGoods().getGoodsName());
         tbItem.setPrice(goodsVo.getGoods().getPrice().doubleValue());
 
-        tbItem.setStatus(GoodsItemConstant.ITEM_STATUS_PASS);//状态
+        tbItem.setStatus(GoodsItemConstant.ITEM_STATUS_UNPASS);//状态
         tbItem.setIsDefault(GoodsItemConstant.ITEM_IS_DEFAULT);//是否默认
         tbItem.setNum(99999);//库存数量
         tbItem.setSpec("{}");

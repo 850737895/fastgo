@@ -1,8 +1,10 @@
 package com.hnnd.fastgo.service;
 
+import com.hnnd.fastgo.entity.TbItem;
 import org.apache.solr.client.solrj.SolrServerException;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * sku service
@@ -13,6 +15,6 @@ public interface ITbItemService {
     /**
      * solr数据初始化
      */
-    void initSolr() throws IOException, SolrServerException;
+    List<TbItem> initImportSolrList();
 }
 

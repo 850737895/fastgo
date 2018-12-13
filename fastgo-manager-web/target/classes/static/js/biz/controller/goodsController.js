@@ -9,6 +9,9 @@ app.controller('goodsController',function ($scope,$controller,$location,goodsSer
 
     $scope.itemCatListValue=[];
 
+    $scope.goodsVo={goods:{},itemList:{},goodsDesc:{itemImages:[],specificationItems:[]}};
+
+
     $scope.goodsStatus=['未申请','申请中','审核通过','已驳回'];
 
     $scope.findAllItemCatInit=function () {

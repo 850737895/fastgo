@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.hnnd.fastgo.bo.UpdateGoodsStatusBo;
 import com.hnnd.fastgo.clientapi.sellergoods.goods.GoodsApi;
 import com.hnnd.fastgo.entity.TbGoods;
+import com.hnnd.fastgo.entity.TbItem;
 import com.hnnd.fastgo.enumration.SellerGoodsEnum;
 import com.hnnd.fastgo.service.IGoodsService;
 import com.hnnd.fastgo.vo.GoodsVo;
@@ -101,6 +102,12 @@ public class SellerGoodsController implements GoodsApi {
         }
     }
 
+    /**
+     * 商品审核
+     * @param ids 商品id
+     * @param status 状态
+     * @return
+     */
     @RequestMapping("/aduitPass")
     public SystemVo aduitPass(@RequestParam("ids") Long[] ids,@RequestParam("status") String status) {
 
@@ -124,5 +131,7 @@ public class SellerGoodsController implements GoodsApi {
             return SystemVo.error(SellerGoodsEnum.SELLER_GGOODS_UP_OR_DOWN_MARKET_ERROR);
         }
     }
+
+
 
 }

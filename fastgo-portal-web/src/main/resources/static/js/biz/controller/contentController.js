@@ -15,4 +15,11 @@ app.controller('contentController',function($scope,$controller,contentService){
             }
         })
     }
+
+    /**
+     * 跳转到搜索页
+     */
+    $scope.toSearchPage=function() {
+        location.href="http://localhost:9103/search.html#?keywords="+$scope.keywords;
+    }
 })

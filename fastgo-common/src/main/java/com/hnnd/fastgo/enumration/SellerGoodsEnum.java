@@ -153,6 +153,12 @@ public enum SellerGoodsEnum {
 
     KEYWORKDS_SEARCH_ERROR(-72,"执行搜索服务异常"),
 
+    REMOTE_INVOKE_SKULIST_ERROR(-73,"调用商家商品服务获取sku列表异常"),
+
+    IMPORT_SKULIST_ERROR(-74,"把sku列表导入solr库异常"),
+
+    IMPORT_ADUIT_PASS_SKU_ERROR(-75,"商品详情sku列表导入异常"),
+
     DEL_IMG_ERROR(-70,"删除文件信息异常");
 
 

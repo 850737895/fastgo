@@ -24,7 +24,7 @@ import java.util.Set;
  * Created by 85073 on 2018/12/8.
  */
 @Service
-public class TbItemService implements ITbItemService {
+public class TbItemServiceImpl implements ITbItemService {
 
     @Autowired
     private TbItemMapper tbItemMapper;
@@ -34,14 +34,13 @@ public class TbItemService implements ITbItemService {
 
 
     @Override
-    public void initSolr() throws IOException, SolrServerException {
+    public List<TbItem> initImportSolrList() {
         List<TbItem> tbItemList = tbItemMapper.selectSolrList();
         for (TbItem tbItem: tbItemList) {
             Map<String,String> specMap = JSON.parseObject(tbItem.getSpec(),Map.class);
             tbItem.setSpecMap(dealMapKey(specMap));
         }
-        solrClient.addBeans(tbItemList);
-        solrClient.commit();
+        return tbItemList;
     }
 
     /**
@@ -59,4 +58,6 @@ public class TbItemService implements ITbItemService {
         }
         return dealSpecMap;
     }
+
+
 }

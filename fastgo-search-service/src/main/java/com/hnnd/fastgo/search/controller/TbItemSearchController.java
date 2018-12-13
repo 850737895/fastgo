@@ -1,6 +1,7 @@
 package com.hnnd.fastgo.search.controller;
 
 import com.hnnd.fastgo.search.service.ISearchService;
+import com.hnnd.fastgo.vo.SystemVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,5 +31,10 @@ public class TbItemSearchController {
             log.error("执行solr搜索服务异常:",e);
             return null;
         }
+    }
+
+    @RequestMapping("/initImportSolrList")
+    public SystemVo initImportSolrList(){
+        return searchServiceImpl.initImportSolrList();
     }
 }

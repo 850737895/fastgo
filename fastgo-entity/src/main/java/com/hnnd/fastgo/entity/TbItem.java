@@ -33,10 +33,10 @@ public class TbItem implements Serializable{
 
     private Long categoryid;
 
-    private String status;
+    private String status="0";
 
     private Date createTime;
-
+    @Field("item_updateTime")
     private Date updateTime;
 
     private String itemSn;

@@ -3,9 +3,13 @@ package com.hnnd.fastgo.search.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.hnnd.fastgo.clientapi.sellergoods.Item.ItemApi;
 import com.hnnd.fastgo.constant.RedisConstant;
+import com.hnnd.fastgo.entity.TbItem;
+import com.hnnd.fastgo.enumration.SellerGoodsEnum;
 import com.hnnd.fastgo.search.service.ISearchService;
 import com.hnnd.fastgo.util.MapUtils;
+import com.hnnd.fastgo.vo.SystemVo;
 import com.redisoper.IRedisService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -40,6 +44,9 @@ public class SearchServiceImpl implements ISearchService {
     @Autowired
     private IRedisService redisServiceImpl;
 
+    @Autowired
+    private ItemApi itemApi;
+
     @Override
     public Map searchList(Map<String, Object> searchMap) throws IOException, SolrServerException {
         Map<String,Object> resultMap = new HashMap<>();
@@ -64,6 +71,25 @@ public class SearchServiceImpl implements ISearchService {
         }
 
         return resultMap;
+    }
+
+    @Override
+    public SystemVo initImportSolrList() {
+        //远程获取数据
+        List<TbItem> tbItemList = itemApi.initImportSolrList();
+        if(null == tbItemList) {
+            log.error("远程调用商家商品服务获取sku列表异常");
+            return SystemVo.error(SellerGoodsEnum.REMOTE_INVOKE_SKULIST_ERROR);
+        }
+        //执行solr导入
+        try {
+            solrClient.addBeans(tbItemList);
+            solrClient.commit();
+            return SystemVo.success(SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+        } catch (Exception e) {
+            log.error("把sku列表导入solr库异常:{}",e);
+            return SystemVo.error(SellerGoodsEnum.IMPORT_SKULIST_ERROR);
+        }
     }
 
     /**
@@ -107,10 +133,11 @@ public class SearchServiceImpl implements ISearchService {
         Map<String,Object> resultMap = new HashMap<>();
         SolrQuery solrQuery = new SolrQuery("*:*");
 
-
-
         //设置基础查询
         setBaseQuery(solrQuery,searchMap);
+
+        //设置排序
+        setSortFiled(solrQuery,searchMap);
 
         //设置高亮
         setHLQuery(solrQuery);
@@ -157,6 +184,25 @@ public class SearchServiceImpl implements ISearchService {
         solrQuery.setRows(pageSize);
     }
 
+    /**
+     * 设置排序字段
+     * @param solrQuery 查询对象
+     * @param seachMap 查询map
+     */
+    private void setSortFiled(SolrQuery solrQuery,Map<String,Object> seachMap) {
+        //排序规则 升序还是降序
+        String sortSpec = MapUtils.getString(seachMap,"sortSpec");
+        //排序字段
+        String sortField = MapUtils.getString(seachMap,"sortField");
+
+        if(StringUtils.isNotEmpty(sortSpec) && StringUtils.isNotEmpty(sortField)) {
+            if(SolrQuery.ORDER.asc.toString().equalsIgnoreCase(sortSpec)) {
+                solrQuery.setSort("item_"+sortField, SolrQuery.ORDER.asc);
+            }else if(SolrQuery.ORDER.desc.toString().equalsIgnoreCase(sortSpec)) {
+                solrQuery.setSort("item_"+sortField,SolrQuery.ORDER.desc);
+            }
+        }
+    }
 
     /**
      * 设置基础查询
@@ -273,9 +319,8 @@ public class SearchServiceImpl implements ISearchService {
         }
     }
 
+
     public static void main(String[] args) {
-        Long a =764l;
-        Long b = 40L;
-        System.out.println(a/b+1);
+        System.out.println(SolrQuery.ORDER.asc.toString());
     }
 }

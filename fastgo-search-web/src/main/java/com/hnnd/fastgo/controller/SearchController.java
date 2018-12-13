@@ -22,6 +22,7 @@ public class SearchController {
     @Autowired
     private ItemSearchApi searchApiImpl;
 
+
     /**
      * 关键字搜索
      * @param searchMap
@@ -37,4 +38,5 @@ public class SearchController {
             return SystemVo.success(resultMap,SellerGoodsEnum.SELLER_GOODS_SUCCESS);
         }
     }
+
 }

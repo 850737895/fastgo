@@ -1,10 +1,10 @@
 /**
  * Created by 85073 on 2018/12/9.
  */
-app.controller('itemSearchController',function($scope,$controller,itemSearchService) {
+app.controller('itemSearchController',function($scope,$controller,$location,itemSearchService) {
     $controller('baseController', {$scope: $scope});//继承
 
-    $scope.searchEntity={"keywords":'',"categoryName":'',"brand":'','spec':{},'price':'','pageNum':1,'pageSize':20};
+    $scope.searchEntity={"keywords":'',"categoryName":'',"brand":'','spec':{},'price':'','pageNum':1,'pageSize':20,"sortSpec":'',"sortField":""};
 
 
     $scope.keyworkdSearch=function() {
@@ -38,6 +38,7 @@ app.controller('itemSearchController',function($scope,$controller,itemSearchServ
                 $scope.targetPage=$scope.searchEntity.pageNum;
                 buildPageAble();
                 $scope.searchEntity.pageNum=1;
+                $scope.keywordIsBrand();
             }
         })
     }
@@ -135,6 +136,32 @@ app.controller('itemSearchController',function($scope,$controller,itemSearchServ
         }else {
             return false;
         }
+    }
+
+    $scope.sortSearch=function(sortSpec,sortField) {
+        $scope.searchEntity.sortSpec=sortSpec;
+        $scope.searchEntity.sortField=sortField;
+        $scope.keyworkdSearch();
+    }
+
+     $scope.keywordIsBrandFlag = false;
+
+    /**
+     * 如果搜索关键字是品牌 ，那么就隐藏品牌列表
+     */
+    $scope.keywordIsBrand=function() {
+        for(var index=0;index<$scope.brandList.length;index++) {
+            if($scope.searchEntity.keywords.indexOf($scope.brandList[index].text)>=0) {
+                $scope.keywordIsBrandFlag = true;
+                return;
+            }
+        }
+        $scope.keywordIsBrandFlag=false;
+    }
+
+    $scope.loadKeyword=function() {
+        $scope.searchEntity.keywords=$location.search()['keywords'];
+        $scope.keyworkdSearch();
     }
 
 

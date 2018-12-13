@@ -1,4 +1,5 @@
 package com.hnnd.fastgo.search.service;
+import com.hnnd.fastgo.vo.SystemVo;
 import org.apache.solr.client.solrj.SolrServerException;
 
 import java.io.IOException;
@@ -11,4 +12,6 @@ import java.util.Map;
 public interface ISearchService {
 
     Map searchList(Map<String,Object> searchMap) throws IOException, SolrServerException;
+
+    SystemVo initImportSolrList();
 }

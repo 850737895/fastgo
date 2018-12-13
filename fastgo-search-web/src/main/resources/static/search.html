@@ -21,7 +21,7 @@
 
 	</head>
 
-	<body ng-app="fastgo" ng-controller="itemSearchController">
+	<body ng-app="fastgo" ng-controller="itemSearchController" ng-init="loadKeyword()">
 		<!-- 头部栏位 -->
 		<!--页面顶部-->
 		<div id="nav-bottom">
@@ -177,7 +177,7 @@
 					</div>
 					<div class="fl ext"></div>
 				</div>
-				<div class="type-wrap logo" ng-if="brandList!=null && searchEntity.brand==''">
+				<div class="type-wrap logo" ng-if="brandList!=null && searchEntity.brand=='' && keywordIsBrandFlag==false">
 					<div class="fl key brand">品牌</div>
 					<div class="value logos">
 						<ul class="logo-list">
@@ -348,13 +348,16 @@
 								<a href="#">销量</a>
 							</li>
 							<li>
-								<a href="#">新品</a>
+								<a href="#" ng-click="sortSearch('desc','updateTime')">新品</a>
 							</li>
 							<li>
 								<a href="#">评价</a>
 							</li>
 							<li>
-								<a href="#">价格</a>
+								<a href="#" ng-click="sortSearch('asc','price')">价格↑</a>
+							</li>
+							<li>
+								<a href="#" ng-click="sortSearch('desc','price')">价格↓</a>
 							</li>
 						</ul>
 					</div>

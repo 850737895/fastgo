@@ -1,6 +1,7 @@
 package com.hnnd.fastgo.dao;
 
 import com.hnnd.fastgo.entity.TbItem;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -50,4 +51,8 @@ public interface TbItemMapper {
     int updateByExampleSelective(TbItem tbItem);
 
     List<TbItem> selectSolrList();
+
+    List<TbItem> selectSkuListBySpuId(List<Long> ids);
+
+    void batchUpdateTbItem(@Param(value = "list") List<TbItem> list);
 }

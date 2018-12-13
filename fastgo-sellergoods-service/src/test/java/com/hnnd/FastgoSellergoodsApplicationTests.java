@@ -3,13 +3,16 @@ package com.hnnd;
 import com.hnnd.fastgo.dao.TbItemCatMapper;
 import com.hnnd.fastgo.entity.TbBrand;
 import com.hnnd.fastgo.service.ISellerGoodsService;
+import com.hnnd.fastgo.service.ITbItemService;
 import com.redisoper.IRedisService;
+import org.apache.solr.client.solrj.SolrServerException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +30,9 @@ public class FastgoSellergoodsApplicationTests {
 
 	@Autowired
 	private TbItemCatMapper tbItemCatMapper;
+
+	@Autowired
+	private ITbItemService tbItemService;
 
 	@Test
 	public void contextLoads() {
@@ -55,6 +61,8 @@ public class FastgoSellergoodsApplicationTests {
 		Long et = System.currentTimeMillis();
 		System.out.println("耗时"+(et-bt));
 	}
+
+
 
 
 
