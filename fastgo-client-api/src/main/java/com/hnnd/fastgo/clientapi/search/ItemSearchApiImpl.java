@@ -23,8 +23,14 @@ public class ItemSearchApiImpl implements ItemSearchApi {
     }
 
     @Override
-    public SystemVo addAduitPassTbItemList(List<TbItem> tbItemList) {
+    public SystemVo add2Solr(List<TbItem> tbItemList) {
         log.error("添加审核通过的商品详情到solr库中异常");
         return SystemVo.error(SellerGoodsEnum.IMPORT_ADUIT_PASS_SKU_ERROR);
+    }
+
+    @Override
+    public SystemVo del4Solr(List<Long> skuIds) {
+        log.error("从索引库中删除商品sku异常");
+        return SystemVo.error(SellerGoodsEnum.DEL_SKU_4_SOLR_ERROR);
     }
 }

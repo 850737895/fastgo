@@ -148,23 +148,64 @@ public class GoodsServiceImpl implements IGoodsService {
     public void aduitPass(Long[] ids, String status) {
         List<Long> goodIds = Arrays.asList(ids);
         tbGoodsMapper.aduitPass(goodIds,status);
-
-        //批量查询
-        List<TbItem> tbItemList = tbItemMapper.selectSkuListBySpuId(goodIds);
-        //批量更新状态
-        for(TbItem tbItem:tbItemList) {
-            tbItem.setStatus(SkuStatus.SKU_STATUS_1.getCode());
-        }
-        tbItemMapper.batchUpdateTbItem(tbItemList);
-
-        //导入到索引库
-        itemSearchApi.addAduitPassTbItemList(tbItemList);
     }
 
 
     @Override
+    @Transactional
     public void goodsUpOrDownMarket(UpdateGoodsStatusBo updateGoodsStatusBo) {
         tbGoodsMapper.goodsUpOrDownMarket(updateGoodsStatusBo.getSellerId(),updateGoodsStatusBo.getChangeStatus(),updateGoodsStatusBo.getGoodIdList());
+
+
+        //批量查询
+        List<TbItem> tbItemList = tbItemMapper.selectSkuListBySpuId(updateGoodsStatusBo.getGoodIdList());
+
+        //商品上架
+        if(GoodsMarkableEnum.IS_MARK.getCode().equals(updateGoodsStatusBo.getChangeStatus())) {
+
+            setSkuStatus(tbItemList,SkuStatus.SKU_STATUS_1.getCode());
+
+            //把sku数据状态修改为有效
+            tbItemMapper.batchUpdateTbItem(tbItemList);
+
+            //把数据导入到solr库
+            SystemVo resultVo = itemSearchApi.add2Solr(tbItemList);
+            if(resultVo.getCode()!=0) {
+                log.error("商家成功后导入数据到solr库异常:{}",resultVo.getMsg());
+                throw new RuntimeException(resultVo.getMsg());
+            }
+
+        }else{//商品下架
+            setSkuStatus(tbItemList,SkuStatus.SKU_STATUS_0.getCode());
+
+            //把sku数据状态修改为有效
+            tbItemMapper.batchUpdateTbItem(tbItemList);
+
+            List<Long> skuIds = Lists.newArrayList();
+
+            for (TbItem tbItem:tbItemList) {
+                skuIds.add(tbItem.getId());
+            }
+
+            //把数据库从索引库中移除
+            SystemVo resultVo = itemSearchApi.del4Solr(skuIds);
+            if(resultVo.getCode()!=0) {
+                log.error("商品下架,从索引库删除数据失败:{}",resultVo.getMsg());
+                throw new RuntimeException(resultVo.getMsg());
+            }
+        }
+
+    }
+
+    /**
+     * 设置sku的状态
+     * @param tbItemList sku列表
+     * @param status 状态
+     */
+    private void setSkuStatus(List<TbItem> tbItemList,String status) {
+        for(TbItem tbItem:tbItemList) {
+            tbItem.setStatus(status);
+        }
     }
 
 

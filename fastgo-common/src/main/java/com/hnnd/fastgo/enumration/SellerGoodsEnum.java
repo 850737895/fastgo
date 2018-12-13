@@ -159,6 +159,13 @@ public enum SellerGoodsEnum {
 
     IMPORT_ADUIT_PASS_SKU_ERROR(-75,"商品详情sku列表导入异常"),
 
+    DEL_SKU_4_SOLR_ERROR(-76,"根据skuid从索引库中删除数据异常"),
+
+    ADD_SOLR_SKULIST_IS_EMPTY(-77,"数据导入到solr库中入参为空"),
+
+    DEL_SOLR_SKULIST_IS_EMPTY(-78,"数据导入到solr库中入参为空"),
+
+
     DEL_IMG_ERROR(-70,"删除文件信息异常");
 
 

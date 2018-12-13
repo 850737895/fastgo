@@ -272,7 +272,7 @@ app.controller('goodsController',function ($scope,$controller,$location,goodsSer
             }
         }
         if(!sumbitFlag){
-            alert("提交商品审核的数据只能是未申请状态的数据");
+            alert("提交商品审核的数据只能是【未申请】状态的数据");
             return ;
         }
         goodsService.sumbitAduit($scope.selectIds).success(function(response){

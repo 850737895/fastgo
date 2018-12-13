@@ -93,6 +93,28 @@ public class SearchServiceImpl implements ISearchService {
     }
 
     /**
+     * 把数据导入到solr中
+     * @param tbItemList 需要导入的列表
+     * @throws IOException
+     * @throws SolrServerException
+     */
+    @Override
+    public void add2Solr(List<TbItem> tbItemList) throws IOException, SolrServerException {
+        solrClient.addBeans(tbItemList);
+        solrClient.commit();
+    }
+
+    @Override
+    public void del4Solr(List<Long> skuIds) throws IOException, SolrServerException {
+        List<String> skuIdList = Lists.newArrayList();
+        for (Long skuId:skuIds) {
+            skuIdList.add(skuId+"");
+        }
+        solrClient.deleteById(skuIdList);
+        solrClient.commit();
+    }
+
+    /**
      * 根据模版id 查询品牌列表以及规格列表
      * @param itemCategoryName 商品分类名称
      * @return

@@ -19,6 +19,9 @@ public interface ItemSearchApi {
     @RequestMapping("/searchList")
     public Map searchList(@RequestBody Map<String,Object> searchMap);
 
-    @RequestMapping("/addAduitPassTbItemList")
-    public SystemVo addAduitPassTbItemList(List<TbItem> tbItemList);
+    @RequestMapping("/add2Solr")
+    public SystemVo add2Solr(@RequestBody List<TbItem> tbItemList);
+
+    @RequestMapping("/del4Solr")
+    public SystemVo del4Solr(@RequestBody List<Long> skuIds);
 }
