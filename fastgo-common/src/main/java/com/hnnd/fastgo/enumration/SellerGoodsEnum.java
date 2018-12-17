@@ -165,6 +165,10 @@ public enum SellerGoodsEnum {
 
     DEL_SOLR_SKULIST_IS_EMPTY(-78,"数据导入到solr库中入参为空"),
 
+    GEN_GOODSDETAIL_INPARAM_NULL(-79,"生成商品详情入参为空"),
+
+    GEN_GOODSDETAIL_ERROR(-80,"生成商品详情页异常"),
+
 
     DEL_IMG_ERROR(-70,"删除文件信息异常");
 

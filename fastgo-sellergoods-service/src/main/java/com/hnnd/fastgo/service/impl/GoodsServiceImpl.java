@@ -11,6 +11,7 @@ import com.hnnd.fastgo.bo.ItemImageBo;
 import com.hnnd.fastgo.bo.SmallImageBo;
 import com.hnnd.fastgo.bo.UpdateGoodsStatusBo;
 import com.hnnd.fastgo.clientapi.search.ItemSearchApi;
+import com.hnnd.fastgo.clientapi.sellergoods.goodsDetail.GoodsDetialApi;
 import com.hnnd.fastgo.constant.GoodsItemConstant;
 import com.hnnd.fastgo.dao.*;
 import com.hnnd.fastgo.entity.*;
@@ -60,6 +61,8 @@ public class GoodsServiceImpl implements IGoodsService {
 
     @Autowired
     private ItemSearchApi itemSearchApi;
+    @Autowired
+    private GoodsDetialApi goodsDetialApi;
 
     @Transactional
     @Override
@@ -173,6 +176,12 @@ public class GoodsServiceImpl implements IGoodsService {
             if(resultVo.getCode()!=0) {
                 log.error("商家成功后导入数据到solr库异常:{}",resultVo.getMsg());
                 throw new RuntimeException(resultVo.getMsg());
+            }
+
+            //todo 根据商品id生成html保存到缓存中
+            for(Long goodsId:updateGoodsStatusBo.getGoodIdList()) {
+                //生成html页面
+                goodsDetialApi.generatorHtmlByGoodsId(goodsId);
             }
 
         }else{//商品下架

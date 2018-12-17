@@ -10,8 +10,8 @@ fastgo-search-web 9103端口  搜索工程
 fastgo-sellergoods-service 8090端口  商家商品服务
 fastgo-msg-center 8091端口 消息中心
 fastgo-advert-service 8092端口 首页广告服务
-fastgo-search-servvice 8093 搜索服务
-
+fastgo-search-service 8093 搜索服务
+fastgo-detail-service 8094 商品详情页服务
 solr安装: https://www.cnblogs.com/wang-meng/p/5814459.html
 
 建平的帐号:

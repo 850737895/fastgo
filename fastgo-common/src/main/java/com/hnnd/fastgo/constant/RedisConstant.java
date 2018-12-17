@@ -22,4 +22,8 @@ public class RedisConstant {
     public static final String TEMPLATE_BRAND_KEY = "brand";
 
     public static final String TEMPLATE_SPEC_KEY = "spec";
+
+    public static final String GOODS_DETAIL_PREFIX="fastgo:goodsDetail";
+
+    public static final String GOODS_DETAILHTML_IS_GEN= "fastgo:goodsDetailHmtlIsGen";
 }

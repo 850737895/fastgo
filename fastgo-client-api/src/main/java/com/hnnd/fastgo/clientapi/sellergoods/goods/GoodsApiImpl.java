@@ -7,6 +7,7 @@ import com.hnnd.fastgo.vo.GoodsVo;
 import com.hnnd.fastgo.vo.PageResultVo;
 import com.hnnd.fastgo.vo.SystemVo;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Slf4j
+@FeignClient(name ="fastgo-detail-service",fallback = GoodsApiImpl.class, path = "/sellerGoods/goods")
 public class GoodsApiImpl implements GoodsApi {
     @Override
     public SystemVo save(GoodsVo goodsVo) {

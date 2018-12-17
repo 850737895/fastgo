@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/fastgo-client-api/fastgo-client-api.iml" filepath="$PROJECT_DIR$/fastgo-client-api/fastgo-client-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/fastgo-common/fastgo-common.iml" filepath="$PROJECT_DIR$/fastgo-common/fastgo-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/fastgo-dao/fastgo-dao.iml" filepath="$PROJECT_DIR$/fastgo-dao/fastgo-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fastgo-detail-service/fastgo-detail-service.iml" filepath="$PROJECT_DIR$/fastgo-detail-service/fastgo-detail-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/fastgo-entity/fastgo-entity.iml" filepath="$PROJECT_DIR$/fastgo-entity/fastgo-entity.iml" />
       <module fileurl="file://$PROJECT_DIR$/fastgo-manager-web/fastgo-manager-web.iml" filepath="$PROJECT_DIR$/fastgo-manager-web/fastgo-manager-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/fastgo-msg-center/fastgo-msg-center.iml" filepath="$PROJECT_DIR$/fastgo-msg-center/fastgo-msg-center.iml" />
