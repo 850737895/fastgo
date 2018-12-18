@@ -164,5 +164,18 @@ app.controller('itemSearchController',function($scope,$controller,$location,item
         $scope.keyworkdSearch();
     }
 
+    /**
+     * 跳转到详情页面
+     */
+    $scope.toDetailPage=function(goodsId) {
+        itemSearchService.toDetailPage(goodsId).success(function (response) {
+            if(response.code!=0) {
+                alert("详情页面不存在");
+            }else {
+                window.open("http://localhost:9104/"+response.data);
+            }
+        })
+    }
+
 
 })

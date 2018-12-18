@@ -5,9 +5,12 @@ import com.hnnd.fastgo.constant.RedisConstant;
 import com.hnnd.fastgo.dao.TbGoodsDescMapper;
 import com.hnnd.fastgo.dao.TbGoodsMapper;
 import com.hnnd.fastgo.dao.TbItemCatMapper;
+import com.hnnd.fastgo.dao.TbItemMapper;
 import com.hnnd.fastgo.entity.TbGoods;
 import com.hnnd.fastgo.entity.TbGoodsDesc;
+import com.hnnd.fastgo.entity.TbItem;
 import com.hnnd.fastgo.enumration.SellerGoodsEnum;
+import com.hnnd.fastgo.enumration.SkuStatus;
 import com.hnnd.fastgo.service.IGoodsDetailService;
 import com.hnnd.fastgo.vo.SystemVo;
 import com.redisoper.IRedisService;
@@ -20,6 +23,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 
 import java.io.*;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -43,6 +47,9 @@ public class GoodsDetailServiceImpl implements IGoodsDetailService {
     private TbItemCatMapper tbItemCatMapper;
 
     @Autowired
+    private TbItemMapper tbItemMapper;
+
+    @Autowired
     private IRedisService redisServiceImpl;
     @Override
     public SystemVo generatorHtmlByGoodsId(Long goodsId) {
@@ -60,9 +67,10 @@ public class GoodsDetailServiceImpl implements IGoodsDetailService {
             }
         } catch (Exception e) {
             log.error("根据商品id生成静态网页异常:{}",e);
+            return SystemVo.error(SellerGoodsEnum.GEN_GOODSDETAIL_ERROR);
         }
 
-        return SystemVo.success(goodsId+".hmtl",SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+        return SystemVo.success(goodsId,SellerGoodsEnum.SELLER_GOODS_SUCCESS);
     }
 
     /**
@@ -87,6 +95,14 @@ public class GoodsDetailServiceImpl implements IGoodsDetailService {
         String itemCat2Name = tbItemCatMapper.selectByPrimaryKey(goods.getCategory2Id()).getName();
         String itemCat3Name = tbItemCatMapper.selectByPrimaryKey(goods.getCategory3Id()).getName();
 
+        //读取sku列表
+        List<TbItem> tbItemList = tbItemMapper.selectSkuListByStausWithSpuId(goodsId, SkuStatus.SKU_STATUS_1.getCode());
+        if(null == tbItemList) {
+            log.error("根据商品ID没有查询到商品sku列表信息");
+            throw new RuntimeException("根据商品ID没有查询到商品sku列表信息");
+        }
+
+
         //封装数据
         Map<String,Object> modelMap = Maps.newHashMap();
         modelMap.put("goods",goods);
@@ -94,6 +110,7 @@ public class GoodsDetailServiceImpl implements IGoodsDetailService {
         modelMap.put("itemCat1Name",itemCat1Name);
         modelMap.put("itemCat2Name",itemCat2Name);
         modelMap.put("itemCat3Name",itemCat3Name);
+        modelMap.put("itemList",tbItemList);
 
         return modelMap;
     }

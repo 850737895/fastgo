@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
+ * 生成Html服务
  * Created by Administrator on 2018/12/17.
  */
 @FeignClient(name ="fastgo-detail-service",fallback = GoodsDetailApiImpl.class, path = "/remote/goodsDetail")

@@ -5,6 +5,7 @@ fastgo-manager-web 9100端口 运营商管理后台
 fastgo-shop-web   9101端口  商家管理后台
 fastgo-portal-web 9102端口  fastgo网站前台
 fastgo-search-web 9103端口  搜索工程 
+fastgo-detail-web 9104端口  商品详情页工程
 
 ####服务层工程
 fastgo-sellergoods-service 8090端口  商家商品服务

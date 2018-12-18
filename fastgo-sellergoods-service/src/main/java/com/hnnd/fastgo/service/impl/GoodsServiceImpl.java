@@ -171,12 +171,14 @@ public class GoodsServiceImpl implements IGoodsService {
             //把sku数据状态修改为有效
             tbItemMapper.batchUpdateTbItem(tbItemList);
 
-            //把数据导入到solr库
+/*            //把数据导入到solr库
             SystemVo resultVo = itemSearchApi.add2Solr(tbItemList);
             if(resultVo.getCode()!=0) {
                 log.error("商家成功后导入数据到solr库异常:{}",resultVo.getMsg());
                 throw new RuntimeException(resultVo.getMsg());
-            }
+            }*/
+
+            //导入索引库 可以改为异步直接通过队列的形式
 
             //todo 根据商品id生成html保存到缓存中
             for(Long goodsId:updateGoodsStatusBo.getGoodIdList()) {
@@ -202,6 +204,8 @@ public class GoodsServiceImpl implements IGoodsService {
                 log.error("商品下架,从索引库删除数据失败:{}",resultVo.getMsg());
                 throw new RuntimeException(resultVo.getMsg());
             }
+
+            //需要把静态模版删除
         }
 
     }

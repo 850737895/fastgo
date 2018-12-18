@@ -18,6 +18,7 @@
         <option value="$PROJECT_DIR$/fasto-search-web/pom.xml" />
         <option value="$PROJECT_DIR$/fastgo-search-web/pom.xml" />
         <option value="$PROJECT_DIR$/fastgo-detail-service/pom.xml" />
+        <option value="$PROJECT_DIR$/fastgo-detail-web/pom.xml" />
       </list>
     </option>
   </component>

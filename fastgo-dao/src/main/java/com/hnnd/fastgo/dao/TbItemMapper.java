@@ -54,5 +54,7 @@ public interface TbItemMapper {
 
     List<TbItem> selectSkuListBySpuId(List<Long> ids);
 
+    List<TbItem> selectSkuListByStausWithSpuId(@Param("goodsId")Long goodId,@Param("status") String status);
+
     void batchUpdateTbItem(@Param(value = "list") List<TbItem> list);
 }

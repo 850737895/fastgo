@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Slf4j
-@FeignClient(name ="fastgo-detail-service",fallback = GoodsApiImpl.class, path = "/sellerGoods/goods")
 public class GoodsApiImpl implements GoodsApi {
     @Override
     public SystemVo save(GoodsVo goodsVo) {

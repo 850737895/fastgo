@@ -367,7 +367,7 @@
 						<li class="yui3-u-1-5" ng-repeat="item in itemList">
 							<div class="list-wrap">
 								<div class="p-img">
-									<a href="item.html" target="_blank"><img src="{{item.item_image}}" /></a>
+									<a ng-click="toDetailPage(item.item_goodsid)" target="_blank"><img src="{{item.item_image}}" /></a>
 								</div>
 								<div class="price">
 									<strong>

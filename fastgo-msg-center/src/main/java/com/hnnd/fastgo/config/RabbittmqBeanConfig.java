@@ -35,6 +35,15 @@ public class RabbittmqBeanConfig {
     }
 
     /**
+     * 处理solr的队列
+     * @return
+     */
+    @Bean
+    public Queue fastgoSolrQueue() {
+        return new Queue(RabbtMqConstant.FASTGO_SOLR_QUEUE,true,false,false);
+    }
+
+    /**
      * 短信队列绑定到交换机上
      * @return
      */
@@ -42,5 +51,12 @@ public class RabbittmqBeanConfig {
     public Binding smsQueueBinding() {
         return BindingBuilder.bind(fastogoSmsQueue()).to(fastgoTopicExchange()).with(RabbtMqConstant.FASTGO_SMS_KEY);
     }
+
+    @Bean
+    public Binding solrQueueBinding(){
+        return BindingBuilder.bind(fastgoSolrQueue()).to(fastgoTopicExchange()).with(RabbtMqConstant.FASTGO_SOLR_KEY);
+    }
+
+
 
 }

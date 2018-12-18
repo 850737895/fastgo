@@ -233,7 +233,7 @@ public class SearchServiceImpl implements ISearchService {
      */
     private void setBaseQuery(SolrQuery solrQuery,Map<String,Object> searchMap) {
         //设置查询所有
-        if(!searchMap.isEmpty()&& StringUtils.isNotEmpty(searchMap.get("keywords").toString())) {
+        if(!searchMap.isEmpty()&& StringUtils.isNotEmpty(MapUtils.getString(searchMap,"keywords"))) {
             //默认查询条件
             solrQuery.set("df","item_keywords");
             //设置值

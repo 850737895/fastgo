@@ -12,6 +12,7 @@
         <module name="fastgo-common" />
         <module name="fastgo-dao" />
         <module name="fastgo-detail-service" />
+        <module name="fastgo-detail-web" />
         <module name="fastgo-entity" />
         <module name="fastgo-manager-web" />
         <module name="fastgo-msg-center" />
@@ -33,6 +34,7 @@
       <module name="fastgo-common" target="1.8" />
       <module name="fastgo-dao" target="1.8" />
       <module name="fastgo-detail-service" target="1.8" />
+      <module name="fastgo-detail-web" target="1.8" />
       <module name="fastgo-entity" target="1.8" />
       <module name="fastgo-file" target="1.8" />
       <module name="fastgo-manager-web" target="1.8" />

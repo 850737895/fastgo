@@ -6,4 +6,7 @@ app.service('itemSearchService',function ($http) {
     this.keyworkdSearch=function(search){
         return $http.post(url+"/tbItem/searchList",search);
     }
+    this.toDetailPage=function(goodsId) {
+        return $http.get(url+"/tbItem/detailHtml/"+goodsId);
+    }
 })
