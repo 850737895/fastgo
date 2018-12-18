@@ -10,7 +10,9 @@
       <module fileurl="file://$PROJECT_DIR$/fastgo-common/fastgo-common.iml" filepath="$PROJECT_DIR$/fastgo-common/fastgo-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/fastgo-dao/fastgo-dao.iml" filepath="$PROJECT_DIR$/fastgo-dao/fastgo-dao.iml" />
       <module fileurl="file://$PROJECT_DIR$/fastgo-detail-service/fastgo-detail-service.iml" filepath="$PROJECT_DIR$/fastgo-detail-service/fastgo-detail-service.iml" />
+      <module fileurl="file://E:\IDE_NJ_workspace\fastgo\fastgo-detail-service\fastgo-detail-service.iml" filepath="E:\IDE_NJ_workspace\fastgo\fastgo-detail-service\fastgo-detail-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/fastgo-detail-web/fastgo-detail-web.iml" filepath="$PROJECT_DIR$/fastgo-detail-web/fastgo-detail-web.iml" />
+      <module fileurl="file://E:\IDE_NJ_workspace\fastgo\fastgo-detail-web\fastgo-detail-web.iml" filepath="E:\IDE_NJ_workspace\fastgo\fastgo-detail-web\fastgo-detail-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/fastgo-entity/fastgo-entity.iml" filepath="$PROJECT_DIR$/fastgo-entity/fastgo-entity.iml" />
       <module fileurl="file://$PROJECT_DIR$/fastgo-manager-web/fastgo-manager-web.iml" filepath="$PROJECT_DIR$/fastgo-manager-web/fastgo-manager-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/fastgo-msg-center/fastgo-msg-center.iml" filepath="$PROJECT_DIR$/fastgo-msg-center/fastgo-msg-center.iml" />
@@ -22,7 +24,6 @@
       <module fileurl="file://$PROJECT_DIR$/fastgo-shop-web/fastgo-shop-web.iml" filepath="$PROJECT_DIR$/fastgo-shop-web/fastgo-shop-web.iml" />
       <module fileurl="file://E:\IDE_NJ_workspace\fastgo\fastgo\fastgo-shop-web\fastgo-shop-web.iml" filepath="E:\IDE_NJ_workspace\fastgo\fastgo\fastgo-shop-web\fastgo-shop-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/fastgo-search-web/fasto-search-web.iml" filepath="$PROJECT_DIR$/fastgo-search-web/fasto-search-web.iml" />
-      <module fileurl="file://E:\IDE_NJ_workspace\fastgo\fastgo-search-web\fasto-search-web.iml" filepath="E:\IDE_NJ_workspace\fastgo\fastgo-search-web\fasto-search-web.iml" />
     </modules>
   </component>
 </project>

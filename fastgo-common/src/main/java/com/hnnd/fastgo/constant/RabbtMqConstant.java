@@ -19,12 +19,12 @@ public class RabbtMqConstant {
     /**
      * 商品上下架后的商品导入到solr库中
      */
-    public static final String FASTGO_SOLR_QUEUE = "fastgo.solr.queue";
+    public static final String FASTGO_SOLR_QUEUE = "fastgo.addsolr.queue";
 
     /**
      * 导入到索引库的key
      */
-    public static final String FASTGO_SOLR_KEY = "fastgo.solr.key";
+    public static final String FASTGO_SOLR_KEY = "fastgo.addsolr.key";
 
     /**
      * 审核发送短信的key

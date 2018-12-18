@@ -3,7 +3,10 @@ package com.hnnd.fastgo.service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.hnnd.fastgo.constant.RabbtMqConstant;
+import com.hnnd.fastgo.dao.MsgLogMapper;
+import com.hnnd.fastgo.entity.MsgLog;
 import com.hnnd.fastgo.entity.TbItem;
+import com.hnnd.fastgo.enumration.MsgStatusEnum;
 import com.hnnd.fastgo.vo.SystemVo;
 import com.rabbitmq.client.Channel;
 import com.redisoper.IRedisService;
@@ -17,6 +20,7 @@ import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,6 +36,9 @@ public class SolrConsumer {
 
     @Autowired
     private SolrClient solrClient;
+
+    @Autowired
+    private MsgLogMapper msgLogMapper;
 
     @RabbitListener(queues = {RabbtMqConstant.FASTGO_SOLR_QUEUE})
     public void importSolr(Message message, Channel channel) {
@@ -52,13 +59,24 @@ public class SolrConsumer {
 
                 solrClient.commit();
 
+                //更新消息表
+                MsgLog msgLog = new MsgLog();
+                msgLog.setMsgId(msgId);
+                msgLog.setAckTime(new Date());
+                msgLog.setMsgStatus(MsgStatusEnum.MSG_ACK.getCode());
+                msgLogMapper.updateByPrimaryKey(msgLog);
 
+                //消息签收
+                channel.basicAck(deliveryTag,true);
 
             }else {
-
+                log.warn("该消息属于重复消费的消息:{}",message);
             }
         } catch (Exception e){
-
+            log.warn("处理solr导入异常:{}",e);
+            //去除短信重复消费,需要重新发送短信
+            redisServiceImpl.expire(RabbtMqConstant.FASTOG_SMS_LOCK_KEY+msgId,0);
+            throw new RuntimeException("处理solr导入异常");
         }
     }
 }

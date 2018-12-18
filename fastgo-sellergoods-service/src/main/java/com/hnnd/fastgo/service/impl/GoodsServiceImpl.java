@@ -7,12 +7,14 @@ import com.alibaba.fastjson.TypeReference;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.hnnd.fastgo.bo.ItemImageBo;
 import com.hnnd.fastgo.bo.SmallImageBo;
 import com.hnnd.fastgo.bo.UpdateGoodsStatusBo;
 import com.hnnd.fastgo.clientapi.search.ItemSearchApi;
 import com.hnnd.fastgo.clientapi.sellergoods.goodsDetail.GoodsDetialApi;
 import com.hnnd.fastgo.constant.GoodsItemConstant;
+import com.hnnd.fastgo.constant.RabbtMqConstant;
 import com.hnnd.fastgo.dao.*;
 import com.hnnd.fastgo.entity.*;
 import com.hnnd.fastgo.enumration.*;
@@ -20,17 +22,19 @@ import com.hnnd.fastgo.service.IGoodsService;
 import com.hnnd.fastgo.vo.GoodsVo;
 import com.hnnd.fastgo.vo.PageResultVo;
 import com.hnnd.fastgo.vo.SystemVo;
+import com.sun.javafx.collections.MappingChange;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.MessageHeaders;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 商品接口实现类
@@ -61,8 +65,17 @@ public class GoodsServiceImpl implements IGoodsService {
 
     @Autowired
     private ItemSearchApi itemSearchApi;
+
     @Autowired
     private GoodsDetialApi goodsDetialApi;
+
+    @Autowired
+    private MsgLogMapper msgLogMapper;
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
+
 
     @Transactional
     @Override
@@ -171,20 +184,26 @@ public class GoodsServiceImpl implements IGoodsService {
             //把sku数据状态修改为有效
             tbItemMapper.batchUpdateTbItem(tbItemList);
 
-/*            //把数据导入到solr库
-            SystemVo resultVo = itemSearchApi.add2Solr(tbItemList);
-            if(resultVo.getCode()!=0) {
-                log.error("商家成功后导入数据到solr库异常:{}",resultVo.getMsg());
-                throw new RuntimeException(resultVo.getMsg());
-            }*/
-
             //导入索引库 可以改为异步直接通过队列的形式
+            MsgLog msgLog = bulderMsgLog(tbItemList);
 
-            //todo 根据商品id生成html保存到缓存中
+            msgLogMapper.insert(msgLog);
+
+            //发送到消息队列
+            Map<String,Object> headers = Maps.newHashMap();
+            headers.put("msgId",msgLog.getMsgId());
+            MessageHeaders mhs = new MessageHeaders(headers);
+            Message msg = MessageBuilder.createMessage(JSON.toJSONString(tbItemList), mhs);
+            CorrelationData correlationData = new CorrelationData(msgLog.getMsgId());
+
+
+            //根据商品id生成html保存到缓存中
             for(Long goodsId:updateGoodsStatusBo.getGoodIdList()) {
                 //生成html页面
                 goodsDetialApi.generatorHtmlByGoodsId(goodsId);
             }
+
+            rabbitTemplate.convertAndSend(RabbtMqConstant.FASTGO_BIZ_EXCHANGE,RabbtMqConstant.FASTGO_SOLR_KEY,msg,correlationData);
 
         }else{//商品下架
             setSkuStatus(tbItemList,SkuStatus.SKU_STATUS_0.getCode());
@@ -204,8 +223,8 @@ public class GoodsServiceImpl implements IGoodsService {
                 log.error("商品下架,从索引库删除数据失败:{}",resultVo.getMsg());
                 throw new RuntimeException(resultVo.getMsg());
             }
-
             //需要把静态模版删除
+
         }
 
     }
@@ -219,6 +238,25 @@ public class GoodsServiceImpl implements IGoodsService {
         for(TbItem tbItem:tbItemList) {
             tbItem.setStatus(status);
         }
+    }
+
+    /**
+     * 把tbItemList 发送到消息队列中
+     * @param tbItemList
+     */
+    private MsgLog bulderMsgLog(List<TbItem> tbItemList){
+        MsgLog msgLog = new MsgLog();
+        String msgId = UUID.randomUUID().toString();
+        msgLog.setMsgId(msgId);
+        msgLog.setMsgStatus(MsgStatusEnum.MSG_SENDING.getCode());
+        msgLog.setDestination(RabbtMqConstant.FASTGO_BIZ_EXCHANGE);
+        msgLog.setRoutingKey(RabbtMqConstant.FASTGO_SOLR_KEY);
+        msgLog.setSendTime(new Date());
+        msgLog.setMsgText(JSON.toJSONString(tbItemList));
+        msgLog.setCurrentRetryCount(RabbtMqConstant.INIT_RETRY_COUNT);
+        msgLog.setMaxRetryCount(RabbtMqConstant.MAX_RETRY_COUNT);
+
+        return msgLog;
     }
 
 
