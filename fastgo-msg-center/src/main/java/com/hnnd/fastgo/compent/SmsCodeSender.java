@@ -3,6 +3,7 @@ package com.hnnd.fastgo.compent;
 
 import com.aliyuncs.exceptions.ClientException;
 import com.hnnd.fastgo.exception.SendSmsException;
+import com.hnnd.fastgo.temp.Sms;
 import com.hnnd.fastgo.temp.SmsContext;
 
 
@@ -14,7 +15,7 @@ public interface SmsCodeSender {
 
     /**
      * 发送短信的类容
-     * @param smsContext
+     * @param sms
      */
-     void sender(SmsContext smsContext) throws SendSmsException, ClientException;
+     void sender(Sms sms) throws SendSmsException, ClientException;
 }

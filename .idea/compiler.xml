@@ -46,6 +46,7 @@
       <module name="fastgo-sellergoods" target="1.8" />
       <module name="fastgo-sellergoods-service" target="1.8" />
       <module name="fastgo-shop-web" target="1.8" />
+      <module name="fastgo-sms" target="1.8" />
       <module name="fasto-search-web" target="1.8" />
     </bytecodeTargetLevel>
   </component>

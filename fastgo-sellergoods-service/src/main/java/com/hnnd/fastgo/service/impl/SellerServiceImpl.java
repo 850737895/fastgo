@@ -8,7 +8,6 @@ import com.google.common.collect.Maps;
 import com.hnnd.fastgo.Qo.QryTbsellerQo;
 import com.hnnd.fastgo.config.FastMsgConfirm;
 import com.hnnd.fastgo.config.FastMsgReturn;
-import com.hnnd.fastgo.constant.AliSmsConstants;
 import com.hnnd.fastgo.constant.RabbtMqConstant;
 import com.hnnd.fastgo.dao.MsgLogMapper;
 import com.hnnd.fastgo.dao.TbSellerMapper;
@@ -16,10 +15,10 @@ import com.hnnd.fastgo.entity.MsgLog;
 import com.hnnd.fastgo.entity.TbSeller;
 import com.hnnd.fastgo.enumration.MsgStatusEnum;
 import com.hnnd.fastgo.enumration.SellerAccoutStatusEnum;
+import com.hnnd.fastgo.enumration.SmsTypeEnum;
 import com.hnnd.fastgo.service.ISellerService;
-import com.hnnd.fastgo.temp.SmsContext;
+import com.hnnd.fastgo.temp.Sms;
 import com.hnnd.fastgo.vo.PageResultVo;
-import com.sun.javafx.collections.MappingChange;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.support.CorrelationData;
@@ -128,24 +127,29 @@ public class SellerServiceImpl implements ISellerService {
         }
 
         //构建发送到消息队列中的消息对象
-        SmsContext smsContext = new SmsContext();
-        smsContext.setReciver(tbSeller.getLinkmanMobile());
-        smsContext.setCompanyName(tbSeller.getName());
+        Sms sms = new Sms();
+        sms.setReceiver(tbSeller.getLinkmanMobile());
+        Map<String,Object> textMap = Maps.newHashMap();
+        textMap.put("name",tbSeller.getName());
+        //审核不通过
         if(SellerAccoutStatusEnum.SELLER_ACCOUNT_UNPASS_ADUIT.getCode().equals(status)) {
-           smsContext.setReason("由于材料缺少");
+            textMap.put("reason","由于材料缺少");
+            sms.setSmsType(SmsTypeEnum.SELLER_ACCOUNT_ADUIT_UNPASS.getCode());
+        }else{
+            sms.setSmsType(SmsTypeEnum.SELLER_ACCOUNT_ADUIT_PASS.getCode());
         }
-        smsContext.setAduitStatus(status);
-        smsContext.setSellerId(sellerId);
+        textMap.put("sellerId",sellerId);
+        sms.setTextMap(textMap);
 
         //插入消息表
-        MsgLog msgLog = builderMsgLog(smsContext);
+        MsgLog msgLog = builderMsgLog(sms);
         msgLogMapper.insert(msgLog);
 
         //发送消息
         Map<String,Object> header = Maps.newHashMap();
         header.put("msgId",msgLog.getMsgId());
         MessageHeaders mhs = new MessageHeaders(header);
-        Message msg = MessageBuilder.createMessage(JSON.toJSONString(smsContext), mhs);
+        Message msg = MessageBuilder.createMessage(JSON.toJSONString(sms), mhs);
         CorrelationData correlationData = new CorrelationData(msgLog.getMsgId());
         rabbitTemplate.setConfirmCallback(fastMsgConfirm);
         rabbitTemplate.setReturnCallback(fastMsgReturn);
@@ -169,10 +173,10 @@ public class SellerServiceImpl implements ISellerService {
 
     /**
      * 构建消息日志对象
-     * @param smsContext
+     * @param sms
      * @return
      */
-    private MsgLog builderMsgLog(SmsContext smsContext) {
+    private MsgLog builderMsgLog(Sms sms) {
         MsgLog msgLog = new MsgLog();
         String msgId = UUID.randomUUID().toString();
         msgLog.setMsgId(msgId);
@@ -180,7 +184,7 @@ public class SellerServiceImpl implements ISellerService {
         msgLog.setDestination(RabbtMqConstant.FASTGO_BIZ_EXCHANGE);
         msgLog.setRoutingKey(RabbtMqConstant.FASTGO_SMS_KEY);
         msgLog.setSendTime(new Date());
-        msgLog.setMsgText(JSON.toJSONString(smsContext));
+        msgLog.setMsgText(JSON.toJSONString(sms));
         msgLog.setCurrentRetryCount(RabbtMqConstant.INIT_RETRY_COUNT);
         msgLog.setMaxRetryCount(RabbtMqConstant.MAX_RETRY_COUNT);
         return msgLog;

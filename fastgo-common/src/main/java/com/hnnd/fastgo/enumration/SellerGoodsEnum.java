@@ -169,6 +169,9 @@ public enum SellerGoodsEnum {
 
     GEN_GOODSDETAIL_ERROR(-80,"生成商品详情页异常"),
 
+    DEL_GOODSDETAIL_INPARAM_IS_NULL(-81,"根据商品ID删除商品详情页入参为空"),
+
+    DEL_GOODSDETAIL_INPARAM_ERROR(-82,"根据商品ID删除商品详情页异常"),
 
     DEL_IMG_ERROR(-70,"删除文件信息异常");
 

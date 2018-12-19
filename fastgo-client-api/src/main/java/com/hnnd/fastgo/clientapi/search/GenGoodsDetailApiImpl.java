@@ -17,4 +17,10 @@ public class GenGoodsDetailApiImpl implements GenGoodsDetailApi {
         log.error("根据商品id 生成html静态页面异常");
         return SystemVo.error(SellerGoodsEnum.GEN_GOODSDETAIL_ERROR);
     }
+
+    @Override
+    public SystemVo delHtmlByGoodsId(Long goodsId) {
+        log.error("根据商品id 删除html静态页面异常");
+        return SystemVo.error(SellerGoodsEnum.DEL_GOODSDETAIL_INPARAM_ERROR);
+    }
 }

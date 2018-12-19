@@ -96,7 +96,7 @@ public class GoodsDetailServiceImpl implements IGoodsDetailService {
         String itemCat3Name = tbItemCatMapper.selectByPrimaryKey(goods.getCategory3Id()).getName();
 
         //读取sku列表
-        List<TbItem> tbItemList = tbItemMapper.selectSkuListByStausWithSpuId(goodsId, SkuStatus.SKU_STATUS_1.getCode());
+        List<TbItem> tbItemList = tbItemMapper.selectSkuListByStausWithSpuId(goodsId, SkuStatus.SKU_STATUS_0.getCode());
         if(null == tbItemList) {
             log.error("根据商品ID没有查询到商品sku列表信息");
             throw new RuntimeException("根据商品ID没有查询到商品sku列表信息");

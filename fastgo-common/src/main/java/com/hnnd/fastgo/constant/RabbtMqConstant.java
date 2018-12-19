@@ -22,9 +22,19 @@ public class RabbtMqConstant {
     public static final String FASTGO_SOLR_QUEUE = "fastgo.addsolr.queue";
 
     /**
+     * 商品下架后的商品删除solr库中数据
+     */
+    public static final String FASTGO_DELSOLR_QUEUE = "fastgo.delsolr.queue";
+
+    /**
      * 导入到索引库的key
      */
     public static final String FASTGO_SOLR_KEY = "fastgo.addsolr.key";
+
+    /**
+     * 导入到索引库的key
+     */
+    public static final String FASTGO_DELSOLR_KEY = "fastgo.delsolr.key";
 
     /**
      * 审核发送短信的key

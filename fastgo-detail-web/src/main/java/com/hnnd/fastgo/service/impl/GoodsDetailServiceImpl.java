@@ -35,17 +35,45 @@ public class GoodsDetailServiceImpl implements IGoodsDetailService {
 
         String genFileName = "";
 
-        //表示没有生成过
-        if(!StringUtils.isEmpty(htmlStr) && StringUtils.isEmpty(htmlFileName) ) {
-            //生成html文件
+        //没有生成过文件
+        if(StringUtils.isEmpty(htmlFileName)) {
+            //生成文件
             genFileName = genHtml(goodsId.toString(),htmlStr);
-            //写入redis表示已经生成过了
+            //设置生成文件标识
             redisServiceImpl.setnx(RedisConstant.GOODS_DETAILHTML_IS_GEN+":"+goodsId,genFileName);
-        }else if(!StringUtils.isEmpty(htmlStr) && StringUtils.isNotEmpty(htmlFileName)) {//生成过Html
-            genFileName = htmlFileName;
+        }else {//生成过文件
+            String filePrefix = ResourceUtils.getURL("classpath:static").getPath();
+            String realFilePath = filePrefix+"/"+htmlFileName;
+            File file = new File(realFilePath);
+            if(file.exists()){
+                genFileName = htmlFileName;
+            }else{
+                genFileName = genHtml(goodsId.toString(),htmlStr);
+            }
         }
-
         return SystemVo.success(genFileName,SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+    }
+
+    @Override
+    public void delHtmlByGoodsId(Long goodsIs) throws Exception {
+        //删除保存在缓存中的html页面
+        redisServiceImpl.del(RedisConstant.GOODS_DETAIL_PREFIX+":"+goodsIs);
+
+        //删除保存在缓存中 生成过HTML的标识
+        redisServiceImpl.del(RedisConstant.GOODS_DETAILHTML_IS_GEN+":"+goodsIs);
+
+        //删除页面
+        String htmlFileName = goodsIs+".html";
+
+        File path = new File(ResourceUtils.getURL("classpath:static").getPath());
+
+        String fileName = path.getAbsolutePath()+"/"+htmlFileName;
+
+        File file = new File(fileName);
+
+        if(file.exists()) {
+            file.delete();
+        }
     }
 
     /**

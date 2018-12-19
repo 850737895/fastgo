@@ -44,6 +44,15 @@ public class RabbittmqBeanConfig {
     }
 
     /**
+     * 异步异常solr索引库的队列
+     * @return
+     */
+    @Bean
+    public Queue fastgoRmSolrQueue() {
+        return new Queue(RabbtMqConstant.FASTGO_DELSOLR_QUEUE,true,false,false);
+    }
+
+    /**
      * 短信队列绑定到交换机上
      * @return
      */
@@ -55,6 +64,10 @@ public class RabbittmqBeanConfig {
     @Bean
     public Binding solrQueueBinding(){
         return BindingBuilder.bind(fastgoSolrQueue()).to(fastgoTopicExchange()).with(RabbtMqConstant.FASTGO_SOLR_KEY);
+    }
+    @Bean
+    public Binding delSolrQueueBinding() {
+        return BindingBuilder.bind(fastgoRmSolrQueue()).to(fastgoTopicExchange()).with(RabbtMqConstant.FASTGO_DELSOLR_KEY);
     }
 
 

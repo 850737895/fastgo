@@ -37,4 +37,21 @@ public class GoodsDetailGenController {
             return SystemVo.error(SellerGoodsEnum.GEN_GOODSDETAIL_ERROR);
         }
     }
+
+    @RequestMapping("/delHtml/{goodsId}")
+    public SystemVo delHtmlByGoodsId(@PathVariable("goodsId") Long goodsId) {
+        if(goodsId==null) {
+            log.error("根据商品ID 删除详情页码入参为空");
+            return SystemVo.error(SellerGoodsEnum.DEL_GOODSDETAIL_INPARAM_IS_NULL);
+        }
+
+        //执行删除逻辑
+        try {
+            goodsDetailServiceImpl.delHtmlByGoodsId(goodsId);
+            return SystemVo.success(SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+        } catch (Exception e) {
+            log.error("删除商品ID:{}删除详情页面异常:{}",goodsId,e);
+            return SystemVo.error(SellerGoodsEnum.DEL_GOODSDETAIL_INPARAM_ERROR);
+        }
+    }
 }

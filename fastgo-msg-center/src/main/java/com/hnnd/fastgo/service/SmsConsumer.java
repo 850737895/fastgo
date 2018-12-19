@@ -1,14 +1,13 @@
 package com.hnnd.fastgo.service;
 
 import com.alibaba.fastjson.JSON;
-import com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest;
 import com.aliyuncs.exceptions.ClientException;
 import com.hnnd.fastgo.compent.AliSmsCodeSender;
 import com.hnnd.fastgo.constant.RabbtMqConstant;
 import com.hnnd.fastgo.dao.MsgLogMapper;
 import com.hnnd.fastgo.entity.MsgLog;
 import com.hnnd.fastgo.enumration.MsgStatusEnum;
-import com.hnnd.fastgo.temp.SmsContext;
+import com.hnnd.fastgo.temp.Sms;
 import com.rabbitmq.client.Channel;
 import com.redisoper.IRedisService;
 import lombok.extern.slf4j.Slf4j;
@@ -58,7 +57,7 @@ public class SmsConsumer {
 
                 //2:反序列化消息对象
                 String smsContextJson = message.getPayload().toString();
-                SmsContext smsContext = JSON.parseObject(smsContextJson,SmsContext.class);
+                Sms sms = JSON.parseObject(smsContextJson,Sms.class);
 
                 //更新消息表
                 //todo 更新消息表
@@ -69,7 +68,7 @@ public class SmsConsumer {
                 msgLogMapper.updateByPrimaryKey(msgLog);
 
                 //发送短信
-                aliSmsCodeSender.sender(smsContext);
+                aliSmsCodeSender.sender(sms);
 
                 //签收消息
                 channel.basicAck(deliveryTag,false);

@@ -79,4 +79,44 @@ public class SolrConsumer {
             throw new RuntimeException("处理solr导入异常");
         }
     }
+
+    @RabbitListener(queues = {RabbtMqConstant.FASTGO_DELSOLR_QUEUE})
+    public void delSolr(Message message, Channel channel) {
+        log.info("接受即将导入到solr数据:{}",message);
+        String msgId = message.getHeaders().get("msgId").toString();
+        try {
+            if(redisServiceImpl.setnx(RabbtMqConstant.FASTOG_SMS_LOCK_KEY+msgId,msgId)==1) {
+                //非重复消费的消息
+
+                //1:用于消息签收
+                Long deliveryTag = (Long) message.getHeaders().get(AmqpHeaders.DELIVERY_TAG);
+
+                String msgBody = message.getPayload().toString();
+
+                List<String> goodslists = JSON.parseObject(msgBody,new TypeReference<List<String>>(){});
+
+                solrClient.deleteById(goodslists);
+
+                solrClient.commit();
+
+                //更新消息表
+                MsgLog msgLog = new MsgLog();
+                msgLog.setMsgId(msgId);
+                msgLog.setAckTime(new Date());
+                msgLog.setMsgStatus(MsgStatusEnum.MSG_ACK.getCode());
+                msgLogMapper.updateByPrimaryKey(msgLog);
+
+                //消息签收
+                channel.basicAck(deliveryTag,true);
+
+            }else {
+                log.warn("该消息属于重复消费的消息:{}",message);
+            }
+        } catch (Exception e){
+            log.warn("处理solr导入异常:{}",e);
+            //去除短信重复消费,需要重新发送短信
+            redisServiceImpl.expire(RabbtMqConstant.FASTOG_SMS_LOCK_KEY+msgId,0);
+            throw new RuntimeException("处理solr导入异常");
+        }
+    }
 }

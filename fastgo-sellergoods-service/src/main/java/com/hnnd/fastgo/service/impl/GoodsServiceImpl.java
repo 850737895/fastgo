@@ -11,6 +11,7 @@ import com.google.common.collect.Maps;
 import com.hnnd.fastgo.bo.ItemImageBo;
 import com.hnnd.fastgo.bo.SmallImageBo;
 import com.hnnd.fastgo.bo.UpdateGoodsStatusBo;
+import com.hnnd.fastgo.clientapi.search.GenGoodsDetailApi;
 import com.hnnd.fastgo.clientapi.search.ItemSearchApi;
 import com.hnnd.fastgo.clientapi.sellergoods.goodsDetail.GoodsDetialApi;
 import com.hnnd.fastgo.constant.GoodsItemConstant;
@@ -21,8 +22,6 @@ import com.hnnd.fastgo.enumration.*;
 import com.hnnd.fastgo.service.IGoodsService;
 import com.hnnd.fastgo.vo.GoodsVo;
 import com.hnnd.fastgo.vo.PageResultVo;
-import com.hnnd.fastgo.vo.SystemVo;
-import com.sun.javafx.collections.MappingChange;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -68,6 +67,9 @@ public class GoodsServiceImpl implements IGoodsService {
 
     @Autowired
     private GoodsDetialApi goodsDetialApi;
+
+    @Autowired
+    private com.hnnd.fastgo.clientapi.search.GenGoodsDetailApi GenGoodsDetailApi;
 
     @Autowired
     private MsgLogMapper msgLogMapper;
@@ -171,9 +173,7 @@ public class GoodsServiceImpl implements IGoodsService {
     @Transactional
     public void goodsUpOrDownMarket(UpdateGoodsStatusBo updateGoodsStatusBo) {
         tbGoodsMapper.goodsUpOrDownMarket(updateGoodsStatusBo.getSellerId(),updateGoodsStatusBo.getChangeStatus(),updateGoodsStatusBo.getGoodIdList());
-
-
-        //批量查询
+        //批量查询 sku列表
         List<TbItem> tbItemList = tbItemMapper.selectSkuListBySpuId(updateGoodsStatusBo.getGoodIdList());
 
         //商品上架
@@ -185,17 +185,12 @@ public class GoodsServiceImpl implements IGoodsService {
             tbItemMapper.batchUpdateTbItem(tbItemList);
 
             //导入索引库 可以改为异步直接通过队列的形式
-            MsgLog msgLog = bulderMsgLog(tbItemList);
+            MsgLog msgLog = bulderMsgLog(tbItemList,RabbtMqConstant.FASTGO_SOLR_KEY);
 
             msgLogMapper.insert(msgLog);
 
-            //发送到消息队列
-            Map<String,Object> headers = Maps.newHashMap();
-            headers.put("msgId",msgLog.getMsgId());
-            MessageHeaders mhs = new MessageHeaders(headers);
-            Message msg = MessageBuilder.createMessage(JSON.toJSONString(tbItemList), mhs);
+            Message msg = builderMsg(JSON.toJSONString(tbItemList),msgLog.getMsgId());
             CorrelationData correlationData = new CorrelationData(msgLog.getMsgId());
-
 
             //根据商品id生成html保存到缓存中
             for(Long goodsId:updateGoodsStatusBo.getGoodIdList()) {
@@ -217,13 +212,19 @@ public class GoodsServiceImpl implements IGoodsService {
                 skuIds.add(tbItem.getId());
             }
 
-            //把数据库从索引库中移除
-            SystemVo resultVo = itemSearchApi.del4Solr(skuIds);
-            if(resultVo.getCode()!=0) {
-                log.error("商品下架,从索引库删除数据失败:{}",resultVo.getMsg());
-                throw new RuntimeException(resultVo.getMsg());
+            //记录消息日志表
+            MsgLog msgLog = bulderMsgLog(tbItemList,RabbtMqConstant.FASTGO_DELSOLR_KEY);
+            msgLogMapper.insert(msgLog);
+            //构建消息对象
+            Message message = builderMsg(JSON.toJSONString(skuIds),msgLog.getMsgId());
+            CorrelationData correlationData = new CorrelationData(msgLog.getMsgId());
+            //发送消息
+            rabbitTemplate.convertAndSend(RabbtMqConstant.FASTGO_BIZ_EXCHANGE,RabbtMqConstant.FASTGO_DELSOLR_KEY,message,correlationData);
+
+            for (Long goodsId:updateGoodsStatusBo.getGoodIdList()) {
+                //需要把静态模版删除
+                GenGoodsDetailApi.delHtmlByGoodsId(goodsId);
             }
-            //需要把静态模版删除
 
         }
 
@@ -240,17 +241,33 @@ public class GoodsServiceImpl implements IGoodsService {
         }
     }
 
+
     /**
-     * 把tbItemList 发送到消息队列中
-     * @param tbItemList
+     * 构建消息对象
+     * @param msgContent
+     * @param msgId
+     * @return
      */
-    private MsgLog bulderMsgLog(List<TbItem> tbItemList){
+    private  Message builderMsg(String msgContent,String msgId) {
+        //发送到消息队列
+        Map<String,Object> headers = Maps.newHashMap();
+        headers.put("msgId",msgId);
+        MessageHeaders mhs = new MessageHeaders(headers);
+        Message msg = MessageBuilder.createMessage(msgContent, mhs);
+        return msg;
+    }
+
+    /**
+     * 构建消息记录表对象
+     * @param tbItemList sku列表
+     */
+    private MsgLog bulderMsgLog(List<TbItem> tbItemList,String routingKey){
         MsgLog msgLog = new MsgLog();
         String msgId = UUID.randomUUID().toString();
         msgLog.setMsgId(msgId);
         msgLog.setMsgStatus(MsgStatusEnum.MSG_SENDING.getCode());
         msgLog.setDestination(RabbtMqConstant.FASTGO_BIZ_EXCHANGE);
-        msgLog.setRoutingKey(RabbtMqConstant.FASTGO_SOLR_KEY);
+        msgLog.setRoutingKey(routingKey);
         msgLog.setSendTime(new Date());
         msgLog.setMsgText(JSON.toJSONString(tbItemList));
         msgLog.setCurrentRetryCount(RabbtMqConstant.INIT_RETRY_COUNT);

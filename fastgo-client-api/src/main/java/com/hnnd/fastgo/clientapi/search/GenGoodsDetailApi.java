@@ -15,4 +15,7 @@ public interface GenGoodsDetailApi {
     @RequestMapping("/genHtml/{goodsId}")
     public SystemVo genHtml(@PathVariable("goodsId") Long goodsId);
 
+    @RequestMapping("/delHtml/{goodsId}")
+    public SystemVo delHtmlByGoodsId(@PathVariable("goodsId") Long goodsId);
+
 }
