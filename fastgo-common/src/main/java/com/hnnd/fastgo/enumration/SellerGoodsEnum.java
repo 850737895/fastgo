@@ -7,7 +7,7 @@ package com.hnnd.fastgo.enumration;
 
 public enum SellerGoodsEnum {
     //商家商品服务系统枚举模块
-    SELLER_GOODS_SUCCESS(0,"调用远程服务成功"),
+    SELLER_GOODS_SUCCESS(0,"调用服务成功"),
 
     SELLER_GOODS_ERROR(-1,"调用商家商品服务失败"),
 
@@ -172,6 +172,17 @@ public enum SellerGoodsEnum {
     DEL_GOODSDETAIL_INPARAM_IS_NULL(-81,"根据商品ID删除商品详情页入参为空"),
 
     DEL_GOODSDETAIL_INPARAM_ERROR(-82,"根据商品ID删除商品详情页异常"),
+
+    USER_REGISTER_VALIDATE_INPARAM_NULL(-83,"用户注册校验入参为空"),
+
+    USER_REGISTER_VALIDATE_ERROR(-84,"用户注册校验异常"),
+
+    SEND_SMS_CODE_MOBILE_ISNUMM(-85,"发送短信验证码为空"),
+
+    GEN_SMS_CODE_ERROR(-86,"生成短信验证码异常"),
+
+    VALIDATE_SMS_CODE_ERROR(-87,"验证短信验证码异常"),
+
 
     DEL_IMG_ERROR(-70,"删除文件信息异常");
 

@@ -1,6 +1,7 @@
 package com.hnnd.fastgo.dao;
 
 import com.hnnd.fastgo.entity.TbUser;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -44,4 +45,9 @@ public interface TbUserMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(TbUser record);
+
+    int checkUserName(String userName);
+
+    int checkPhone(String mobile);
+
 }

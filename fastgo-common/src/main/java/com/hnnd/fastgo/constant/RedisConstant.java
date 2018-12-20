@@ -26,4 +26,8 @@ public class RedisConstant {
     public static final String GOODS_DETAIL_PREFIX="fastgo:goodsDetail";
 
     public static final String GOODS_DETAILHTML_IS_GEN= "fastgo:goodsDetailHmtlIsGen";
+
+    public static final String SMS_CODE_KEY_PREFIX = "fastgo:smscode";
+    //短信验证码有效期
+    public static final int SMS_CODE_EXPIRE_TIME = 300;
 }

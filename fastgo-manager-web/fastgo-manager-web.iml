@@ -19,6 +19,9 @@
     <orderEntry type="module" module-name="fastgo-client-api" />
     <orderEntry type="module" module-name="fastgo-common" />
     <orderEntry type="module" module-name="fastgo-entity" />
+    <orderEntry type="module" module-name="fastgo-client-api" />
+    <orderEntry type="module" module-name="fastgo-common" />
+    <orderEntry type="module" module-name="fastgo-entity" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:1.5.14.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:1.5.14.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:1.5.14.RELEASE" level="project" />
