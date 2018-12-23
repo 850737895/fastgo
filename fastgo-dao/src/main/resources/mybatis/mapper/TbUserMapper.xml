@@ -121,4 +121,149 @@
     select count(1) from tb_user where phone=#{mobile,jdbcType=VARCHAR}
   </select>
 
+  <insert id="insertSelective" parameterType="com.hnnd.fastgo.entity.TbUser" >
+
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+
+    insert into tb_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="updated != null" >
+        updated,
+      </if>
+      <if test="sourceType != null" >
+        source_type,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="headPic != null" >
+        head_pic,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+      <if test="accountBalance != null" >
+        account_balance,
+      </if>
+      <if test="isMobileCheck != null" >
+        is_mobile_check,
+      </if>
+      <if test="isEmailCheck != null" >
+        is_email_check,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="userLevel != null" >
+        user_level,
+      </if>
+      <if test="points != null" >
+        points,
+      </if>
+      <if test="experienceValue != null" >
+        experience_value,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sourceType != null" >
+        #{sourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="headPic != null" >
+        #{headPic,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="accountBalance != null" >
+        #{accountBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="isMobileCheck != null" >
+        #{isMobileCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="isEmailCheck != null" >
+        #{isEmailCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="userLevel != null" >
+        #{userLevel,jdbcType=INTEGER},
+      </if>
+      <if test="points != null" >
+        #{points,jdbcType=INTEGER},
+      </if>
+      <if test="experienceValue != null" >
+        #{experienceValue,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginTime != null" >
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
 </mapper>

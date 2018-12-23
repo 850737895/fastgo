@@ -8,7 +8,12 @@ import com.hnnd.fastgo.vo.UserFormVo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import sun.plugin.liveconnect.SecurityContextHelper;
+
+import javax.validation.Valid;
 
 /**
  * 用户控制层
@@ -23,12 +28,22 @@ public class UserController {
     private IUserService userServiceImpl;
 
     @RequestMapping("/register")
-    public SystemVo register(@RequestBody UserFormVo userFormVo) {
-        if(null ==userFormVo) {
-            log.error("用户注册信息为空:{}", JSONUtils.toJSONString(userFormVo));
+    public SystemVo register(@Valid @RequestBody UserFormVo userFormVo, BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors()) {
+            String fieldErrMsg = bindingResult.getFieldError().getDefaultMessage();
+            log.error("注册参数校验异常:{}",fieldErrMsg);
             return  SystemVo.error(SellerGoodsEnum.USER_REGISTER_VALIDATE_INPARAM_NULL);
         }
-        return null;
+
+        try {
+            userServiceImpl.register(userFormVo);
+            return SystemVo.success(SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+        } catch (Exception e) {
+            log.error("用户注册异常:{}",e);
+        }
+
+        return SystemVo.error(SellerGoodsEnum.USER_REG_ERROR);
     }
 
     /**
@@ -94,6 +109,12 @@ public class UserController {
             log.error("验证短信验证码异常:{}",e);
             return SystemVo.error(SellerGoodsEnum.VALIDATE_SMS_CODE_ERROR.getCode(),e.getMessage());
         }
+    }
+
+    @RequestMapping("/showLoginUser")
+    public SystemVo showLoginUser() {
+        String loginUser = SecurityContextHolder.getContext().getAuthentication().getName();
+        return SystemVo.success(loginUser,SellerGoodsEnum.SELLER_GOODS_SUCCESS);
     }
 
 }

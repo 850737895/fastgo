@@ -15,7 +15,7 @@ import java.util.List;
  * 广告调用服务
  * Created by Administrator on 2018/12/5.
  */
-@FeignClient(value = "fastgo-advert-service",fallback =ContentApiImpl.class,path = "/advertService/content")
+@FeignClient(name = "fastgo-advert-service",fallback =ContentApiImpl.class,path = "/advertService/content")
 public interface ContentApi {
 
     @RequestMapping("/list4Page")

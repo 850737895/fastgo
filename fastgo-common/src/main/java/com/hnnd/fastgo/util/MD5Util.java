@@ -1,5 +1,6 @@
 package com.hnnd.fastgo.util;
 
+
 import com.hnnd.fastgo.constant.SysConst;
 
 import java.security.MessageDigest;
@@ -49,7 +50,6 @@ public class MD5Util {
     }
 
     public static String MD5EncodeUtf8(String origin) {
-        origin = origin + SysConst.PASSWORD_SALT;
         return MD5Encode(origin, "utf-8");
     }
 

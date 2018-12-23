@@ -56,7 +56,7 @@ public class UserServiceImpl implements IUserService {
     public boolean checkValidate(String checkType, String checkValue) {
         if("username".equals(checkType)&&tbUserMapper.checkUserName(checkValue)==0) {//校验用户名
             return true;
-        }else if("phone".equals(checkType)&&tbUserMapper.checkUserName(checkValue)==0){
+        }else if("phone".equals(checkType)&&tbUserMapper.checkPhone(checkValue)==0){
             return true;
         }
         return false;
@@ -101,6 +101,8 @@ public class UserServiceImpl implements IUserService {
             log.warn("验证码错误");
             throw new RuntimeException("验证码错误");
         }
+        //清除缓存中的
+        redisServiceImpl.expire(RedisConstant.SMS_CODE_KEY_PREFIX+":"+phone,0);
         return true;
     }
 
@@ -115,7 +117,7 @@ public class UserServiceImpl implements IUserService {
             tbUser.setPhone(userFormVo.getPhone());
             tbUser.setCreated(new Date());
             tbUser.setUpdated(new Date());
-            tbUserMapper.insert(tbUser);
+            tbUserMapper.insertSelective(tbUser);
         }
 
         return true;

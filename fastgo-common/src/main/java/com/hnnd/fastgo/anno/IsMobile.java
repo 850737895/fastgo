@@ -1,5 +1,7 @@
 package com.hnnd.fastgo.anno;
 
+import com.hnnd.fastgo.validator.MobileValidator;
+
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.ElementType;
@@ -13,10 +15,12 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.FIELD, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy=Mobile.class)
+@Constraint(validatedBy=MobileValidator.class)
 public @interface IsMobile {
 
-    String message() default"不是金额形式";
+    boolean requried() default true;
+
+    String message() default"手机格式不正确";
 
     Class<?>[] groups() default {};
 

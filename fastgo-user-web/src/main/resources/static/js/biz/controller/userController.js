@@ -68,11 +68,28 @@ app.controller("userController",function($scope,$controller,userService){
     }
 
     $scope.register=function() {
-        userService.register($scope.regUserEntity).success(function (response) {
+        if(checkFormResult) {
+            userService.register($scope.regUserEntity).success(function (response) {
+                if (response.code != 0) {
+                    alert("用户注册失败");
+                } else {
+                    alert("注册成功");
+                }
+            })
+        }else{
+            alert("表单校验不通过");
+            return;
+        }
+    }
+
+    $scope.loginUserName='';
+
+    $scope.showLoginUser=function(){
+        userService.showLoginUser().success(function (response) {
             if(response.code!=0) {
-                alert("用户注册失败");
+                alert("获取登录用户名失败");
             }else{
-                alert("注册成功");
+                $scope.loginUserName = response.data;
             }
         })
     }

@@ -12,4 +12,10 @@ app.service("userService",function($http){
     this.genSmsCode=function(phone) {
         return $http.get(url+"/user/genSmsCode/"+phone);
     }
+    this.register=function(regUserEntity){
+        return $http.post(url+"/user/register",regUserEntity);
+    }
+    this.showLoginUser=function () {
+        return $http.get(url+"/user/showLoginUser");
+    }
 })

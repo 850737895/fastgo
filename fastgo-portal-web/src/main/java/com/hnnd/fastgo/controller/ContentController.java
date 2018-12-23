@@ -27,8 +27,6 @@ import java.util.List;
 @Slf4j
 public class ContentController {
 
-    @Autowired
-    private SolrClient solrClient;
 
     @Autowired
     private ContentApi contentApi;
