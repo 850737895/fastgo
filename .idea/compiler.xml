@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="fastgo-advert-service" />
         <module name="fastgo-apigateway" />
+        <module name="fastgo-cart-web" />
         <module name="fastgo-client-api" />
         <module name="fastgo-common" />
         <module name="fastgo-dao" />
@@ -31,6 +32,7 @@
       <module name="fastgo" target="1.8" />
       <module name="fastgo-advert-service" target="1.8" />
       <module name="fastgo-apigateway" target="1.8" />
+      <module name="fastgo-cart-web" target="1.8" />
       <module name="fastgo-client-api" target="1.8" />
       <module name="fastgo-common" target="1.8" />
       <module name="fastgo-dao" target="1.8" />

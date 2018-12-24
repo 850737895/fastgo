@@ -20,6 +20,7 @@
         <option value="$PROJECT_DIR$/fastgo-detail-service/pom.xml" />
         <option value="$PROJECT_DIR$/fastgo-detail-web/pom.xml" />
         <option value="$PROJECT_DIR$/fastgo-user-web/pom.xml" />
+        <option value="$PROJECT_DIR$/fastgo-cart-web/pom.xml" />
       </list>
     </option>
   </component>
