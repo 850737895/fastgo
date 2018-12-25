@@ -185,6 +185,9 @@ public enum SellerGoodsEnum {
 
     USER_REG_ERROR(-88,"用户注册异常"),
 
+    ADD_CART_LIST_ERROR(-89,"添加商品到购物车失败"),
+
+    ADD_CART_INPARAM_NULL(-90,"添加商品到购物车入参为空"),
 
     DEL_IMG_ERROR(-70,"删除文件信息异常");
 

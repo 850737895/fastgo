@@ -2,7 +2,7 @@ package com.hnnd.fastgo.config;
 
 import com.hnnd.fastgo.properties.CasClientProperties;
 import com.hnnd.fastgo.properties.CasServerProperties;
-import com.hnnd.fastgo.service.CasUserDetailServiceImpl;
+import com.hnnd.fastgo.service.impl.CasUserDetailServiceImpl;
 import org.jasig.cas.client.session.SingleSignOutFilter;
 import org.jasig.cas.client.validation.Cas20ServiceTicketValidator;
 import org.springframework.beans.factory.annotation.Autowired;

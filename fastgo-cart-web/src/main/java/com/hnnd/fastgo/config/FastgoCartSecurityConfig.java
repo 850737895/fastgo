@@ -35,7 +35,8 @@ public class FastgoCartSecurityConfig extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/css/**","/img/**","/js/**","/plugins/**").permitAll()
+                .antMatchers("/css/**","/img/**","/js/**","/plugins/**","/cart.html").permitAll()
+                .antMatchers("/cart/addCartList","/cart/cartList").hasAnyRole("USER","ANONYMOUS")
                 .and()
                 .authorizeRequests().anyRequest().hasRole("USER")
                 .and().csrf().disable();
