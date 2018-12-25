@@ -53,10 +53,10 @@ public class CartController {
         }
         String loginName = SecurityContextHolder.getContext().getAuthentication().getName();
         log.info("当前登录的用户名:{}",loginName);
-
+        List<CartVo> cartVoList = findCartList().getData();
         try {
             //获取购物车列表
-            List<CartVo> cartVoList = findCartList().getData();
+
             log.info("没增加skuId:{}之前的购物车明细:{}",skuId,cartVoList);
 
             cartVoList = cartServiceImpl.addCartList(cartVoList,skuId,num);
@@ -72,7 +72,7 @@ public class CartController {
             return SystemVo.error(SellerGoodsEnum.ADD_CART_LIST_ERROR);
         }
 
-        return SystemVo.success(SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+        return SystemVo.success(cartVoList,SellerGoodsEnum.SELLER_GOODS_SUCCESS);
     }
 
     @RequestMapping("/cartList")

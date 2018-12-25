@@ -65,14 +65,14 @@
 				</div>
 				<div class="cart-item-list" ng-repeat="cart in cartList">
 					<div class="cart-shop">
-						<input type="checkbox" name="" id="" value="" />
+
 						<span class="shopname self">{{cart.sellerName}}</span>
 					</div>
 					<div class="cart-body" ng-repeat="item in cart.orderItemList">
 						<div class="cart-list">
 							<ul class="goods-list yui3-g">
 								<li class="yui3-u-1-24">
-									<input type="checkbox" name="" id="" value="" />
+									<input type="checkbox" ng-checked="isSelected(item.itemId)" ng-click="updateSelection($event,item.itemId)" name=""/>
 								</li>
 								<li class="yui3-u-11-24">
 									<div class="good-item">
@@ -83,13 +83,13 @@
 								
 								<li class="yui3-u-1-8"><span class="price">{{item.price}}</span></li>
 								<li class="yui3-u-1-8">
-									<a href="javascript:void(0)" class="increment mins">-</a>
-									<input autocomplete="off" type="text" value="1" minnum="1" class="itxt" />
-									<a href="javascript:void(0)" class="increment plus">+</a>
+									<a href="javascript:void(0)" class="increment mins" ng-click="cutCartItemNum(item.itemId,-1)">-</a>
+									<input autocomplete="off" type="text" value="{{item.num}}" minnum="1" class="itxt" />
+									<a href="javascript:void(0)" class="increment plus" ng-click="addCartItemNum(item.itemId,1)">+</a>
 								</li>
 								<li class="yui3-u-1-8"><span class="sum">{{item.totalFee}}</span></li>
 								<li class="yui3-u-1-8">
-									<a href="#none">删除</a><br />
+									<a href="#none" ng-click="cutCartItemNum(item.itemId,-item.num)">删除</a><br />
 									<a href="#none">移到我的关注</a>
 								</li>
 							</ul>
@@ -154,18 +154,18 @@
 			</div>
 			<div class="cart-tool">
 				<div class="select-all">
-					<input type="checkbox" name="" id="" value="" />
+					<input type="checkbox" name="" id=""  ng-click="selectAll($event)" ng-checked="isSelectedAll()"  value="" />
 					<span>全选</span>
 				</div>
 				<div class="option">
-					<a href="#none">删除选中的商品</a>
+
 					<a href="#none">移到我的关注</a>
 					<a href="#none">清除下柜商品</a>
 				</div>
 				<div class="toolbar">
-					<div class="chosed">已选择<span>0</span>件商品</div>
+					<div class="chosed">已选择<span>{{totalChoose}}</span>件商品</div>
 					<div class="sumprice">
-						<span><em>总价（不含运费） ：</em><i class="summoney">¥16283.00</i></span>
+						<span><em>总价（不含运费） ：</em><i class="summoney">{{totalMoney}}</i></span>
 						<span><em>已节省：</em><i>-¥20.00</i></span>
 					</div>
 					<div class="sumbtn">
