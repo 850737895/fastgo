@@ -131,22 +131,44 @@ app.controller("cartController",function($scope,$controller,$location,cartServic
      * 跳转到结算页
      */
     $scope.toSettlementPage=function() {
-        window.open("getOrderInfo.html#?skuIds="+$scope.selected);
+        cartService.toSettlementPage($scope.selected).success(function (response) {
+            if(response.code!=0) {
+                alert("购物车结算出错");
+            }else{
+                window.location.href="getOrderInfo.html";
+            }
+        })
     }
 
     /**
      * 结算页加载勾选的购物车列表
      */
     $scope.loadSelectCartList=function(){
-        var skuIds = $location.search()['skuIds'];
-        alert(skuIds)
-        cartService.loadSelectCartList(skuIds).success(function (resposne) {
+        cartService.loadSelectCartList().success(function (resposne) {
             if(resposne.code!=0) {
                 alert(resposne.msg);
             }else{
                 $scope.selectedCartList=resposne.data;
+                calCartMoney($scope.selectedCartList);
             }
         })
+    }
+
+    /**
+     * 计算购物车金额
+     * @param selectedCartList
+     */
+    calCartMoney=function(selectedCartList) {
+        $scope.totalFee=0.00;
+        $scope.totalCount=0;
+        var selectedCartJson = JSON.parse(JSON.stringify(selectedCartList));
+        for(var i=0;i<selectedCartJson.length;i++) {
+            var orderItemList = JSON.parse(JSON.stringify(selectedCartJson[i].orderItemList));
+            for(var j=0;j<orderItemList.length;j++) {
+                $scope.totalCount=$scope.totalCount+1;
+                $scope.totalFee = $scope.totalFee+orderItemList[j].totalFee;
+            }
+        }
     }
 
 })

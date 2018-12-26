@@ -20,7 +20,11 @@ app.service('cartService',function($http) {
         return $http.get(url+'/cart/addCartList?skuId='+skuId+"&num="+num);
     }
 
-    this.loadSelectCartList=function(skuIds) {
-        return $http.get(url+"/cart/loadSelectCartList?skuIds="+skuIds);
+    this.loadSelectCartList=function() {
+        return $http.get(url+"/cart/loadSelectCartList");
+    }
+
+    this.toSettlementPage=function(skuIds) {
+        return $http.get(url+"/cart/saveSelectCartList?skuIds="+skuIds);
     }
 })

@@ -1,12 +1,14 @@
 /**
  * Created by Administrator on 2018/12/20.
  */
-app.controller("userController",function($scope,$controller,userService){
+app.controller("userController",function($scope,$controller,userService,addresService){
     $controller('baseController', {$scope: $scope});//继承
 
     var checkFormResult = true;
 
     $scope.regUserEntity={};
+
+    $scope.address={'contact':'','provinceId':'','cityId':'','townId':'','mobile':'','address':''};
 
     /**
      * 校验用户名
@@ -90,6 +92,19 @@ app.controller("userController",function($scope,$controller,userService){
                 alert("获取登录用户名失败");
             }else{
                 $scope.loginUserName = response.data;
+            }
+        })
+    }
+
+    /**
+     * 初始化加載省份列表
+     */
+    $scope.initProvinceList=function(){
+        addresService.initProvinceList().success(function (response) {
+            if(response.code!=0) {
+                alert("初始化省份列表出错");
+            }else{
+                $scope.provinceList = response.data;
             }
         })
     }

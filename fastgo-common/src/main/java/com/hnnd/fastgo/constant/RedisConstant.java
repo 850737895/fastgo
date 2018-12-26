@@ -32,4 +32,8 @@ public class RedisConstant {
     public static final int SMS_CODE_EXPIRE_TIME = 300;
     //redis存储到购物车列表的key
     public static final String CARTLIST_IN_REDIS_KEY = "fastgo:cartlist:key";
+
+    public static final String SELECT_CARTLIST_IN_REDIS_KEY = "fastgo:selectcartlist:key";
+
+    public static final String PROVINCES_LIST_KEY = "fastgo:address";
 }

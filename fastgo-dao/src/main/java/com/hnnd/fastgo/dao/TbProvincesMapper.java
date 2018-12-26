@@ -44,4 +44,6 @@ public interface TbProvincesMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(TbProvinces record);
+
+
 }

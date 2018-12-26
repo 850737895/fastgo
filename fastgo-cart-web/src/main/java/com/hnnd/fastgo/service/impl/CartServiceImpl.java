@@ -89,6 +89,18 @@ public class CartServiceImpl implements ICartService {
         redisServiceImpl.hset(RedisConstant.CARTLIST_IN_REDIS_KEY,loginUserName, JSON.toJSONString(cartVoList));
     }
 
+    @Override
+    public void saveSelectCartList(String[] skuIds,String loginUserName) {
+        redisServiceImpl.hset(RedisConstant.SELECT_CARTLIST_IN_REDIS_KEY,loginUserName,JSON.toJSONString(skuIds));
+    }
+
+    @Override
+    public String[] getSelectCartList4Redis(String loginUserName) {
+        String skuIdStr = redisServiceImpl.hget(RedisConstant.SELECT_CARTLIST_IN_REDIS_KEY,loginUserName);
+        String [] skuIds = JSON.parseObject(skuIdStr,new TypeReference<String[]>(){});
+        return skuIds;
+    }
+
     /**
      * 通过商家id搜索购物车
      * @param cartList 当前的购物车列表
@@ -179,5 +191,11 @@ public class CartServiceImpl implements ICartService {
         tbOrderItem.setTotalFee(new BigDecimal(tbItem.getPrice()*num).setScale(2,BigDecimal.ROUND_HALF_DOWN));
         tbOrderItem.setSellerId(tbItem.getSellerId());
         return tbOrderItem;
+    }
+
+    public static void main(String[] args) {
+        String [] test={"123","456"};
+
+        System.out.println(JSON.toJSONString(test));
     }
 }

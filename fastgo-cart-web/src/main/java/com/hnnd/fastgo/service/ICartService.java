@@ -39,4 +39,17 @@ public interface ICartService {
      * @param loginUserName 登录用户名
      */
     void saveCartList2Redis(List<CartVo> cartVoList,String loginUserName);
+
+    /**
+     *保存勾选的购物车明细id 到redis中
+     * @param skuIds skuids
+     */
+    void saveSelectCartList(String[] skuIds,String loginUserName);
+
+    /**
+     * 通过用户登录名称获取用户勾选的购物车明细id
+     * @param loginUserName 用户登录名称
+     * @return 购物车明细id
+     */
+    String[] getSelectCartList4Redis(String loginUserName);
 }

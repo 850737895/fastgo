@@ -16,4 +16,14 @@ public class SysConst {
     public static final String ENCODE_CHARSET = "UTF-8";
 
     public static final Integer CARTLIST_IN_COOKIE_EXIRE_TIME = 3600*24*2;
+
+    public static final String PROVINCES_LIST="province_list";
+
+    public static final String PROVINCE_MAPPING_CITY="prov_mapping_city";
+
+    public static final String CITY_MAPPING_AREA="city_mapping_area";
+
+    public static final String FAST_GO_ADDRESS_LOCK="fastgo:address_lock";
+
+
 }

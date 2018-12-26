@@ -16,10 +16,13 @@
 	<script type="text/javascript" src="js/biz/base.js"></script>
 	<script type="text/javascript" src="js/biz/controller/baseController.js"></script>
 	<script type="text/javascript" src="js/biz/controller/userController.js"></script>
+	<script type="text/javascript" src="js/biz/service/addresService.js"></script>
 	<script type="text/javascript" src="js/biz/service/userService.js"></script>
+
+
 </head>
 
-<body ng-app="fastgo" ng-controller="userController" ng-init="showLoginUser()">
+<body ng-app="fastgo" ng-controller="userController" ng-init="showLoginUser();initProvinceList()">
     <!-- 头部栏位 -->
     <!--页面顶部-->
 <div id="nav-bottom">
@@ -153,6 +156,8 @@ $(function(){
 <script type="text/javascript" src="pages/userInfo/distpicker.data.js"></script>
 <script type="text/javascript" src="pages/userInfo/distpicker.js"></script>
 <script type="text/javascript" src="pages/userInfo/main.js"></script>
+
+
 </body>
     <!--header-->
     <div id="account">
@@ -250,7 +255,7 @@ $(function(){
                                             <div class="control-group">
                                             <label class="control-label">收货人：</label>
                                             <div class="controls">
-                                                <input type="text" class="input-medium">
+                                                <input type="text" ng-model="address.contact" class="input-medium">
                                             </div>
                                         </div>
                                         <div class="control-group">
@@ -258,7 +263,7 @@ $(function(){
                                             <div class="controls">
                                                 <div data-toggle="distpicker">
                                                 <div class="form-group area">
-                                                    <select class="form-control" id="province1"></select>
+                                                    <select class="form-control" ng-model="address.provinceId" ng-options=" item.provinceid as item.province for item in provinceList"></select>
                                                 </div>
                                                 <div class="form-group area">
                                                     <select class="form-control" id="city1"></select>

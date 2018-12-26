@@ -44,4 +44,6 @@ public interface TbCitiesMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(TbCities record);
+
+    List<TbCities> selectCityListByProvinceId(String provinceId);
 }

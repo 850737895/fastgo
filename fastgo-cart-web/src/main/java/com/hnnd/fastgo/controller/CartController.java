@@ -111,18 +111,36 @@ public class CartController {
 
     /**
      * 加载勾选的购物车列表
-     * @param skuIds item
      * @return  SystemVo<List<SystemVo>>
      */
     @RequestMapping("/loadSelectCartList")
-    public SystemVo<List<SystemVo>> loadSelectCartList(@RequestParam("skuIds") String [] skuIds) {
+    public SystemVo<List<SystemVo>> loadSelectCartList() {
+
+        List<CartVo> cartVoList = findCartList().getData();
+        String loginUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+        String[] skuIds = cartServiceImpl.getSelectCartList4Redis(loginUserName);
         if(skuIds==null || skuIds.length==0) {
+            log.error("通过登录用户名:{}从缓存中获取勾选的购物车明细为空",loginUserName);
+            return SystemVo.error(SellerGoodsEnum.CAR_CART_LIST_ERROR);
+        }
+        List<CartVo> selectCartList = searchSelectCartList(cartVoList,skuIds);
+        return SystemVo.success(selectCartList,SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+    }
+
+    /**
+     * 保存勾选的购物车明细
+     * @param skuIds 购物车明细id 集合
+     * @return SystemVo
+     */
+    @RequestMapping("/saveSelectCartList")
+    public SystemVo saveSelectCartList(@RequestParam("skuIds") String [] skuIds) {
+        if(skuIds==null || skuIds.length ==0) {
             log.error("购物车结算入参异常");
             return SystemVo.error(SellerGoodsEnum.CAL_CART_LIST_INPARAM_NULL);
         }
-        List<CartVo> cartVoList = findCartList().getData();
-        List<CartVo> selectCartList = searchSelectCartList(cartVoList,skuIds);
-        return SystemVo.success(selectCartList,SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+        String loginUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+        cartServiceImpl.saveSelectCartList(skuIds,loginUserName);
+        return SystemVo.success(SellerGoodsEnum.SELLER_GOODS_SUCCESS);
     }
 
     /**

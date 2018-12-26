@@ -191,6 +191,8 @@ public enum SellerGoodsEnum {
 
     CAL_CART_LIST_INPARAM_NULL(-91,"请选择商品明细结算"),
 
+    CAR_CART_LIST_ERROR(-92,"购物车结算异常"),
+
     DEL_IMG_ERROR(-70,"删除文件信息异常");
 
 
