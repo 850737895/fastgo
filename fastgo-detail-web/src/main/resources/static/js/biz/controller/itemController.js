@@ -4,10 +4,12 @@ app.controller("itemController",function($scope,$http){
 	
 	//数量加减
 	$scope.addNum=function(x){
-		$scope.num+=x;
-		if($scope.num<1){
-			$scope.num=1;
-		}		
+		var num=parseInt($("#num").val());
+		num=num+x;
+		if(num<1){
+			num=1;
+		}
+		$("#num").val(num);
 	}
 	
 	//用户选择规格
@@ -64,10 +66,10 @@ app.controller("itemController",function($scope,$http){
 	
 	//添加商品到购物车
 	$scope.addToCart=function(){
-		//alert('SKUID:'+$scope.sku.id );		
-		
-		$http.get('http://localhost:9107/cart/addGoodsToCartList.do?itemId='
-				+$scope.sku.id+'&num='+$scope.num ,{'withCredentials':true} ).success(
+
+		var num = $("#num").val();
+		$http.get('http://localhost:9107/cart/addCartList?skuId='
+				+$scope.sku.id+'&num='+num ,{'withCredentials':true} ).success(
 					function(response){
 						if(response.success){
 							location.href='http://localhost:9107/cart.html';						

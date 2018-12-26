@@ -19,4 +19,8 @@ app.service('cartService',function($http) {
     this.addCartItemNum=function(skuId,num) {
         return $http.get(url+'/cart/addCartList?skuId='+skuId+"&num="+num);
     }
+
+    this.loadSelectCartList=function(skuIds) {
+        return $http.get(url+"/cart/loadSelectCartList?skuIds="+skuIds);
+    }
 })

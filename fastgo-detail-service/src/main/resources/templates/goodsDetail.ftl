@@ -160,16 +160,16 @@
                         <div class="fl title">
                             <div class="control-group">
                                 <div class="controls">
-                                    <input autocomplete="off" type="text" value="1" minnum="1" class="itxt" />
-                                    <a href="javascript:void(0)" class="increment plus">+</a>
-                                    <a href="javascript:void(0)" class="increment mins">-</a>
+                                    <input autocomplete="off" type="text" value="1" minnum="1" id="num" class="itxt" />
+                                    <a href="javascript:void(0)" class="increment plus" ng-click="addNum(1)">+</a>
+                                    <a href="javascript:void(0)" class="increment mins" ng-click="addNum(-1)">-</a>
                                 </div>
                             </div>
                         </div>
                         <div class="fl">
                             <ul class="btn-choose unstyled">
                                 <li>
-                                    <a href="cart.html" target="_blank" class="sui-btn  btn-danger addshopcar">加入购物车</a>
+                                    <a target="_blank" class="sui-btn  btn-danger addshopcar" ng-click="addToCart()">加入购物车</a>
                                 </li>
                             </ul>
                         </div>

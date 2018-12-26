@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/12/25.
  */
-app.controller("cartController",function($scope,$controller,cartService){
+app.controller("cartController",function($scope,$controller,$location,cartService){
     $controller('baseController', {$scope: $scope});//继承
 
     /**
@@ -126,5 +126,27 @@ app.controller("cartController",function($scope,$controller,cartService){
     $scope.isSelectedAll = function () {
         return $scope.selected.length == $scope.content.length;
     };
+
+    /**
+     * 跳转到结算页
+     */
+    $scope.toSettlementPage=function() {
+        window.open("getOrderInfo.html#?skuIds="+$scope.selected);
+    }
+
+    /**
+     * 结算页加载勾选的购物车列表
+     */
+    $scope.loadSelectCartList=function(){
+        var skuIds = $location.search()['skuIds'];
+        alert(skuIds)
+        cartService.loadSelectCartList(skuIds).success(function (resposne) {
+            if(resposne.code!=0) {
+                alert(resposne.msg);
+            }else{
+                $scope.selectedCartList=resposne.data;
+            }
+        })
+    }
 
 })

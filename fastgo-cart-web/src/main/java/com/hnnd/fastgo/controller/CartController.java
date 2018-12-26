@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.google.common.collect.Lists;
 import com.hnnd.fastgo.constant.SysConst;
+import com.hnnd.fastgo.entity.TbOrderItem;
 import com.hnnd.fastgo.enumration.SellerGoodsEnum;
 import com.hnnd.fastgo.service.ICartService;
 import com.hnnd.fastgo.util.CookieUtil;
@@ -13,12 +14,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -46,6 +46,7 @@ public class CartController {
      * @return
      */
     @RequestMapping("/addCartList")
+    @CrossOrigin(value = {"http://localhost:9104"},allowCredentials = "true")
     public SystemVo addCartList(@RequestParam("skuId")Long skuId,@RequestParam("num")Integer num) {
         if(skuId==null || num == null) {
             log.error("添加购物车的入参为空");
@@ -105,6 +106,69 @@ public class CartController {
                 CookieUtil.deleteCookie(request,response,SysConst.CARTLIST_STORE_IN_COOKIE);
             }
             return SystemVo.success(redisCartList, SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+        }
+    }
+
+    /**
+     * 加载勾选的购物车列表
+     * @param skuIds item
+     * @return  SystemVo<List<SystemVo>>
+     */
+    @RequestMapping("/loadSelectCartList")
+    public SystemVo<List<SystemVo>> loadSelectCartList(@RequestParam("skuIds") String [] skuIds) {
+        if(skuIds==null || skuIds.length==0) {
+            log.error("购物车结算入参异常");
+            return SystemVo.error(SellerGoodsEnum.CAL_CART_LIST_INPARAM_NULL);
+        }
+        List<CartVo> cartVoList = findCartList().getData();
+        List<CartVo> selectCartList = searchSelectCartList(cartVoList,skuIds);
+        return SystemVo.success(selectCartList,SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+    }
+
+    /**
+     * 从所有购物车中搜索出选择的购物车
+     */
+    private List<CartVo> searchSelectCartList(List<CartVo> allCartList,String[] skuIds) {
+        if(allCartList==null || allCartList.isEmpty()) {
+            throw new RuntimeException("购物车不存在");
+        }
+
+        List<String> skuList = Arrays.asList(skuIds);
+        List<CartVo> selectCartVoList = Lists.newArrayList();
+
+        //遍历所有的购物车选项
+        for(CartVo cartVo : allCartList) {
+            //一个购物车中的购物明细
+            CartVo retCartVo = selectOrderItem(skuList,cartVo);
+            if(retCartVo!=null) {
+                selectCartVoList.add(retCartVo);
+            }
+        }
+        return selectCartVoList;
+    }
+
+    /**
+     * 判断订单明细是否是被勾选
+     * @param skuIds
+     * @param cartVo
+     * @return
+     */
+    private CartVo  selectOrderItem(List<String> skuIds,CartVo cartVo) {
+        CartVo retCartVo = new CartVo();
+        List<TbOrderItem> tbOrderItemList = Lists.newArrayList();
+        for (TbOrderItem tbOrderItem:cartVo.getOrderItemList()) {
+            if(skuIds.contains(tbOrderItem.getItemId().toString())) {
+                tbOrderItemList.add(tbOrderItem);
+            }
+        }
+        //存在勾选的
+        if(tbOrderItemList.size()>0) {
+            retCartVo.setSellerId(cartVo.getSellerId());
+            retCartVo.setSellerName(cartVo.getSellerName());
+            retCartVo.setOrderItemList(tbOrderItemList);
+            return retCartVo;
+        }else{
+            return null;
         }
     }
 }

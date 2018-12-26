@@ -189,6 +189,8 @@ public enum SellerGoodsEnum {
 
     ADD_CART_INPARAM_NULL(-90,"添加商品到购物车入参为空"),
 
+    CAL_CART_LIST_INPARAM_NULL(-91,"请选择商品明细结算"),
+
     DEL_IMG_ERROR(-70,"删除文件信息异常");
 
 
