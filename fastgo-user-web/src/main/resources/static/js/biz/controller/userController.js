@@ -8,7 +8,7 @@ app.controller("userController",function($scope,$controller,userService,addresSe
 
     $scope.regUserEntity={};
 
-    $scope.address={'contact':'','provinceId':'','cityId':'','townId':'','mobile':'','address':''};
+    $scope.address={'contact':'','provinceId':'','cityId':'','townId':'','mobile':'','address':'','alias':''};
 
     /**
      * 校验用户名
@@ -105,6 +105,55 @@ app.controller("userController",function($scope,$controller,userService,addresSe
                 alert("初始化省份列表出错");
             }else{
                 $scope.provinceList = response.data;
+            }
+        })
+    }
+
+    $scope.$watch('address.provinceId',function(newValue,oldValue){
+        if(typeof(newValue) == "undefined"  ||newValue=="") {
+            return;
+        }else{
+            addresService.initCityList(newValue).success(function (response) {
+                if(response.code!=0) {
+                    alert(response.msg);
+                }else{
+                    $scope.cityList = response.data;
+                }
+            })
+        }
+    })
+
+    $scope.$watch('address.cityId',function(newValue,oldValue){
+        if(typeof(newValue) == "undefined"  ||newValue=="") {
+            return;
+        }else{
+            addresService.initAreaList(newValue).success(function (response) {
+                if(response.code!=0) {
+                    alert(response.msg);
+                }else{
+                    $scope.areaList = response.data;
+                }
+            })
+        }
+    })
+
+    $scope.saveAddress=function() {
+        addresService.saveAddress($scope.address).success(function (response) {
+            if(response.code!=0) {
+                alert(response.msg);
+            }else{
+                $scope.selectAddressList();
+            }
+        })
+    }
+    
+    $scope.selectAddressList=function(){
+        addresService.selectAddressList().success(function (response) {
+            if(response.code!=0) {
+                alert(response.msg);
+            }else{
+                $scope.addressList = response.data;
+                $scope.address={};
             }
         })
     }

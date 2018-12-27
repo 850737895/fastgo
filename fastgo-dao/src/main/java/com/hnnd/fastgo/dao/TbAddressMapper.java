@@ -45,4 +45,6 @@ public interface TbAddressMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(TbAddress record);
+
+    List<TbAddress> selectAddressListByUserId(String userId);
 }

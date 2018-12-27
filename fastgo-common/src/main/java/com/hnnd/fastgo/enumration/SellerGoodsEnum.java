@@ -193,6 +193,20 @@ public enum SellerGoodsEnum {
 
     CAR_CART_LIST_ERROR(-92,"购物车结算异常"),
 
+    INIT_PROVINCES_SELECT_LIST_ERROR(-93,"初始化省份下拉列表异常"),
+
+    INIT_CITY_SELECT_LIST_ERROR(-94,"初始化城市下拉列表异常"),
+
+    INIT_AREA_SELECT_LIST_ERROR(-95,"初始化区域下拉列表异常"),
+
+    INIT_ADDRESS_INPARAM_IS_NULL(-95,"初始化下拉列表入参为空"),
+
+    ADD_ADRESS_INPARAM_NUMM(-96,"保存收货地址入参异常"),
+
+    ADD_ADRESS_INPARAM_ERROR(-97,"保存收货地址入参异常"),
+
+    QRY_ADDRESS_LIST_ERROR(-98,"查询收货地址列表异常"),
+
     DEL_IMG_ERROR(-70,"删除文件信息异常");
 
 

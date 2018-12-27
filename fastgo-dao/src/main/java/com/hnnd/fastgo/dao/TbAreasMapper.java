@@ -44,4 +44,11 @@ public interface TbAreasMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(TbAreas record);
+
+    /**
+     * 根据城市id 加载该城市的区域列表
+     * @param cityId 城市id
+     * @return 区域列表
+     */
+    List<TbAreas> selectTbAreaListByCityId(String cityId);
 }

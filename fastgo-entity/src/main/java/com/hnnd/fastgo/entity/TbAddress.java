@@ -1,6 +1,7 @@
 package com.hnnd.fastgo.entity;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -28,6 +29,7 @@ public class TbAddress implements Serializable {
      *
      * @mbggenerated
      */
+    @NotEmpty
     private String provinceId;
 
     /**
@@ -36,6 +38,7 @@ public class TbAddress implements Serializable {
      *
      * @mbggenerated
      */
+    @NotEmpty
     private String cityId;
 
     /**
@@ -44,6 +47,7 @@ public class TbAddress implements Serializable {
      *
      * @mbggenerated
      */
+    @NotEmpty
     private String townId;
 
     /**
@@ -52,6 +56,7 @@ public class TbAddress implements Serializable {
      *
      * @mbggenerated
      */
+
     private String mobile;
 
     /**
@@ -60,6 +65,7 @@ public class TbAddress implements Serializable {
      *
      * @mbggenerated
      */
+    @NotEmpty
     private String address;
 
     /**
@@ -68,6 +74,7 @@ public class TbAddress implements Serializable {
      *
      * @mbggenerated
      */
+    @NotEmpty
     private String contact;
 
     /**

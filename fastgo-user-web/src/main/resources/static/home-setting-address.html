@@ -22,7 +22,8 @@
 
 </head>
 
-<body ng-app="fastgo" ng-controller="userController" ng-init="showLoginUser();initProvinceList()">
+<body ng-app="fastgo" ng-controller="userController" ng-init="showLoginUser();selectAddressList()">
+{{address}}
     <!-- 头部栏位 -->
     <!--页面顶部-->
 <div id="nav-bottom">
@@ -204,7 +205,7 @@ $(function(){
                     <div class="body userAddress">
                         <div class="address-title">
                             <span class="title">地址管理</span>
-                            <a data-toggle="modal" data-target=".edit" data-keyboard="false"   class="sui-btn  btn-info add-new">添加新地址</a>
+                            <a data-toggle="modal" data-target=".edit" data-keyboard="false"   class="sui-btn  btn-info add-new" ng-click="initProvinceList()">添加新地址</a>
                             <span class="clearfix"></span>
                         </div>
                         <div class="address-detail">
@@ -218,26 +219,17 @@ $(function(){
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>刘田田</td>
-                                        <td>北京 北京市 海淀区 上地街道东北旺西路8号中关村软件园9号楼</td>
-                                        <td>1774***********4</td>
+                                    <tr ng-repeat="addr in addressList">
+                                        <td>{{addr.contact}}</td>
+                                        <td>{{addr.provinceName}} {{addr.cityName}} {{addr.areaName}} {{addr.address}}</td>
+                                        <td>{{addr.mobile}}</td>
                                         <td>
                                             <a href="#">编辑</a>
                                             <a href="#">删除</a>
                                             默认地址
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>沈沉</td>
-                                        <td>北京 北京市 海淀区 上地街道东北旺西路8号中关村软件园9号楼</td>
-                                        <td>1774***********4</td>
-                                        <td>
-                                            <a href="#">编辑</a>
-                                            <a href="#">删除</a>
-                                            <a href="#">设为默认</a>
-                                        </td>
-                                    </tr>
+
                                     
                                 </tbody>
                             </table>                          
@@ -266,10 +258,10 @@ $(function(){
                                                     <select class="form-control" ng-model="address.provinceId" ng-options=" item.provinceid as item.province for item in provinceList"></select>
                                                 </div>
                                                 <div class="form-group area">
-                                                    <select class="form-control" id="city1"></select>
+                                                    <select class="form-control" ng-model="address.cityId"  id="city1" ng-options=" item.cityid as item.city for item in cityList" ></select>
                                                 </div>
                                                 <div class="form-group area">
-                                                    <select class="form-control" id="district1"></select>
+                                                    <select class="form-control" id="district1" ng-model="address.townId"  ng-options=" item.areaid as item.area for item in areaList" ></select>
                                                 </div>
                                             </div>
                                             </div>									 
@@ -277,25 +269,25 @@ $(function(){
                                         <div class="control-group">
                                             <label class="control-label">详细地址：</label>
                                             <div class="controls">
-                                                <input type="text" class="input-large">
+                                                <input type="text" class="input-large" ng-model="address.address">
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label">联系电话：</label>
                                             <div class="controls">
-                                                <input type="text" class="input-medium">
+                                                <input type="text" class="input-medium" ng-model="address.mobile">
                                             </div>
                                         </div>
-                                        <div class="control-group">
+<!--                                        <div class="control-group">
                                             <label class="control-label">邮箱：</label>
                                             <div class="controls">
                                                 <input type="text" class="input-medium">
                                             </div>
-                                        </div>
+                                        </div>-->
                                         <div class="control-group">
                                             <label class="control-label">地址别名：</label>
                                             <div class="controls">
-                                                <input type="text" class="input-medium">
+                                                <input type="text" class="input-medium" ng-model="address.alias">
                                             </div>
                                             <div class="othername">
                                                 建议填写常用地址：<a href="#" class="sui-btn btn-default">家里</a>　<a href="#" class="sui-btn btn-default">父母家</a>　<a href="#" class="sui-btn btn-default">公司</a>
@@ -307,7 +299,7 @@ $(function(){
                                         
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" data-ok="modal" class="sui-btn btn-primary btn-large">确定</button>
+                                        <button type="button" data-ok="modal" class="sui-btn btn-primary btn-large" ng-click="saveAddress()">确定</button>
                                         <button type="button" data-dismiss="modal" class="sui-btn btn-default btn-large">取消</button>
                                     </div>
                                 </div>
