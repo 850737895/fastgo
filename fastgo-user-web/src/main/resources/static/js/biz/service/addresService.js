@@ -17,10 +17,16 @@ app.service("addresService",function($http){
         return $http.get(url+"/address/selectAreaListByCityId?cityId="+cityId);
     }
 
-    this.saveAddress=function(address) {
-        return $http.post(url+"/address/saveAddress",address);
+    this.saveAddress=function(methodName,address) {
+        return $http.post(url+"/address/"+methodName,address);
     }
     this.selectAddressList=function() {
         return $http.get(url+"/address/selectAddressList");
+    }
+    this.deleteAddressById=function(id){
+        return $http.get(url+"/address/delete/"+id);
+    }
+    this.findOne=function(id) {
+        return $http.get(url+"/address/findOne/"+id);
     }
 })

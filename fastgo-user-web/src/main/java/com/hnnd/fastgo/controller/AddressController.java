@@ -15,10 +15,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import javax.validation.Valid;
@@ -121,9 +118,30 @@ public class AddressController {
             return SystemVo.success(SellerGoodsEnum.SELLER_GOODS_SUCCESS);
         } catch (BeansException e) {
             log.error("保存收货地址异常:{}",e);
-            return SystemVo.error(SellerGoodsEnum.ADD_ADRESS_INPARAM_ERROR);
+            return SystemVo.error(SellerGoodsEnum.ADD_ADRESS_ERROR);
         }
     }
+
+    @RequestMapping("/modifyAddress")
+    public SystemVo modifyAddress(@Valid @RequestBody AddressVo addressVo, BindingResult bindingResult){
+        if(bindingResult.hasErrors()) {
+            String fieldErrMsg = bindingResult.getFieldError().getDefaultMessage();
+            log.error("注册参数校验异常:{}",fieldErrMsg);
+            return  SystemVo.error(SellerGoodsEnum.ADD_ADRESS_INPARAM_NUMM);
+        }
+        try {
+            TbAddress tbAddress = new TbAddress();
+            BeanUtils.copyProperties(addressVo,tbAddress);
+            tbAddress.setUserId(SecurityContextHolder.getContext().getAuthentication().getName());
+            addresServiceImpl.modifyAddress(tbAddress);
+            return SystemVo.success(SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+        } catch (BeansException e) {
+            log.error("保存收货地址异常:{}",e);
+            return SystemVo.error(SellerGoodsEnum.ADD_ADRESS_ERROR);
+        }
+    }
+
+
 
     @RequestMapping("/selectAddressList")
     public SystemVo< List<Map<String,Object>>> selectAddressList() {
@@ -135,5 +153,40 @@ public class AddressController {
             log.error("查询收货地址列表异常:{}",e);
             return SystemVo.error(SellerGoodsEnum.QRY_ADDRESS_LIST_ERROR);
         }
+    }
+
+    @RequestMapping("/delete/{addressId}")
+    public SystemVo deleteAddressById(@PathVariable("addressId") Long adderssId) {
+        if(adderssId==null) {
+            log.error("传入参数为空");
+            return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_ERROR.IN_PARAM_IS_NULL);
+        }
+        try {
+            addresServiceImpl.deleteById(adderssId);
+            return SystemVo.success(SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+        } catch (Exception e) {
+            log.error("根据地址ID:{}删除地址新异常",e);
+            return SystemVo.error(SellerGoodsEnum.DEL_ADDRESS_BY_ID_ERROR);
+        }
+    }
+
+    @RequestMapping("/findOne/{adderssId}")
+    public SystemVo<TbAddress> findOne(@PathVariable("adderssId") Long adderssId) {
+        if(adderssId==null) {
+            log.error("传入参数为空");
+            return SystemVo.error(SellerGoodsEnum.SELLER_GOODS_ERROR.IN_PARAM_IS_NULL);
+        }
+        try {
+            String loginUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+            TbAddress tbAddress = addresServiceImpl.findOne(adderssId,loginUserName);
+            if(null == tbAddress) {
+                return SystemVo.error(SellerGoodsEnum.QRY_ADDRESS_BY_ID_ERROR);
+            }
+            return SystemVo.success(tbAddress,SellerGoodsEnum.SELLER_GOODS_SUCCESS);
+        } catch (Exception e) {
+            log.error("根据地址ID查询地址信息异常:{}",e);
+            return SystemVo.error(SellerGoodsEnum.QRY_ADDRESS_BY_ID_ERROR);
+        }
+
     }
 }

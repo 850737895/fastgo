@@ -25,5 +25,8 @@ public class SysConst {
 
     public static final String FAST_GO_ADDRESS_LOCK="fastgo:address_lock";
 
+    //是默认的收货地址
+    public static final String IS_DEFAULT_ADDRESS="1";
+
 
 }

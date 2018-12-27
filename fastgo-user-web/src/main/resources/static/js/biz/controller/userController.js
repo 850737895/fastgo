@@ -8,7 +8,7 @@ app.controller("userController",function($scope,$controller,userService,addresSe
 
     $scope.regUserEntity={};
 
-    $scope.address={'contact':'','provinceId':'','cityId':'','townId':'','mobile':'','address':'','alias':''};
+    $scope.address={'id':'','contact':'','provinceId':'','cityId':'','townId':'','mobile':'','address':'','alias':'','isDefault':''};
 
     /**
      * 校验用户名
@@ -138,7 +138,11 @@ app.controller("userController",function($scope,$controller,userService,addresSe
     })
 
     $scope.saveAddress=function() {
-        addresService.saveAddress($scope.address).success(function (response) {
+        var methodName = 'saveAddress'
+        if($scope.address.id!=null) {
+            methodName = 'modifyAddress';
+        }
+        addresService.saveAddress(methodName,$scope.address).success(function (response) {
             if(response.code!=0) {
                 alert(response.msg);
             }else{
@@ -154,6 +158,26 @@ app.controller("userController",function($scope,$controller,userService,addresSe
             }else{
                 $scope.addressList = response.data;
                 $scope.address={};
+            }
+        })
+    }
+    
+    $scope.deleteAddressById=function (id) {
+        addresService.deleteAddressById(id).success(function (response) {
+            if(response.code!=0) {
+                alert(response.msg);
+            }else {
+                $scope.selectAddressList();
+            }
+        })
+    }
+    
+    $scope.findOne=function(id) {
+        addresService.findOne(id).success(function (response) {
+            if(response.code!=0) {
+                alert(response.msg);
+            }else{
+                $scope.address=response.data;
             }
         })
     }

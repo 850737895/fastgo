@@ -2,6 +2,7 @@ package com.hnnd.fastgo.dao;
 
 
 import com.hnnd.fastgo.entity.TbAddress;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -47,4 +48,10 @@ public interface TbAddressMapper {
     int updateByPrimaryKey(TbAddress record);
 
     List<TbAddress> selectAddressListByUserId(String userId);
+
+    void updateOtherDefaultAddress(@Param("addressId")long addressId,@Param("loginUserName") String loginUserName);
+
+    TbAddress findOneByIdAndUserId(@Param("addressId")Long addressId,@Param("loginUserName") String loginUserName);
+
+    void updateByIdAndLoginUserName(TbAddress tbAddress);
 }

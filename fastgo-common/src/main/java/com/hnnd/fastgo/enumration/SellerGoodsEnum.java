@@ -203,9 +203,15 @@ public enum SellerGoodsEnum {
 
     ADD_ADRESS_INPARAM_NUMM(-96,"保存收货地址入参异常"),
 
-    ADD_ADRESS_INPARAM_ERROR(-97,"保存收货地址入参异常"),
+    ADD_ADRESS_ERROR(-97,"保存收货地址异常"),
 
     QRY_ADDRESS_LIST_ERROR(-98,"查询收货地址列表异常"),
+
+    IN_PARAM_IS_NULL(-99,"传入参数为空"),
+
+    DEL_ADDRESS_BY_ID_ERROR(-100,"删除地址信息异常"),
+
+    QRY_ADDRESS_BY_ID_ERROR(-101,"查询地址信息异常"),
 
     DEL_IMG_ERROR(-70,"删除文件信息异常");
 

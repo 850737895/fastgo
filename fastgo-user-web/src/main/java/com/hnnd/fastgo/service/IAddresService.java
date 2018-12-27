@@ -4,6 +4,7 @@ import com.hnnd.fastgo.entity.TbAddress;
 import com.hnnd.fastgo.entity.TbAreas;
 import com.hnnd.fastgo.entity.TbCities;
 import com.hnnd.fastgo.entity.TbProvinces;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -47,6 +48,20 @@ public interface IAddresService {
      * @return  List<Map<String,Object>>
      */
      List<Map<String,Object>> selectAddressList(String loginUserName);
+
+    /**
+     * 根据地址id删除地址信息
+     * @param id 地址id
+     */
+    void deleteById(Long id);
+
+    TbAddress findOne(Long adderssId,String loginUserName);
+
+    /**
+     * 修改地址信息
+     * @param tbAddress 地址信息
+     */
+    void modifyAddress(TbAddress tbAddress);
 
 
 }

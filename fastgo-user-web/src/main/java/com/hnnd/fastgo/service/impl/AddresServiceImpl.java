@@ -21,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.SetUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.util.*;
@@ -126,10 +127,16 @@ public class AddresServiceImpl implements IAddresService {
         }
     }
 
+    @Transactional
     @Override
     public void saveAddress(TbAddress tbAddress) {
         tbAddress.setCreateDate(new Date());
         tbAddressMapper.insert(tbAddress);
+        //是默认地址需要把 其他的默认地址设置为非默认的
+        if(SysConst.IS_DEFAULT_ADDRESS.equals(tbAddress.getIsDefault())) {
+            long addressId = tbAddress.getId();
+            tbAddressMapper.updateOtherDefaultAddress(addressId,tbAddress.getUserId());
+        }
     }
 
     @Override
@@ -152,6 +159,26 @@ public class AddresServiceImpl implements IAddresService {
             listMap.add(temp);
         }
         return listMap;
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        tbAddressMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public TbAddress findOne(Long addressId, String loginUserName) {
+        return tbAddressMapper.findOneByIdAndUserId(addressId,loginUserName);
+    }
+
+    @Override
+    public void modifyAddress(TbAddress tbAddress) {
+        tbAddressMapper.updateByIdAndLoginUserName(tbAddress);
+        if(SysConst.IS_DEFAULT_ADDRESS.equals(tbAddress.getIsDefault())) {
+            long addressId = tbAddress.getId();
+            tbAddressMapper.updateOtherDefaultAddress(addressId,tbAddress.getUserId());
+        }
+
     }
 
 
